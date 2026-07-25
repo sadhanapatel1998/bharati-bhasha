@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-playfair {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+  .font-devanagari {
+    font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+  }
+}
+
+:root {
+  --primary: #7B1E1E;
+  --secondary: #C79A2D;
+  --accent: #F5F0E6;
+  --bg-main: #FAFAF8;
+  --success: #2E8B57;
+  --text-main: #222222;
+}
+
+.dark {
+  --bg-main: #121010;
+  --text-main: #F5F0E6;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .font-serif-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.hindi-text, .sanskrit-text {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(199, 154, 45, 0.18);
+}
+
+.dark .glass-panel {
+  background: rgba(26, 20, 20, 0.85);
+  border: 1px solid rgba(199, 154, 45, 0.25);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(123, 30, 30, 0.08);
+}
+
+.dark .glass-card {
+  background: rgba(30, 22, 22, 0.75);
+  border: 1px solid rgba(199, 154, 45, 0.15);
+}
+
+/* Gradients */
+.bg-maroon-gold-grad {
+  background: linear-gradient(135deg, #7B1E1E 0%, #A32A2A 50%, #C79A2D 100%);
+}
+
+.bg-gold-radial {
+  background: radial-gradient(circle at 50% 0%, rgba(199, 154, 45, 0.15) 0%, rgba(250, 250, 248, 0) 70%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #C79A2D 0%, #E2B855 50%, #B0821E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-maroon-gradient {
+  background: linear-gradient(135deg, #7B1E1E 0%, #A32A2A 70%, #541313 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shimmer and glows */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(199, 154, 45, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(199, 154, 45, 0.45);
+  }
+}
+
+.glow-gold {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAFAF8;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #181414;
+}
+::-webkit-scrollbar-thumb {
+  background: #C79A2D;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7B1E1E;
+}
+
