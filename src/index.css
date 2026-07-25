@@ -133,4 +133,7 @@ h1, h2, h3, .font-serif-heading {
 ::-webkit-scrollbar-thumb:hover {
   background: #7B1E1E;
 }
+.text-base {
+  font-size: 15px;
+}
 
