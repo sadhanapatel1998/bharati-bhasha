@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@layer utilities {
+/* @layer utilities {
   .font-playfair {
     font-family: 'Playfair Display', Georgia, serif;
   }
@@ -9,6 +9,21 @@
   }
   .font-devanagari {
     font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+  }
+} */
+
+@layer utilities {
+  .font-devanagari {
+    font-family: 'Noto Serif Devanagari', Georgia, serif;
+  }
+  .font-playfair {
+    font-family: 'Rozha One', 'Noto Serif Devanagari', serif;
+  }
+  .font-yatra {
+    font-family: 'Yatra One', 'Noto Serif Devanagari', cursive;
+  }
+  .font-poppins {
+    font-family: 'Cinzel', serif;
   }
 }
 
@@ -27,14 +42,14 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Noto Serif Devanagari', Georgia, serif;
   background-color: var(--bg-main);
   color: var(--text-main);
   overflow-x: hidden;
 }
 
 h1, h2, h3, .font-serif-heading {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Rozha One', 'Noto Serif Devanagari', serif;
 }
 
 .hindi-text, .sanskrit-text {

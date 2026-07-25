@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useApp } from '../../context/AppContext';
 import { CheckCircle, AlertCircle, Info, XCircle, X } from 'lucide-react';

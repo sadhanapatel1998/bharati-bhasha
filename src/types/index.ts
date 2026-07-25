@@ -36,7 +36,16 @@ export type PageRoute =
   | 'privacy-terms'
   | 'sitemap'
   | '404'
-  | 'coming-soon';
+  | 'coming-soon'
+  | 'admin'
+  | 'admin-login'
+  | 'admin/login'
+  | 'admin-dashboard'
+  | 'admin-schools'
+  | 'admin-students'
+  | 'admin-exams'
+  | 'admin-results'
+  | 'admin-settings';
 
 export interface FAQItem {
   id: string;

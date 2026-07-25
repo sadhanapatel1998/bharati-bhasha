@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { PageRoute } from '../../types';
@@ -252,7 +254,11 @@ export const Footer: React.FC = () => {
             </button>
             <span>•</span>
             <button onClick={() => handleNavClick('careers')} className="hover:text-[#C79A2D] transition-colors">
-              {language === 'hi' ? 'करियर' : 'Careers'}
+              करियर
+            </button>
+            <span>•</span>
+            <button onClick={() => handleNavClick('admin-login')} className="text-[#C79A2D] font-bold hover:underline transition-colors flex items-center gap-1">
+              <span>प्रशासक पोर्टल (Admin Login)</span>
             </button>
           </div>
         </div>
