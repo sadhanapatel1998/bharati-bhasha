@@ -635,3 +635,45 @@ export const GALLERY_ITEMS = [
   { id: 'g5', type: 'video', title: 'Watch Grand Finale Highlights 2025', category: 'Videos', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ' },
   { id: 'g6', type: 'image', title: 'School Principal receiving Best Language Promotion Shield', category: 'Schools', image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=800' }
 ];
+export const FOUR_PILLARS = [
+  {
+    title: "भाषाओं से प्रेम",
+    sub: "Love for Indian Languages",
+    desc: "हम भारतीय भाषाओं से प्रेम करते हैं। हमारा संकल्प है कि हम नई पीढ़ी में भाषाओं के प्रति सम्मान और लगाव जगाएँ।",
+    icon: "HeartHandshake",
+    color: "amber",
+    image: "/why-choose/img-1.jpg",
+  },
+  {
+    title: "भारतीय भाषाओं को बढ़ावा",
+    sub: "Promoting Heritage",
+    desc: "यह ओलंपियाड हिंदी और संस्कृत भाषाओं के अध्ययन, संरक्षण और उनके प्रचार-प्रसार के उद्देश्य से आयोजित किया जाता है।",
+    icon: "Flag",
+    color: "rose",
+    image: "/why-choose/img-2.jpg",
+  },
+  {
+    title: "भारत का प्रथम हिंदी एवं संस्कृत ओलंपियाड",
+    sub: "Pioneer National Olympiad",
+    desc: "कक्षा I से X तक के विद्यार्थियों के लिए विशेष रूप से आयोजित अद्वितीय राष्ट्रीय मंच।",
+    icon: "Trophy",
+    color: "yellow",
+    image: "/why-choose/img-3.jpg",
+  },
+  {
+    title: "बेंचमार्क आधारित मूल्यांकन",
+    sub: "Growth over Ranking",
+    desc: "हम रैंकिंग में विश्वास नहीं करते, हम विकास में विश्वास करते हैं। हमारा उद्देश्य बेंचमार्क, समग्रता और आगे बढ़ना है।",
+    icon: "TrendingUp",
+    color: "emerald",
+    image: "/why-choose/img-4.jpg",
+  }
+];
+
+export const NEP_2020_PILLARS = [
+  { title: "बहुभाषिक शिक्षा", desc: "Multilingual Education", icon: "Globe2" },
+  { title: "भारतीय ज्ञान परंपरा", desc: "Indian Knowledge System", icon: "BookOpenCheck" },
+  { title: "समग्र विकास", desc: "Holistic Student Growth", icon: "Sparkles" },
+  { title: "क्षमता आधारित शिक्षा", desc: "Competency-based Evaluation", icon: "Brain" },
+  { title: "समावेशी शिक्षा", desc: "Inclusive Learning Opportunity", icon: "Users" }
+];

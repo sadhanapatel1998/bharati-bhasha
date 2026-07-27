@@ -7,6 +7,8 @@ export type PageRoute =
   | 'vision-mission'
   | 'why-us'
   | 'nep-2020'
+  | 'olympiads'
+  | 'resources'
   | 'hindi-olympiad'
   | 'sanskrit-olympiad'
   | 'benefits'

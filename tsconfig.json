@@ -6,6 +6,11 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "ignoreDeprecations": "6.0",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -17,17 +22,12 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "strictNullChecks": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
-    "strictNullChecks": true
+    ]
   },
   "include": [
     "next-env.d.ts",

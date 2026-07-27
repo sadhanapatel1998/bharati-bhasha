@@ -52,6 +52,8 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 const ROUTE_PATHS: Record<PageRoute, string> = {
   'home': '/',
   'about': '/about',
+    'olympiads': '/olympiads',        
+  'resources': '/resources', 
   'vision-mission': '/vision-mission',
   'why-us': '/why-us',
   'nep-2020': '/nep-2020',
