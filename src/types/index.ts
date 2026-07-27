@@ -7,7 +7,7 @@ export type PageRoute =
   | 'vision-mission'
   | 'why-us'
   | 'nep-2020'
-  | 'olympiads'
+  | 'olympiads"'
   | 'resources'
   | 'hindi-olympiad'
   | 'sanskrit-olympiad'
@@ -48,6 +48,31 @@ export type PageRoute =
   | 'admin-exams'
   | 'admin-results'
   | 'admin-settings';
+
+export interface SubjectSchedule {
+  subject: string;
+  subjectHindi: string;
+  option1Date: string;
+  option1Day: string;
+  option2Date: string;
+  option2Day: string;
+  iconName: string;
+  image: string;
+}
+
+export interface ExamDetail {
+  id: string;
+  label: string;
+  value: string;
+  subtext: string;
+  icon: string;
+}
+
+export interface RegistrationStep {
+  stepNumber: number;
+  title: string;
+  description: string;
+}
 
 export interface FAQItem {
   id: string;

@@ -9,7 +9,8 @@ import {
   Testimonial, 
   AwardItem, 
   StudentReport,
-  StateParticipation
+  StateParticipation,
+  SubjectSchedule, ExamDetail, RegistrationStep
 } from '../types';
 
 export const KEY_STATS = {
@@ -39,6 +40,7 @@ export const ANNOUNCEMENTS = [
     link: 'awards'
   }
 ];
+
 
 export const EXAM_SCHEDULE: ExamDateItem[] = [
   {
@@ -123,6 +125,107 @@ export const SYLLABUS_DATA: SyllabusItem[] = [
     totalQuestions: 60,
     durationMinutes: 75,
     totalMarks: 100
+  }
+];
+
+export const EXAM_SCHEDULES: SubjectSchedule[] = [
+  {
+    subject: "Hindi",
+    subjectHindi: "हिंदी ओलंपियाड",
+    option1Date: "3 सितंबर 2026",
+    option1Day: "गुरुवार",
+    option2Date: "15 अक्टूबर 2026",
+    option2Day: "गुरुवार",
+    iconName: "BookOpen",
+    image: "/books/hindi.png",
+  },
+  {
+    subject: "Sanskrit",
+    subjectHindi: "संस्कृत ओलंपियाड",
+    option1Date: "6 अक्टूबर 2026",
+    option1Day: "मंगलवार",
+    option2Date: "4 नवंबर 2026",
+    option2Day: "बुधवार",
+    iconName: "Feather",
+    image: "/books/sanskrit.png",
+  },
+];
+
+export const EXAM_DETAILS: ExamDetail[] = [
+  {
+    id: "syllabus",
+    label: "पाठ्यक्रम (Syllabus)",
+    value: "कक्षा I से X",
+    subtext: "एनसीईआरटी एवं प्रमुख बोर्डों के स्तरानुसार",
+    icon: "BookMarked"
+  },
+  {
+    id: "mode",
+    label: "परीक्षा मोड (Exam Mode)",
+    value: "ऑफलाइन (OMR आधारित)",
+    subtext: "विद्यालय परिसर में सुरक्षित आयोजन",
+    icon: "FileCheck"
+  },
+  {
+    id: "format",
+    label: "प्रश्न प्रकार (Question Format)",
+    value: "बहुविकल्पीय एवं वर्णनात्मक",
+    subtext: "MCQs & Descriptive Assessment",
+    icon: "HelpCircle"
+  },
+  {
+    id: "duration",
+    label: "अवधि (Duration)",
+    value: "60 मिनट",
+    subtext: "समय प्रबंधन व विश्लेषणात्मक दक्षता",
+    icon: "Clock"
+  },
+  {
+    id: "level",
+    label: "स्तर (Exam Level)",
+    value: "राष्ट्रीय स्तर (National Level)",
+    subtext: "अखिल भारतीय स्तर पर मूल्यांकन",
+    icon: "Award"
+  },
+  {
+    id: "certificate",
+    label: "प्रमाणपत्र (Certificate)",
+    value: "सभी प्रतिभागियों को",
+    subtext: "राष्ट्रीय पहचान एवं प्रोत्साहन प्रमाण-पत्र",
+    icon: "Scroll"
+  }
+];
+
+export const REGISTRATION_STEPS: RegistrationStep[] = [
+  {
+    stepNumber: 1,
+    title: "विद्यालय द्वारा पंजीकरण",
+    description: "विद्यालय द्वारा आधिकारिक पंजीकरण फॉर्म भरकर संस्थान का कोड प्राप्त करें।"
+  },
+  {
+    stepNumber: 2,
+    title: "विद्यार्थियों का नामांकन",
+    description: "कक्षा 1 से 10 तक के इच्छुक विद्यार्थियों का विषयवार विवरण तैयार करें।"
+  },
+  {
+    stepNumber: 3,
+    title: "शुल्क भुगतान",
+    description: "निर्धारित परीक्षा शुल्क का बैंक ट्रांसफर/यूपीआई के माध्यम से भुगतान करें।"
+  },
+  {
+    stepNumber: 4,
+    title: "एडमिट कार्ड जारी",
+    description: "परीक्षा तिथि से पूर्व रोल नंबर एवं एडमिट कार्ड विद्यालय पोर्टल पर जारी होंगे।"
+  },
+  {
+    stepNumber: 5,
+    title: "परीक्षा में भागीदारी",
+    description: "विद्यालय परिसर में ओएमआर शीट पर सुचारू एवं निष्पक्ष परीक्षा का आयोजन।"
+  },
+  {
+    stepNumber: 6,
+    title: "रिपोर्ट एवं पुरस्कार",
+    description: "विस्तृत बेंचमार्क रिपोर्ट, मेडल, प्रमाण-पत्र व छात्रवृत्ति का वितरण।"
   }
 ];
 
