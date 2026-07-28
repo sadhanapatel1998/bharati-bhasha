@@ -1,54 +1,5 @@
-export type Language = 'en' | 'hi';
+export type Language = 'hi';
 export type Theme = 'light' | 'dark';
-
-export type PageRoute = 
-  | 'home'
-  | 'about'
-  | 'vision-mission'
-  | 'why-us'
-  | 'nep-2020'
-  | 'olympiads"'
-  | 'resources'
-  | 'hindi-olympiad'
-  | 'sanskrit-olympiad'
-  | 'benefits'
-  | 'awards'
-  | 'scholarships'
-  | 'benchmark-assessment'
-  | 'performance-report'
-  | 'registration'
-  | 'school-registration'
-  | 'student-registration'
-  | 'teacher-registration'
-  | 'process'
-  | 'exam-pattern'
-  | 'exam-dates'
-  | 'syllabus'
-  | 'sample-papers'
-  | 'mock-test'
-  | 'faqs'
-  | 'gallery'
-  | 'events-news'
-  | 'blogs'
-  | 'blog-detail'
-  | 'testimonials'
-  | 'partners-schools'
-  | 'contact'
-  | 'careers'
-  | 'privacy-terms'
-  | 'sitemap'
-  | '404'
-  | 'coming-soon'
-  | 'admin'
-  | 'admin-login'
-  | 'admin/login'
-  | 'admin-dashboard'
-  | 'admin-schools'
-  | 'admin-students'
-  | 'admin-exams'
-  | 'admin-results'
-  | 'admin-settings';
-
 export interface SubjectSchedule {
   subject: string;
   subjectHindi: string;
@@ -57,9 +8,8 @@ export interface SubjectSchedule {
   option2Date: string;
   option2Day: string;
   iconName: string;
-  image: string;
+  image: string; // Image path or URL
 }
-
 export interface ExamDetail {
   id: string;
   label: string;
@@ -68,29 +18,31 @@ export interface ExamDetail {
   icon: string;
 }
 
+// export interface RegistrationStep {
+//   stepNumber: number;
+//   title: string;
+//   description: string;
+// }
 export interface RegistrationStep {
   stepNumber: number;
   title: string;
   description: string;
 }
-
 export interface FAQItem {
   id: string;
-  question: { en: string; hi: string };
-  answer: { en: string; hi: string };
+  question: string;
+  answer: string;
   category: 'general' | 'exam' | 'registration' | 'awards';
 }
-
 export interface ExamDateItem {
   id: string;
-  title: { en: string; hi: string };
+  title: string;
   subject: 'Hindi' | 'Sanskrit' | 'Both';
   date: string;
   time: string;
   mode: 'Online (School Portal)' | 'Offline (OMR Based)';
   eligibleClasses: string;
 }
-
 export interface SyllabusItem {
   classLevel: string;
   hindiTopics: string[];
@@ -99,7 +51,6 @@ export interface SyllabusItem {
   durationMinutes: number;
   totalMarks: number;
 }
-
 export interface SamplePaper {
   id: string;
   title: string;
@@ -109,21 +60,19 @@ export interface SamplePaper {
   questionsCount: number;
   pdfUrl: string;
 }
-
 export interface MockQuestion {
   id: number;
-  question: { en: string; hi: string };
-  options: { en: string[]; hi: string[] };
+  question: string;
+  options: string[];
   correctIndex: number;
-  explanation: { en: string; hi: string };
+  explanation: string;
   category: string;
 }
-
 export interface BlogPost {
   id: string;
-  title: { en: string; hi: string };
-  excerpt: { en: string; hi: string };
-  content: { en: string; hi: string };
+  title: string;
+  excerpt: string;
+  content: string;
   category: string;
   author: string;
   authorRole: string;
@@ -132,7 +81,6 @@ export interface BlogPost {
   image: string;
   tags: string[];
 }
-
 export interface PartnerSchool {
   id: string;
   name: string;
@@ -142,28 +90,25 @@ export interface PartnerSchool {
   logo: string;
   rating: number;
 }
-
 export interface Testimonial {
   id: string;
   name: string;
   role: string;
   school: string;
   state: string;
-  quote: { en: string; hi: string };
+  quote: string;
   rating: number;
   avatar: string;
   videoUrl?: string;
 }
-
 export interface AwardItem {
   id: string;
   rank: string;
-  title: { en: string; hi: string };
+  title: string;
   cashPrize: string;
-  perks: { en: string[]; hi: string[] };
+  perks: string[];
   iconName: string;
 }
-
 export interface StudentReport {
   rollNumber: string;
   studentName: string;
@@ -185,7 +130,6 @@ export interface StudentReport {
     comprehension: number;
   };
 }
-
 export interface StateParticipation {
   state: string;
   schoolsCount: number;

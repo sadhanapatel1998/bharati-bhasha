@@ -1,119 +1,164 @@
-import React from 'react';
-import { BookOpen, Sparkles, Scroll, HeartHandshake, CheckCircle2, ShieldAlert, Award } from 'lucide-react';
-import SectionHeader from "@/components/shared/SectionHeader";
+"use client";
 
+import React from "react";
+import { Scroll, Sparkles, CheckCircle2, Award, ChevronRight } from "lucide-react";
+import SectionHeader from "@/components/shared/SectionHeader";
+import Image from "next/image";
+import { useApp } from "@/context/AppContext";
+import Link from "next/link";
 
 export const AboutSection: React.FC = () => {
-    return (
-        <section id="about" className="py-16 bg-gradient-to-b from-amber-50/50 via-white to-amber-50/80 relative mb-0">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    const { navigateTo } = useApp();
 
-                {/* Section Heading with Decorative Flourish */}
+    return (
+        <section
+            id="about"
+            className="mb-0 relative py-16 overflow-hidden bg-gradient-to-b from-amber-50/50 via-white to-amber-50/80"
+        >
+            {/* Decorative background pattern */}
+            <div
+                className="absolute inset-0 pointer-events-none opacity-[0.04]"
+                style={{
+                    backgroundImage: `
+            radial-gradient(circle at 20% 30%, #790e03 1px, transparent 1px),
+            radial-gradient(circle at 80% 70%, #C79A2D 1px, transparent 1px)
+          `,
+                    backgroundSize: "60px 60px, 80px 80px",
+                    backgroundPosition: "0 0, 40px 40px",
+                }}
+            />
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+                {/* Section Header */}
                 <SectionHeader
                     icon={Scroll}
-                    badge="परिचय व उद्देश्य"
-                    title="हमारे बारे में"
+                    badge="भारतीय भाषाओं के संवर्धन हेतु समर्पित"
+                    title="भारती भाषा ओलंपियाड का परिचय"
+                // description="हिंदी एवं संस्कृत भाषा के ज्ञान, कौशल और सांस्कृतिक मूल्यों को प्रोत्साहित करने वाली राष्ट्रीय शैक्षिक पहल।" 
                 />
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-
-                    {/* Left Text Content Grid (Page 2 Content) */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-8">
+                    {/* Left – Text Content */}
                     <div className="lg:col-span-7 space-y-6">
-                        <div className="bg-amber-50/80 p-6 sm:p-8 rounded-2xl border border-amber-300 shadow-md space-y-4">
-                            <p className="text-medium sm:text-lg text-slate-800 leading-relaxed font-devanagari font-medium">
-                                <span className="font-bold text-red-900 text-lg sm:text-xl">भारतीय भाषा ओलंपियाड</span> भारत का प्रथम ऐसा राष्ट्रीय मंच है जो विशेष रूप से <span className="font-bold text-red-900">हिंदी एवं संस्कृत भाषाओं</span> के लिए समर्पित है। कक्षा 1 से 10 तक के विद्यार्थियों के लिए आयोजित किया जाने वाला यह ओलंपियाड भारतीय भाषाओं के प्रति प्रेम, सम्मान और गर्व की भावना को जागृत करता है तथा इन भाषाओं को नई पीढ़ी के लिए अध्ययन का आनंददायक अनुभव बनाता है।
-                            </p>
+                        {/* Main description card */}
+                        <div className="relative bg-white p-6 sm:p-8 rounded-2xl border border-amber-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                            {/* Corner decorations */}
+                            <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-amber-400/60 rounded-tl-lg" />
+                            <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-amber-400/60 rounded-br-lg" />
 
-                            <p className="text-medium sm:text-lg text-slate-800 leading-relaxed font-devanagari">
-                                हिंदी और संस्कृत हमारी संस्कृति, ज्ञान परंपरा, मूल्य, साहित्य और जीवन दृष्टि का आधार हैं। ये भाषाएँ हमें हमारी जड़ों से जोड़ती हैं और विचारों की गहराई, अभिव्यक्ति की सुंदरता तथा संवाद की प्रभावशीलता विकसित करती हैं।
-                            </p>
+                            <div className="space-y-4">
+                                <p className="text-lg text-slate-800 leading-relaxed font-devanagari font-medium">
+                                    <span className="font-bold text-red-900 text-lg sm:text-xl">
+                                        भारतीय भाषा ओलंपियाड
+                                    </span>{" "}
+                                    भारत का प्रथम ऐसा राष्ट्रीय मंच है जो विशेष रूप से{" "}
+                                    <span className="font-bold text-red-900">
+                                        हिंदी एवं संस्कृत भाषाओं
+                                    </span>{" "}
+                                    के लिए समर्पित है। कक्षा 1 से 10 तक के विद्यार्थियों के लिए
+                                    आयोजित किया जाने वाला यह ओलंपियाड भारतीय भाषाओं के प्रति प्रेम,
+                                    सम्मान और गर्व की भावना को जागृत करता है तथा इन भाषाओं को नई
+                                    पीढ़ी के लिए अध्ययन का आनंददायक अनुभव बनाता है।
+                                </p>
+
+                                <p className="text-lg text-slate-800 leading-relaxed font-devanagari">
+                                    हिंदी और संस्कृत हमारी संस्कृति, ज्ञान परंपरा, मूल्य, साहित्य
+                                    और जीवन दृष्टि का आधार हैं।    हिंदी और संस्कृत हमारी संस्कृति, ज्ञान परंपरा, मूल्य, साहित्य
+                                    और जीवन दृष्टि का आधार हैं।
+                                </p>
+
+                                <div className="w-12 h-0.5 bg-gradient-to-r from-amber-400 to-transparent" />
+                                {/* <div
+                                    className={`overflow-hidden transition-all duration-500 ease-in-out ${expanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                                        }`}
+                                > */}
+                                {/* <div className="pt-4 space-y-4 border-t border-amber-200/60">
+                                        <p className="text-lg text-slate-800 leading-relaxed font-devanagari">
+                                            ये भाषाएँ हमें हमारी जड़ों से
+                                            जोड़ती हैं और विचारों की गहराई, अभिव्यक्ति की सुंदरता तथा
+                                            संवाद की प्रभावशीलता विकसित करती हैं।
+                                        </p>
+
+                                        <p className="text-lg text-slate-800 leading-relaxed font-devanagari">
+                                            हमारा ओलंपियाड न केवल ज्ञान परीक्षण है, बल्कि यह बच्चों में
+                                            भाषाई रचनात्मकता, तार्किक चिंतन और सांस्कृतिक गर्व को भी
+                                            बढ़ावा देता है। हमारी टीम विशेषज्ञ शिक्षकों, भाषा वैज्ञानिकों
+                                            और परीक्षा निर्माताओं द्वारा गठित है, जो प्रत्येक विद्यार्थी
+                                            के समग्र विकास के लिए प्रतिबद्ध है।
+                                        </p>
+                                        <p className="text-lg text-slate-800 leading-relaxed font-devanagari">
+                                            हम भारतीय भाषाओं के महत्व को पहचानते हैं और उन्हें आधुनिक
+                                            शिक्षा के साथ एकीकृत करने का कार्य करते हैं। इस ओलंपियाड
+                                            के माध्यम से हम हिंदी और संस्कृत की समृद्ध विरासत को नई
+                                            पीढ़ी तक पहुँचाने का प्रयास करते हैं।
+                                        </p>
+                                    </div> */}
+                                {/* </div> */}
+
+                                {/* Read More / Read Less Button */}
+                                <Link
+                                    href="/about"
+                                    className="inline-flex items-center gap-2 mt-2 text-red-800 font-bold hover:text-amber-700 transition-colors duration-200 group cursor-pointer"
+                                >
+                                    <span>और पढ़ें</span>
+                                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </div>
                         </div>
 
-                        {/* Assessment Vision Box */}
-                        <div className="bg-white p-6 rounded-2xl border-l-4 border-red-900 border-amber-200 shadow-md space-y-3">
-                            <h3 className="text-xl font-bold font-heading-hi text-red-950 flex items-center gap-2">
-                                <Sparkles className="w-5 h-5 text-amber-600" />
-                                व्यक्तिगत आंकलन एवं बेंचमार्क मूल्यांकन
-                            </h3>
-                            <p className="text-slate-700 font-devanagari text-lg">
-                                यह ओलंपियाड केवल परीक्षा नहीं, बल्कि विद्यार्थियों की वास्तविक प्रगति का आंकलन है। हम रैंकिंग में विश्वास नहीं करते, बल्कि व्यक्तिगत आंकलन एवं बेंचमार्क आधारित मूल्यांकन में विश्वास करते हैं, जिससे विद्यार्थियों की क्षमताओं, कमियों और संभावनाओं की सकारात्मक पहचान करना संभव हो सके।
-                            </p>
-                        </div>
-
-                        {/* Detailed Performance Reports & NEP 2020 */}
+                        {/* Two feature cards – now with animated hover */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                            <div className="p-4 bg-amber-100/70 rounded-xl border border-amber-300">
-                                <h4 className="font-bold text-red-950 font-heading-hi text-medium mb-1 flex items-center gap-1.5">
-                                    <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                            <div className="group p-5 bg-white rounded-xl border border-amber-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+                                <h4 className="font-bold text-red-950 font-heading-hi text-lg mb-1 flex items-center gap-1.5">
+                                    <CheckCircle2 className="w-4 h-4 text-emerald-600 group-hover:scale-110 transition-transform" />
                                     विस्तृत प्रदर्शन रिपोर्ट (Insights)
                                 </h4>
-                                <p className=" text-slate-700 font-devanagari leading-normal text-lg">
-                                    विद्यार्थियों, शिक्षकों और अभिभावकों को उपयोगी अंतर्दृष्टि प्रदान करती है जिससे सीखने की प्रक्रिया लक्ष्यकेंद्रित बनती है।
+                                <p className="text-lg text-slate-800 font-devanagari leading-relaxed">
+                                    विद्यार्थियों, शिक्षकों और अभिभावकों को उपयोगी अंतर्दृष्टि
+                                    प्रदान करती है जिससे सीखने की प्रक्रिया लक्ष्यकेंद्रित बनती
+                                    है।
                                 </p>
                             </div>
 
-                            <div className="p-4 bg-amber-100/70 rounded-xl border border-amber-300">
-                                <h4 className="font-bold text-red-950 font-heading-hi text-medium mb-1 flex items-center gap-1.5">
-                                    <Award className="w-4 h-4 text-amber-700" />
+                            <div className="group p-5 bg-white rounded-xl border border-amber-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+                                <h4 className="font-bold text-red-950 font-heading-hi text-lg mb-1 flex items-center gap-1.5">
+                                    <Award className="w-4 h-4 text-amber-600 group-hover:scale-110 transition-transform" />
                                     NEP 2020 संरेखण
                                 </h4>
-                                <p className="text-lg text-slate-700 font-devanagari leading-normal">
-                                    बहुभाषिक शिक्षा, भारतीय ज्ञान परंपरा, समग्र एवं योग्यता आधारित शिक्षा के मूल सिद्धांतों से पूर्णतः संरेखित है।
+                                <p className="text-lg text-slate-800 font-devanagari leading-relaxed">
+                                    बहुभाषिक शिक्षा, भारतीय ज्ञान परंपरा, समग्र एवं योग्यता
+                                    आधारित शिक्षा के मूल सिद्धांतों से पूर्णतः संरेखित है।
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Right Scroll Visual - Replica of Ancient Scroll in Page 2 Brochure */}
-                    <div className="lg:col-span-5">
-                        <div className="relative bg-gradient-to-b from-amber-100 via-amber-50 to-amber-100 p-8 rounded-3xl border-1 border-[#021335] shadow-2xl space-y-6">
-
-                            {/* Top Parchment Ribbon */}
-                            <div className="text-center border-b-2 border-amber-400 pb-4">
-                                <span className="text-2xl font-yatra text-red-950 block">
-                                    संस्कृत ज्ञान-परंपरा
-                                </span>
-                                <span className="text-medium font-bold text-amber-800 uppercase tracking-widest">
-                                    अमृतवाक्य सूक्तियाँ
-                                </span>
-                            </div>
-
-                            {/* Shlokas List */}
-                            <div className="space-y-4 font-devanagari text-center font-bold text-amber-950">
-                                <div className="p-3 bg-white/80 rounded-xl border border-amber-300 shadow-sm hover:scale-105 transition-transform">
-                                    <p className="text-lg text-red-900 font-yatra">वसुधैव कुटुम्बकम्</p>
-                                    <p className="text-lg text-slate-600 font-normal">संपूर्ण पृथ्वी ही हमारा परिवार है</p>
-                                </div>
-
-                                <div className="p-3 bg-white/80 rounded-xl border border-amber-300 shadow-sm hover:scale-105 transition-transform">
-                                    <p className="text-lg text-red-900 font-yatra">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</p>
-                                    <p className="text-lg text-slate-600 font-normal">कर्म पर तुम्हारा अधिकार है, फल पर नहीं</p>
-                                </div>
-
-                                <div className="p-3 bg-white/80 rounded-xl border border-amber-300 shadow-sm hover:scale-105 transition-transform">
-                                    <p className="text-lg text-red-900 font-yatra">सत्यमेव जयते</p>
-                                    <p className="text-lg text-slate-600 font-normal">सत्य की ही सदा विजय होती है</p>
-                                </div>
-
-                                <div className="p-3 bg-white/80 rounded-xl border border-amber-300 shadow-sm hover:scale-105 transition-transform">
-                                    <p className="text-lg text-red-900 font-yatra">विद्या ददाति विनयं</p>
-                                    <p className="text-lg text-slate-600 font-normal">विद्या से विनम्रता आती है</p>
+                    {/* Right – Image with decorative frame */}
+                    <div className="lg:col-span-5 flex items-center justify-center">
+                        <div className="relative w-full max-w-md lg:max-w-lg">
+                            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-amber-400/50 hover:shadow-3xl transition-shadow duration-500 group">
+                                <Image
+                                    src="/banner/about-img.jpg"
+                                    alt="Registration Process"
+                                    width={600}
+                                    height={700}
+                                    priority
+                                    className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
+                                />
+                                {/* Overlay badge */}
+                                <div className="absolute bottom-4 left-4 bg-red-900/90 backdrop-blur-sm text-amber-50 px-4 py-2 rounded-lg text-sm font-bold shadow-lg">
+                                    <span className="flex items-center gap-2">
+                                        <Sparkles className="w-4 h-4 text-amber-400" />
+                                        <span>राष्ट्रीय स्तर पर मान्य</span>
+                                    </span>
                                 </div>
                             </div>
-
-                            {/* Bottom Callout Frame from Page 2 */}
-                            <div className="mt-6 p-4 bg-[#021335] text-amber-100 rounded-xl text-center border border-amber-400 shadow">
-                                <p className="text-lg sm:text-medium font-bold font-devanagari leading-snug">
-                                    "आइए, हम सब मिलकर भारतीय भाषाओं के गौरव को पुनः स्थापित करें और नई पीढ़ी को भाषा, संस्कृति और संस्कार से समृद्ध करें।"
-                                </p>
-                            </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
     );
 };
+
 export default AboutSection;

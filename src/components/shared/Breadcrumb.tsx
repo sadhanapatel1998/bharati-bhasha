@@ -2,11 +2,10 @@
 
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { PageRoute } from '../../types';
 import { Home, ChevronRight } from 'lucide-react';
 
 interface BreadcrumbProps {
-  items: { label: string; route?: PageRoute }[];
+  items: { label: string; route?: string }[];
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
@@ -15,7 +14,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   return (
     <nav className="flex items-center gap-2 text-xs font-medium text-gray-500 dark:text-gray-400 my-4 flex-wrap">
       <button 
-        onClick={() => navigateTo('home')}
+        onClick={() => navigateTo('/')}
         className="flex items-center gap-1 hover:text-[#7B1E1E] dark:hover:text-[#C79A2D] transition-colors"
       >
         <Home className="w-3.5 h-3.5" />

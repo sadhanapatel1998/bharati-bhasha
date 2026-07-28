@@ -2,21 +2,20 @@
 
 import React from 'react';
 import { useApp } from '@/context/AppContext';
-
 export const ProcessSection: React.FC = () => {
-  const { language } = useApp();
-
-  return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  const {
+    language
+  } = useApp();
+  return <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center max-w-2xl mx-auto mb-12">
         <span className="text-xs font-bold uppercase tracking-wider text-[#C79A2D]">
-          {language === 'hi' ? 'सरल एवं पारदर्शी प्रक्रिया' : 'Simple 4-Step Process'}
+          {'सरल एवं पारदर्शी प्रक्रिया'}
         </span>
         <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mt-1">
-          {language === 'hi' ? 'ओलंपियाड में भाग कैसे लें?' : 'How to Participate in Olympiad'}
+          {'ओलंपियाड में भाग कैसे लें?'}
         </h2>
         <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-2">
-          {language === 'hi' ? 'विद्यालय या व्यक्तिगत स्तर पर 4 आसान चरणों में पंजीकरण से पुरस्कार तक का सफर' : 'From registration to national felicitation at Vigyan Bhawan'}
+          {'विद्यालय या व्यक्तिगत स्तर पर 4 आसान चरणों में पंजीकरण से पुरस्कार तक का सफर'}
         </p>
       </div>
 
@@ -27,10 +26,10 @@ export const ProcessSection: React.FC = () => {
             01
           </div>
           <h3 className="font-bold text-base text-gray-900 dark:text-white mb-2">
-            {language === 'hi' ? '1. पंजीकरण (Registration)' : '1. Enrollment'}
+            {'1. पंजीकरण (Registration)'}
           </h3>
           <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-            {language === 'hi' ? 'विद्यालय अथवा छात्र हमारी वेबसाइट पर ऑनलाइन फॉर्म भरें।' : 'Register online individually or through your school coordinator.'}
+            {'विद्यालय अथवा छात्र हमारी वेबसाइट पर ऑनलाइन फॉर्म भरें।'}
           </p>
         </div>
 
@@ -39,10 +38,10 @@ export const ProcessSection: React.FC = () => {
             02
           </div>
           <h3 className="font-bold text-base text-gray-900 dark:text-white mb-2">
-            {language === 'hi' ? '2. अध्ययन व अभ्यास (Preparation)' : '2. Study & Practice'}
+            {'2. अध्ययन व अभ्यास (Preparation)'}
           </h3>
           <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-            {language === 'hi' ? 'निःशुल्क सैंपल पेपर व ऑनलाइन मॉक टेस्ट से तैयारी करें।' : 'Access free class-wise sample papers and online mock exam simulators.'}
+            {'निःशुल्क सैंपल पेपर व ऑनलाइन मॉक टेस्ट से तैयारी करें।'}
           </p>
         </div>
 
@@ -51,10 +50,10 @@ export const ProcessSection: React.FC = () => {
             03
           </div>
           <h3 className="font-bold text-base text-gray-900 dark:text-white mb-2">
-            {language === 'hi' ? '3. परीक्षा (Examination)' : '3. Take Exam'}
+            {'3. परीक्षा (Examination)'}
           </h3>
           <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-            {language === 'hi' ? 'विद्यालय केंद्र (OMR) अथवा ऑनलाइन प्रोक्टर्ड पोर्टल पर परीक्षा दें।' : 'Appear via school OMR center or online secure portal.'}
+            {'विद्यालय केंद्र (OMR) अथवा ऑनलाइन प्रोक्टर्ड पोर्टल पर परीक्षा दें।'}
           </p>
         </div>
 
@@ -63,14 +62,13 @@ export const ProcessSection: React.FC = () => {
             04
           </div>
           <h3 className="font-bold text-base text-gray-900 dark:text-white mb-2">
-            {language === 'hi' ? '4. परिणाम व पुरस्कार (Awards)' : '4. Report & Awards'}
+            {'4. परिणाम व पुरस्कार (Awards)'}
           </h3>
           <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-            {language === 'hi' ? '12-आयामी रिपोर्ट कार्ड, छात्रवृत्ति एवं राष्ट्रीय पदक प्राप्त करें।' : 'Get detailed benchmark scorecard, trophies, and cash scholarships.'}
+            {'12-आयामी रिपोर्ट कार्ड, छात्रवृत्ति एवं राष्ट्रीय पदक प्राप्त करें।'}
           </p>
         </div>
 
       </div>
-    </section>
-  );
+    </section>;
 };

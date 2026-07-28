@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { Language, Theme, PageRoute } from '../types';
+import { Language, Theme } from '../types';
 
 interface ToastState {
   id: string;
@@ -28,8 +28,8 @@ interface AppContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
-  currentRoute: PageRoute;
-  navigateTo: (route: PageRoute, params?: Record<string, any>) => void;
+  currentRoute: string;
+  navigateTo: (route: string, params?: Record<string, any>) => void;
   routeParams: Record<string, any>;
   toasts: ToastState[];
   showToast: (message: string, type?: 'success' | 'info' | 'warning' | 'error') => void;
@@ -48,72 +48,6 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-// Maps every logical PageRoute key used across the app to its real Next.js URL.
-const ROUTE_PATHS: Record<PageRoute, string> = {
-  'home': '/',
-  'about': '/about',
-    'olympiads': '/olympiads',        
-  'resources': '/resources', 
-  'vision-mission': '/vision-mission',
-  'why-us': '/why-us',
-  'nep-2020': '/nep-2020',
-  'hindi-olympiad': '/hindi-olympiad',
-  'sanskrit-olympiad': '/sanskrit-olympiad',
-  'benefits': '/why-us',
-  'awards': '/awards',
-  'scholarships': '/scholarships',
-  'benchmark-assessment': '/benchmark',
-  'performance-report': '/performance-report',
-  'registration': '/registration',
-  'school-registration': '/registration',
-  'student-registration': '/registration',
-  'teacher-registration': '/registration',
-  'process': '/',
-  'exam-pattern': '/',
-  'exam-dates': '/exam-dates',
-  'syllabus': '/syllabus',
-  'sample-papers': '/sample-papers',
-  'mock-test': '/mock-test',
-  'faqs': '/faqs',
-  'gallery': '/gallery',
-  'events-news': '/events-news',
-  'blogs': '/blogs',
-  'blog-detail': '/blog-detail',
-  'testimonials': '/testimonials',
-  'partners-schools': '/partners-schools',
-  'contact': '/contact',
-  'careers': '/careers',
-  'privacy-terms': '/privacy-terms',
-  'sitemap': '/sitemap',
-  '404': '/',
-  'coming-soon': '/',
-  'admin': '/admin',
-  'admin-login': '/admin/login',
-  'admin/login': '/admin/login',
-  'admin-dashboard': '/admin',
-  'admin-schools': '/admin',
-  'admin-students': '/admin',
-  'admin-exams': '/admin',
-  'admin-results': '/admin',
-  'admin-settings': '/admin',
-};
-
-// Derives the logical PageRoute key from the real current URL path.
-const getRouteFromPath = (path: string): PageRoute => {
-  const clean = path.toLowerCase();
-  if (clean === '/admin/login' || clean === '/admin-login') {
-    return 'admin-login';
-  }
-  if (clean.startsWith('/admin')) {
-    return 'admin';
-  }
-  if (clean === '/' || clean === '') {
-    return 'home';
-  }
-  const key = clean.replace(/^\//, '').replace(/\/$/, '');
-  return (key || 'home') as PageRoute;
-};
-
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -121,7 +55,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [language, setLanguage] = useState<Language>('hi');
   const [theme, setTheme] = useState<Theme>('light');
 
-  const currentRoute = getRouteFromPath(pathname || '/');
+  // The current route is simply the real Next.js folder-based route path.
+  const currentRoute = pathname || '/';
   const [routeParams, setRouteParams] = useState<Record<string, any>>({});
   const [toasts, setToasts] = useState<ToastState[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -129,19 +64,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Admin auth state - initialized safely for SSR, hydrated from localStorage on mount.
   const [adminToken, setAdminToken] = useState<string | null>(null);
-  const [adminUser, setAdminUser] = useState<AdminUser | null>({
-    id: 'ADM-1001',
-    name: 'डॉ. सर्वेश कुमार शर्मा',
-    email: 'admin@bharatibhasha.org',
-    role: 'मुख्य राष्ट्रीय प्रशासक',
-    designation: 'राष्ट्रीय निदेशक, परीक्षा मंडल',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80',
-    lastLogin: '25 जुलाई 2026, 10:15 AM'
-  });
+  const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
 
   useEffect(() => {
-    const savedToken = localStorage.getItem('bbo_admin_token') || 'token_admin_bbo_2026_master_key';
-    setAdminToken(savedToken);
+    const savedToken = localStorage.getItem('bbo_admin_token');
+    if (savedToken) setAdminToken(savedToken);
 
     const savedUser = localStorage.getItem('bbo_admin_user');
     if (savedUser) {
@@ -164,12 +91,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   }, [theme]);
 
-  // Client-side navigation via the real Next.js router, keeping the legacy
-  // PageRoute-key based call sites throughout the app unchanged.
-  const navigateTo = (route: PageRoute, params: Record<string, any> = {}) => {
-    const target = ROUTE_PATHS[route] ?? '/';
+  // Client-side navigation via the real Next.js folder-based router.
+  const navigateTo = (route: string, params: Record<string, any> = {}) => {
     setRouteParams(params);
-    router.push(target);
+    router.push(route);
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

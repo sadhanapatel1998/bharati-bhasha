@@ -10,5 +10,7 @@ export async function POST(req: NextRequest) {
     activeTokens.delete(token);
   }
 
-  return NextResponse.json({ success: true, message: 'सफलतापूर्वक लॉगआउट संपन्न हुआ।' });
+  const res = NextResponse.json({ success: true, message: 'सफलतापूर्वक लॉगआउट संपन्न हुआ।' });
+  res.cookies.set('adminToken', '', { path: '/', maxAge: 0 });
+  return res;
 }

@@ -27,7 +27,7 @@ export default function SectionHeader({
       </h2>
 
       {description && (
-        <p className="text-slate-700 text-medium sm:text-lg font-devanagari max-w-2xl mx-auto leading-relaxed">
+        <p className="text-slate-800 text-medium sm:text-lg font-devanagari max-w-2xl mx-auto leading-relaxed">
           {description}
         </p>
       )}

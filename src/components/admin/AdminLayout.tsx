@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { useApp } from '../../context/AppContext';
 import { 
   LayoutDashboard, 
@@ -48,6 +49,7 @@ import { AdminCMSPages } from './AdminCMSPages';
 import { AdminEngagement } from './AdminEngagement';
 import { AdminConfiguration } from './AdminConfiguration';
 import { AdminResultsUpload } from './AdminResultsUpload';
+import { AdminDataTable } from './AdminDataTable';
 
 interface NavGroup {
   titleHi: string;
@@ -61,7 +63,29 @@ interface NavGroup {
 
 export const AdminLayout: React.FC = () => {
   const { theme, toggleTheme, navigateTo, showToast, adminUser, isLoggedInAdmin, logoutAdmin } = useApp();
-  const [activeTab, setActiveTab] = useState<string>('dashboard');
+  const pathname = usePathname();
+
+  const tabFromPath = (path: string): string => {
+    const segment = (path || '').replace(/^\/admin\/?/, '').split('/')[0];
+    return segment || 'dashboard';
+  };
+
+  const [activeTab, setActiveTab] = useState<string>(() => tabFromPath(pathname || ''));
+
+  // Keep the active section in sync with the real /admin/<section> URL,
+  // so each admin route (categories, exams, economic-survey, ...) shows
+  // its own content on direct load, refresh, or back/forward navigation.
+  useEffect(() => {
+    setActiveTab(tabFromPath(pathname || ''));
+  }, [pathname]);
+
+  // Selecting a sidebar item navigates to the real folder route AND
+  // updates the tab instantly (no flash of the previous section).
+  const selectTab = (id: string) => {
+    setActiveTab(id);
+    navigateTo(`/admin/${id === 'dashboard' ? 'dashboard' : id}`);
+  };
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
@@ -94,14 +118,14 @@ export const AdminLayout: React.FC = () => {
           </div>
           <div className="space-y-3 pt-2">
             <button 
-              onClick={() => navigateTo('admin-login')}
+              onClick={() => navigateTo('/admin/login')}
               className="w-full bg-[#7B1E1E] hover:bg-[#541313] text-white font-bold py-3.5 px-6 rounded-2xl text-xs transition-all shadow-md flex items-center justify-center gap-2"
             >
               <ShieldCheck className="w-4 h-4 text-[#C79A2D]" />
               <span>प्रशासक लॉगिन करें (Admin Login)</span>
             </button>
             <button 
-              onClick={() => navigateTo('home')}
+              onClick={() => navigateTo('/')}
               className="w-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold py-3 px-6 rounded-2xl text-xs hover:bg-gray-200 transition-all"
             >
               मुख्य वेबसाइट पर लौटें
@@ -151,6 +175,17 @@ export const AdminLayout: React.FC = () => {
       ]
     },
     {
+      titleHi: 'विशेष अनुभाग (Special Sections)',
+      items: [
+        { id: 'categories', labelHi: 'श्रेणियाँ (Categories)', icon: FileText },
+        { id: 'blogs', labelHi: 'ब्लॉग व लेख', icon: FileText },
+        { id: 'course-enquiry', labelHi: 'कोर्स पूछताछ', icon: Inbox },
+        { id: 'e-learning', labelHi: 'ई-लर्निंग सामग्री', icon: Upload },
+        { id: 'bbo-special', labelHi: 'बीबीओ विशेष योजनाएं', icon: Sparkles },
+        { id: 'economic-survey', labelHi: 'आर्थिक सर्वेक्षण', icon: Globe },
+      ]
+    },
+    {
       titleHi: 'सहभागिता एवं संपर्क (Engagement)',
       items: [
         { id: 'contact-queries', labelHi: 'संपर्क एवं पूछताछ', icon: Inbox, badge: '3' },
@@ -172,7 +207,7 @@ export const AdminLayout: React.FC = () => {
   const renderActiveContent = () => {
     switch (activeTab) {
       case 'dashboard':
-        return <DashboardOverview key="dashboard" onNavigateTab={(tab) => setActiveTab(tab)} />;
+        return <DashboardOverview key="dashboard" onNavigateTab={(tab) => selectTab(tab)} />;
       
       // Registrations
       case 'school-registrations':
@@ -193,6 +228,90 @@ export const AdminLayout: React.FC = () => {
         return <AdminResults key="all-results" />;
       case 'exams':
         return <AdminExams key="exams" />;
+
+      // Special Sections (real API-backed, DB-ready)
+      case 'categories':
+        return (
+          <AdminDataTable
+            key="categories"
+            titleHi="श्रेणियाँ (Categories)"
+            apiEndpoint="/api/admin/categories"
+            columns={[
+              { key: 'name', labelHi: 'नाम' },
+              { key: 'slug', labelHi: 'स्लग' },
+              { key: 'count', labelHi: 'कुल संख्या' },
+            ]}
+          />
+        );
+      case 'blogs':
+        return (
+          <AdminDataTable
+            key="blogs"
+            titleHi="ब्लॉग व लेख"
+            apiEndpoint="/api/admin/blogs"
+            columns={[
+              { key: 'title', labelHi: 'शीर्षक' },
+              { key: 'category', labelHi: 'श्रेणी' },
+              { key: 'author', labelHi: 'लेखक' },
+              { key: 'date', labelHi: 'दिनांक' },
+              { key: 'views', labelHi: 'दृश्य' },
+            ]}
+          />
+        );
+      case 'course-enquiry':
+        return (
+          <AdminDataTable
+            key="course-enquiry"
+            titleHi="कोर्स पूछताछ"
+            apiEndpoint="/api/admin/course-enquiry"
+            columns={[
+              { key: 'studentName', labelHi: 'छात्र का नाम' },
+              { key: 'phone', labelHi: 'फ़ोन' },
+              { key: 'course', labelHi: 'कोर्स' },
+              { key: 'date', labelHi: 'दिनांक' },
+              { key: 'status', labelHi: 'स्थिति' },
+            ]}
+          />
+        );
+      case 'e-learning':
+        return (
+          <AdminDataTable
+            key="e-learning"
+            titleHi="ई-लर्निंग सामग्री"
+            apiEndpoint="/api/admin/e-learning"
+            columns={[
+              { key: 'title', labelHi: 'शीर्षक' },
+              { key: 'format', labelHi: 'प्रारूप' },
+              { key: 'downloads', labelHi: 'डाउनलोड' },
+              { key: 'views', labelHi: 'दृश्य' },
+            ]}
+          />
+        );
+      case 'bbo-special':
+        return (
+          <AdminDataTable
+            key="bbo-special"
+            titleHi="बीबीओ विशेष योजनाएं"
+            apiEndpoint="/api/admin/bbo-special"
+            columns={[
+              { key: 'name', labelHi: 'नाम' },
+              { key: 'status', labelHi: 'स्थिति' },
+            ]}
+          />
+        );
+      case 'economic-survey':
+        return (
+          <AdminDataTable
+            key="economic-survey"
+            titleHi="आर्थिक सर्वेक्षण"
+            apiEndpoint="/api/admin/economic-survey"
+            columns={[
+              { key: 'id', labelHi: 'आईडी' },
+              { key: 'title', labelHi: 'शीर्षक' },
+              { key: 'totalFund', labelHi: 'कुल निधि' },
+            ]}
+          />
+        );
 
       // CMS
       case 'announcements':
@@ -219,7 +338,7 @@ export const AdminLayout: React.FC = () => {
         return <AdminConfiguration key={activeTab} subTab={activeTab} />;
 
       default:
-        return <DashboardOverview key="default" onNavigateTab={(tab) => setActiveTab(tab)} />;
+        return <DashboardOverview key="default" onNavigateTab={(tab) => selectTab(tab)} />;
     }
   };
 
@@ -240,7 +359,7 @@ export const AdminLayout: React.FC = () => {
             </button>
 
             <div 
-              onClick={() => navigateTo('home')}
+              onClick={() => navigateTo('/')}
               className="flex items-center gap-2.5 cursor-pointer group"
             >
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#7B1E1E] to-[#C79A2D] p-0.5 shadow-sm group-hover:scale-105 transition-transform">
@@ -271,7 +390,7 @@ export const AdminLayout: React.FC = () => {
             
             {/* Return to Public Portal */}
             <button 
-              onClick={() => navigateTo('home')}
+              onClick={() => navigateTo('/')}
               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-700 text-xs font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               title="मुख्य वेबसाइट पर वापस जाएं"
             >
@@ -389,7 +508,7 @@ export const AdminLayout: React.FC = () => {
                     return (
                       <button
                         key={item.id}
-                        onClick={() => setActiveTab(item.id)}
+                        onClick={() => selectTab(item.id)}
                         className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl transition-all ${
                           isActive 
                             ? 'bg-[#7B1E1E] text-white shadow-md font-bold' 
@@ -458,7 +577,7 @@ export const AdminLayout: React.FC = () => {
                           <button
                             key={item.id}
                             onClick={() => {
-                              setActiveTab(item.id);
+                              selectTab(item.id);
                               setIsSidebarOpen(false);
                             }}
                             className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl transition-all ${
@@ -487,7 +606,7 @@ export const AdminLayout: React.FC = () => {
               <div className="pt-4 border-t border-gray-100 dark:border-gray-800 space-y-2">
                 <button 
                   onClick={() => {
-                    navigateTo('home');
+                    navigateTo('/');
                     setIsSidebarOpen(false);
                   }}
                   className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-semibold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800"
@@ -499,7 +618,7 @@ export const AdminLayout: React.FC = () => {
                 <button 
                   onClick={() => {
                     showToast('प्रशासनिक सत्र समाप्त कर दिया गया है।', 'info');
-                    navigateTo('home');
+                    navigateTo('/');
                     setIsSidebarOpen(false);
                   }}
                   className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-red-600 bg-red-50 dark:bg-red-950/30"

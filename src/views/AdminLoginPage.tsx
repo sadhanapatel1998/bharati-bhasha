@@ -60,22 +60,7 @@ export const AdminLoginPage: React.FC = () => {
         setErrorMessage(data.message || 'लॉग इन विफल! कृपया क्रेडेंशियल्स की जांच करें।');
       }
     } catch (err) {
-      // Fallback client-side authentication if backend network is unreachable
-      if (email.trim().toLowerCase() === 'admin@bharatibhasha.org' && password === 'admin123') {
-        const mockUser = {
-          id: 'ADM-1001',
-          name: 'डॉ. सर्वेश कुमार शर्मा',
-          email: 'admin@bharatibhasha.org',
-          role: 'मुख्य राष्ट्रीय प्रशासक',
-          designation: 'राष्ट्रीय निदेशक, परीक्षा मंडल',
-          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80',
-          lastLogin: new Date().toLocaleString('hi-IN')
-        };
-        showToast('प्रशासक प्रमाणीकरण सफल रहा! (क्लाइंट बैकअप मोड)', 'success');
-        loginAdmin('token_admin_bbo_2026_fallback', mockUser);
-      } else {
-        setErrorMessage('नेटवर्क त्रुटि या अमान्य क्रेडेंशियल्स। कृपया क्रेडेंशियल्स जांचें।');
-      }
+      setErrorMessage('नेटवर्क त्रुटि। कृपया पुनः प्रयास करें।');
     } finally {
       setIsLoading(false);
     }
@@ -98,7 +83,7 @@ export const AdminLoginPage: React.FC = () => {
       {/* Top Header / Nav back */}
       <div className="max-w-7xl mx-auto w-full flex items-center justify-between z-10">
         <button 
-          onClick={() => navigateTo('home')}
+          onClick={() => navigateTo('/')}
           className="inline-flex items-center gap-2 text-xs font-bold text-[#7B1E1E] dark:text-[#C79A2D] bg-white dark:bg-[#1A1414] px-4 py-2.5 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-xs hover:shadow-md transition-all"
         >
           <ArrowLeft className="w-4 h-4" />

@@ -4,13 +4,14 @@ import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Breadcrumb } from '../components/shared/Breadcrumb';
 import { ShieldCheck } from 'lucide-react';
-
 export const LegalPage: React.FC = () => {
-  const { language } = useApp();
-
-  return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      <Breadcrumb items={[{ label: language === 'hi' ? 'गोपनीयता नीति व नियम' : 'Privacy & Terms' }]} />
+  const {
+    language
+  } = useApp();
+  return <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <Breadcrumb items={[{
+      label: 'गोपनीयता नीति व नियम'
+    }]} />
 
       <h1 className="font-playfair text-3xl font-bold text-gray-900 dark:text-white">
         Privacy Policy, Terms & Legal Disclaimer
@@ -24,6 +25,5 @@ export const LegalPage: React.FC = () => {
         <p>All online and offline olympiad exams adhere to 100% transparent evaluation protocols governed by national academic boards.</p>
       </div>
 
-    </div>
-  );
+    </div>;
 };

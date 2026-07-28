@@ -43,7 +43,7 @@ export const WhyChooseSection: React.FC = () => {
                                         </h3>
 
                                         {/* Description */}
-                                        <p className="mt-4 flex-1 text-lg text-slate-700 font-devanagari leading-relaxed">
+                                        <p className="mt-4 flex-1 text-lg text-slate-800 font-devanagari leading-relaxed">
                                             {pillar.desc}
                                         </p>
                                     </div>
@@ -53,7 +53,7 @@ export const WhyChooseSection: React.FC = () => {
                                         <img
                                             src={pillar.image}
                                             alt={pillar.title}
-                                            className="w-full h-44 sm:h-48 md:h-52 object-cover rounded-2xl"
+                                            className="w-full h-50 sm:h-48 md:h-40 object-cover rounded-2xl"
                                         />
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@ export const WhyChooseSection: React.FC = () => {
                                         </h4>
 
                                         {/* Description – subtle slate */}
-                                        <p className="text-base text-slate-900 font-lg leading-relaxed group-hover:text-slate-700 transition-colors">
+                                        <p className="text-base text-slate-900 font-lg leading-relaxed group-hover:text-slate-800 transition-colors">
                                             {pillar.desc}
                                         </p>
 

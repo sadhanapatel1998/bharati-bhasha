@@ -2,214 +2,263 @@
 
 import React from 'react';
 import { useApp } from '../../context/AppContext';
-import { PageRoute } from '../../types';
-import { 
-  X, 
-  Home, 
-  BookOpen, 
-  Sparkles, 
-  GraduationCap, 
-  Award, 
-  Calendar, 
-  FileText, 
-  Trophy, 
-  HelpCircle, 
-  School, 
-  User, 
-  Users, 
+import {
+  X,
+  Home,
+  BookOpen,
+  Sparkles,
+  GraduationCap,
+  Award,
+  Calendar,
+  FileText,
+  Trophy,
+  HelpCircle,
+  School,
+  User,
+  Users,
   Phone,
   Mail,
   MapPin,
-  Globe
+  Globe,
+  ChevronRight,
+  Menu,
 } from 'lucide-react';
+import Image from 'next/image';
 
-export const MobileMenu: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
+export const MobileMenu: React.FC<{
+  isOpen: boolean;
+  onClose: () => void;
+}> = ({ isOpen, onClose }) => {
   const { language, toggleLanguage, navigateTo } = useApp();
 
   if (!isOpen) return null;
 
-  const handleLinkClick = (route: PageRoute) => {
+  const handleLinkClick = (route: string) => {
     navigateTo(route);
     onClose();
   };
 
   return (
-    <div className="fixed inset-0 z-50 lg:hidden flex flex-col bg-white dark:bg-[#121010] overflow-y-auto animate-in fade-in duration-200">
-      
+    <div className="fixed inset-0 z-50 lg:hidden flex flex-col bg-white dark:bg-[#121010] overflow-y-auto animate-in slide-in-from-right duration-300 shadow-2xl">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800">
+      <div className="flex items-center justify-between p-4 border-b border-amber-200/40 dark:border-gray-800 bg-gradient-to-r from-amber-50/80 to-white dark:from-[#1A1414] dark:to-[#121010]">
         <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#7B1E1E] to-[#C79A2D] flex items-center justify-center text-white font-bold font-playfair">
-            भा
+          {/* Logo container with relative positioning and fixed size */}
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-md flex-shrink-0">
+            <Image
+              src="/logo/logo.png"
+              alt={'भारती भाषा ओलंपियाड लोगो'}
+              fill
+              priority
+              sizes="40px"
+              className="object-contain"
+            />
           </div>
-          <span className="font-playfair font-bold text-base text-[#7B1E1E] dark:text-[#C79A2D]">
-            भारती भाषा ओलंपियाड
-          </span>
+          {/* Brand name */}
+          <div>
+            <span className="font-playfair font-bold text-base text-[#7B1E1E] dark:text-[#C79A2D]">
+              भारती भाषा ओलंपियाड
+            </span>
+            <p className="text-[10px] font-bold tracking-wide text-[#12244c] dark:text-gray-400 mt-0">
+              {'अपनी भाषा, अपनी पहचान'}
+            </p>
+          </div>
         </div>
 
-        <button 
+        <button
           onClick={onClose}
-          className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300"
+          className="p-2 rounded-full hover:bg-amber-100/50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors duration-200"
         >
           <X className="w-6 h-6" />
         </button>
       </div>
 
       {/* Quick Action Cards */}
-      <div className="p-4 grid grid-cols-2 gap-2 bg-gray-50 dark:bg-[#1A1414] border-b border-gray-100 dark:border-gray-800">
-        <button 
-          onClick={() => handleLinkClick('mock-test')}
-          className="p-3 bg-gradient-to-r from-[#7B1E1E] to-[#A32A2A] text-white rounded-xl text-left shadow-sm flex flex-col gap-1"
+      {/* <div className="p-4 grid grid-cols-2 gap-3 bg-amber-50/40 dark:bg-[#1A1414] border-b border-amber-200/30 dark:border-gray-800">
+        <button
+          onClick={() => handleLinkClick('/mock-test')}
+          className="group p-4 bg-gradient-to-r from-[#7B1E1E] to-[#A32A2A] text-white rounded-2xl text-left shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex flex-col gap-1.5"
         >
-          <Sparkles className="w-4 h-4 text-[#C79A2D]" />
-          <span className="font-bold text-xs">{language === 'hi' ? 'मॉक टेस्ट दें' : 'Take Mock Test'}</span>
-          <span className="text-[10px] opacity-80">{language === 'hi' ? 'नि:शुल्क अभ्यास प्रश्नोत्तर' : 'Free Interactive Exam'}</span>
+          <Sparkles className="w-5 h-5 text-[#C79A2D] group-hover:scale-110 transition-transform" />
+          <span className="font-bold text-base">{'मॉक टेस्ट दें'}</span>
+          <span className="text-xs opacity-80">{'नि:शुल्क अभ्यास प्रश्नोत्तर'}</span>
         </button>
 
-        <button 
-          onClick={() => handleLinkClick('performance-report')}
-          className="p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-left flex flex-col gap-1"
+        <button
+          onClick={() => handleLinkClick('/performance-report')}
+          className="group p-4 bg-white dark:bg-gray-800 border-2 border-amber-200/60 dark:border-gray-700 rounded-2xl text-left shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col gap-1.5"
         >
-          <Trophy className="w-4 h-4 text-[#C79A2D]" />
-          <span className="font-bold text-xs text-gray-900 dark:text-white">{language === 'hi' ? 'परिणाम देखें' : 'View Report'}</span>
-          <span className="text-[10px] text-gray-500">{language === 'hi' ? 'अनुक्रमांक द्वारा खोजें' : 'Check Roll Number'}</span>
+          <Trophy className="w-5 h-5 text-[#C79A2D] group-hover:scale-110 transition-transform" />
+          <span className="font-bold text-base text-gray-900 dark:text-white">{'परिणाम देखें'}</span>
+          <span className="text-xs text-gray-500">{'अनुक्रमांक द्वारा खोजें'}</span>
         </button>
-      </div>
+      </div> */}
 
       {/* Navigation Links */}
-      <div className="p-4 space-y-4 flex-1">
-        
+      <div className="p-4 space-y-6 flex-1 overflow-y-auto">
+        {/* Section 1: Main Pages */}
         <div>
-          <h3 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2 px-2">
-            {language === 'hi' ? 'मुख्य पृष्ठ व परिचय' : 'Main & Introduction'}
+          <h3 className="text-lg font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-2 px-2 flex items-center gap-2">
+            <span className="w-1 h-4 bg-[#C79A2D] rounded-full"></span>
+            {'मुख्य पृष्ठ व परिचय'}
           </h3>
-          <div className="space-y-1">
-            <button onClick={() => handleLinkClick('home')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <Home className="w-4 h-4 text-[#7B1E1E] dark:text-[#C79A2D]" />
-              {language === 'hi' ? 'मुख्य पृष्ठ' : 'Home'}
-            </button>
-            <button onClick={() => handleLinkClick('about')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <BookOpen className="w-4 h-4 text-[#7B1E1E] dark:text-[#C79A2D]" />
-              {language === 'hi' ? 'ओलंपियाड का परिचय' : 'About Olympiad'}
-            </button>
-            <button onClick={() => handleLinkClick('vision-mission')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <Sparkles className="w-4 h-4 text-[#C79A2D]" />
-              {language === 'hi' ? 'लक्ष्य एवं दूरदृष्टि' : 'Vision & Mission'}
-            </button>
-            <button onClick={() => handleLinkClick('why-us')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <GraduationCap className="w-4 h-4 text-[#7B1E1E] dark:text-[#C79A2D]" />
-              {language === 'hi' ? 'हमारा चयन क्यों?' : 'Why Choose Us'}
-            </button>
-            <button onClick={() => handleLinkClick('nep-2020')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <Award className="w-4 h-4 text-[#C79A2D]" />
-              {language === 'hi' ? 'एनईपी 2020 नीति' : 'NEP 2020 Policy'}
-            </button>
+          <div className="space-y-0.5">
+            {[
+              { route: '/', icon: Home, label: 'मुख्य पृष्ठ', color: 'text-[#7B1E1E]' },
+              { route: '/about', icon: BookOpen, label: 'ओलंपियाड परिचय', color: 'text-[#7B1E1E]' },
+              { route: '/vision-mission', icon: Sparkles, label: 'लक्ष्य एवं दूरदृष्टि', color: 'text-[#C79A2D]' },
+              { route: '/why-us', icon: GraduationCap, label: 'हमारा चयन क्यों?', color: 'text-[#7B1E1E]' },
+              { route: '/nep-2020', icon: Award, label: 'एनईपी 2020 नीति', color: 'text-[#C79A2D]' },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.route}
+                  onClick={() => handleLinkClick(item.route)}
+                  className="w-full text-left px-3 py-2.5 text-base rounded-xl hover:bg-amber-100/50 dark:hover:bg-white/5 font-medium flex items-center gap-3 transition-all duration-200 group"
+                >
+                  <Icon className={`w-5 h-5 ${item.color} group-hover:scale-110 transition-transform`} />
+                  <span className="text-gray-800 dark:text-gray-200 group-hover:text-[#7B1E1E] dark:group-hover:text-[#C79A2D] transition-colors">
+                    {item.label}
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-gray-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              );
+            })}
           </div>
         </div>
 
+        {/* Section 2: Olympiads & Syllabus */}
         <div>
-          <h3 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2 px-2">
-            {language === 'hi' ? 'परीक्षा एवं पाठ्यक्रम' : 'Olympiads & Syllabus'}
+          <h3 className="text-lg font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-2 px-2 flex items-center gap-2">
+            <span className="w-1 h-4 bg-[#C79A2D] rounded-full"></span>
+            {'परीक्षा एवं पाठ्यक्रम'}
           </h3>
-          <div className="space-y-1">
-            <button onClick={() => handleLinkClick('hindi-olympiad')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#7B1E1E]"></span>
-              {language === 'hi' ? 'हिंदी ओलंपियाड' : 'Hindi Olympiad'}
-            </button>
-            <button onClick={() => handleLinkClick('sanskrit-olympiad')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#C79A2D]"></span>
-              {language === 'hi' ? 'संस्कृत ओलंपियाड' : 'Sanskrit Olympiad'}
-            </button>
-            <button onClick={() => handleLinkClick('syllabus')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <FileText className="w-4 h-4 text-gray-500" />
-              {language === 'hi' ? 'पाठ्यक्रम (Syllabus)' : 'Class 1-12 Syllabus'}
-            </button>
-            <button onClick={() => handleLinkClick('exam-dates')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <Calendar className="w-4 h-4 text-gray-500" />
-              {language === 'hi' ? 'परीक्षा तिथियाँ' : 'Exam Dates'}
-            </button>
-            <button onClick={() => handleLinkClick('sample-papers')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <FileText className="w-4 h-4 text-gray-500" />
-              {language === 'hi' ? 'सैंपल पेपर्स' : 'Sample Papers'}
-            </button>
+          <div className="space-y-0.5">
+            {[
+              { route: '/hindi-olympiad', label: 'हिंदी ओलंपियाड', color: 'bg-[#7B1E1E]' },
+              { route: '/sanskrit-olympiad', label: 'संस्कृत ओलंपियाड', color: 'bg-[#C79A2D]' },
+              { route: '/syllabus', icon: FileText, label: 'पाठ्यक्रम (Syllabus)', color: 'text-gray-500' },
+              { route: '/exam-dates', icon: Calendar, label: 'परीक्षा तिथियाँ', color: 'text-gray-500' },
+              { route: '/sample-papers', icon: FileText, label: 'सैंपल पेपर्स', color: 'text-gray-500' },
+            ].map((item) => {
+              if (item.icon) {
+                const Icon = item.icon;
+                return (
+                  <button
+                    key={item.route}
+                    onClick={() => handleLinkClick(item.route)}
+                    className="w-full text-left px-3 py-2.5 text-base rounded-xl hover:bg-amber-100/50 dark:hover:bg-white/5 font-medium flex items-center gap-3 transition-all duration-200 group"
+                  >
+                    <Icon className={`w-5 h-5 ${item.color} group-hover:scale-110 transition-transform`} />
+                    <span className="text-gray-800 dark:text-gray-200 group-hover:text-[#7B1E1E] dark:group-hover:text-[#C79A2D] transition-colors">
+                      {item.label}
+                    </span>
+                    <ChevronRight className="w-4 h-4 text-gray-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </button>
+                );
+              }
+              return (
+                <button
+                  key={item.route}
+                  onClick={() => handleLinkClick(item.route)}
+                  className="w-full text-left px-3 py-2.5 text-base rounded-xl hover:bg-amber-100/50 dark:hover:bg-white/5 font-medium flex items-center gap-3 transition-all duration-200 group"
+                >
+                  <span className={`w-3 h-3 rounded-full ${item.color} group-hover:scale-125 transition-transform`} />
+                  <span className="text-gray-800 dark:text-gray-200 group-hover:text-[#7B1E1E] dark:group-hover:text-[#C79A2D] transition-colors">
+                    {item.label}
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-gray-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              );
+            })}
           </div>
         </div>
 
+        {/* Section 3: Registration */}
         <div>
-          <h3 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2 px-2">
-            {language === 'hi' ? 'पंजीकरण केंद्र' : 'Registration Center'}
+          <h3 className="text-lg font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-2 px-2 flex items-center gap-2">
+            <span className="w-1 h-4 bg-[#C79A2D] rounded-full"></span>
+            {'पंजीकरण केंद्र'}
           </h3>
-          <div className="space-y-1">
-            <button onClick={() => handleLinkClick('school-registration')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5 text-[#7B1E1E] dark:text-[#C79A2D] font-bold">
-              <School className="w-4 h-4" />
-              {language === 'hi' ? 'विद्यालय पंजीकरण (School Registration)' : 'School Registration'}
-            </button>
-            <button onClick={() => handleLinkClick('student-registration')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5 text-[#C79A2D] font-bold">
-              <User className="w-4 h-4" />
-              {language === 'hi' ? 'व्यक्तिगत छात्र पंजीकरण (Student Registration)' : 'Student Registration'}
-            </button>
-            <button onClick={() => handleLinkClick('teacher-registration')} className="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium flex items-center gap-2.5">
-              <Users className="w-4 h-4 text-gray-500" />
-              {language === 'hi' ? 'शिक्षक संयोजक (Teacher Coordinator)' : 'Teacher Coordinator'}
-            </button>
+          <div className="space-y-0.5">
+            {[
+              { route: '/registration', icon: School, label: 'विद्यालय पंजीकरण', sub: 'School Registration', color: 'text-[#7B1E1E]' },
+              { route: '/registration', icon: User, label: 'व्यक्तिगत छात्र पंजीकरण', sub: 'Student Registration', color: 'text-[#C79A2D]' },
+              { route: '/registration', icon: Users, label: 'शिक्षक संयोजक', sub: 'Teacher Coordinator', color: 'text-gray-500' },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.route + item.label}
+                  onClick={() => handleLinkClick(item.route)}
+                  className="w-full text-left px-3 py-2.5 text-base rounded-xl hover:bg-amber-100/50 dark:hover:bg-white/5 font-medium flex items-center gap-3 transition-all duration-200 group"
+                >
+                  <Icon className={`w-5 h-5 ${item.color} group-hover:scale-110 transition-transform`} />
+                  <div>
+                    <div className="text-gray-800 dark:text-gray-200 group-hover:text-[#7B1E1E] dark:group-hover:text-[#C79A2D] transition-colors">
+                      {item.label}
+                    </div>
+                    <div className="text-xs text-gray-400">{item.sub}</div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+              );
+            })}
           </div>
         </div>
 
+        {/* Section 4: Other Pages */}
         <div>
-          <h3 className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-2 px-2">
-            {language === 'hi' ? 'अन्य पृष्ठ' : 'Other Pages'}
+          <h3 className="text-lg font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-2 px-2 flex items-center gap-2">
+            <span className="w-1 h-4 bg-[#C79A2D] rounded-full"></span>
+            {'अन्य पृष्ठ'}
           </h3>
-          <div className="grid grid-cols-2 gap-1 text-xs">
-            <button onClick={() => handleLinkClick('gallery')} className="text-left px-3 py-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-              {language === 'hi' ? 'गैलरी' : 'Gallery'}
-            </button>
-            <button onClick={() => handleLinkClick('events-news')} className="text-left px-3 py-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-              {language === 'hi' ? 'आयोजन व समाचार' : 'Events & News'}
-            </button>
-            <button onClick={() => handleLinkClick('blogs')} className="text-left px-3 py-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-              {language === 'hi' ? 'ब्लॉग' : 'Blogs'}
-            </button>
-            <button onClick={() => handleLinkClick('testimonials')} className="text-left px-3 py-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-              {language === 'hi' ? 'अनुभव' : 'Testimonials'}
-            </button>
-            <button onClick={() => handleLinkClick('partners-schools')} className="text-left px-3 py-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-              {language === 'hi' ? 'सहयोगी विद्यालय' : 'Partner Schools'}
-            </button>
-            <button onClick={() => handleLinkClick('contact')} className="text-left px-3 py-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-              {language === 'hi' ? 'संपर्क करें' : 'Contact Us'}
-            </button>
-            <button onClick={() => handleLinkClick('careers')} className="text-left px-3 py-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-              {language === 'hi' ? 'करियर' : 'Careers'}
-            </button>
-            <button onClick={() => handleLinkClick('sitemap')} className="text-left px-3 py-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-              {language === 'hi' ? 'साइटमैप' : 'Sitemap'}
-            </button>
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              { route: '/gallery', label: 'गैलरी' },
+              { route: '/events-news', label: 'आयोजन व समाचार' },
+              { route: '/blogs', label: 'ब्लॉग' },
+              { route: '/testimonials', label: 'अनुभव' },
+              { route: '/partners-schools', label: 'सहयोगी विद्यालय' },
+              { route: '/contact', label: 'संपर्क करें' },
+              { route: '/careers', label: 'करियर' },
+              { route: '/sitemap', label: 'साइटमैप' },
+            ].map((item) => (
+              <button
+                key={item.route}
+                onClick={() => handleLinkClick(item.route)}
+                className="text-left px-3 py-2 text-base rounded-xl hover:bg-amber-100/50 dark:hover:bg-white/5 font-medium text-gray-700 dark:text-gray-300 transition-all duration-200 hover:text-[#7B1E1E] dark:hover:text-[#C79A2D]"
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
         </div>
-
       </div>
 
       {/* Footer Contact Info */}
-      <div className="p-4 bg-gray-50 dark:bg-[#1A1414] border-t border-gray-100 dark:border-gray-800 text-xs space-y-2">
+      <div className="p-4 bg-amber-50/60 dark:bg-[#1A1414] border-t border-amber-200/30 dark:border-gray-800 text-base space-y-2">
         <div className="flex items-center justify-between">
           <span className="font-semibold text-gray-600 dark:text-gray-400">मातृभाषा:</span>
           <div className="font-bold text-[#7B1E1E] dark:text-[#C79A2D] flex items-center gap-1">
-            <Globe className="w-3.5 h-3.5" />
+            <Globe className="w-4 h-4" />
             हिन्दी (देवनागरी)
           </div>
         </div>
-        <div className="text-gray-500 pt-2 text-[11px] space-y-1">
-          <div className="flex items-center gap-1.5">
-            <Phone className="w-3 h-3 text-[#C79A2D]" />
-            टोल-फ्री: 1800-123-9876
+        <div className="text-gray-500 pt-1 space-y-1.5 text-sm">
+          <div className="flex items-center gap-2">
+            <Phone className="w-4 h-4 text-[#C79A2D]" />
+            <span>टोल-फ्री: 1800-123-9876</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Mail className="w-3 h-3 text-[#C79A2D]" />
-            info@bharatibhasha.org
+          <div className="flex items-center gap-2">
+            <Mail className="w-4 h-4 text-[#C79A2D]" />
+            <span>info@bharatibhasha.org</span>
           </div>
         </div>
       </div>
-
     </div>
   );
 };
+
+export default MobileMenu;
