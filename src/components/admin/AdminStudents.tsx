@@ -45,12 +45,12 @@ export const AdminStudents: React.FC = () => {
     fatherName: '',
     classLevel: 'कक्षा 5वीं',
     subject: 'हिंदी',
-    schoolName: 'दिल्ली पब्लिक स्कूल, आर के पुरम',
+    schoolName: 'दिल्ली पब्लिक विद्यालय, आर के पुरम',
     city: 'नई दिल्ली'
   });
 
   const [students, setStudents] = useState<StudentData[]>([
-    { rollNo: 'BBO2026-10501', name: 'आदित्य नारायण शर्मा', fatherName: 'श्री राजेश शर्मा', classLevel: 'कक्षा 5वीं', subject: 'हिंदी', schoolName: 'दिल्ली पब्लिक स्कूल, आर के पुरम', city: 'नई दिल्ली', examCenter: 'DPS RKP सेंटर A', status: 'हॉल टिकट निर्गत' },
+    { rollNo: 'BBO2026-10501', name: 'आदित्य नारायण शर्मा', fatherName: 'श्री राजेश शर्मा', classLevel: 'कक्षा 5वीं', subject: 'हिंदी', schoolName: 'दिल्ली पब्लिक विद्यालय, आर के पुरम', city: 'नई दिल्ली', examCenter: 'DPS RKP सेंटर A', status: 'हॉल टिकट निर्गत' },
     { rollNo: 'BBO2026-10502', name: 'अनन्या त्रिपाठी', fatherName: 'श्री संतोष त्रिपाठी', classLevel: 'कक्षा 8वीं', subject: 'संस्कृत', schoolName: 'भारतीय विद्या भवन, जयपुर', city: 'जयपुर', examCenter: 'BVB हॉल #2', status: 'हॉल टिकट निर्गत' },
     { rollNo: 'BBO2026-10503', name: 'देवव्रत पांडे', fatherName: 'श्री उमाशंकर पांडे', classLevel: 'कक्षा 10वीं', subject: 'संस्कृत', schoolName: 'सरस्वती शिशु मंदिर, वाराणसी', city: 'वाराणसी', examCenter: 'SSM वाराणसी मुख्य भवन', status: 'हॉल टिकट निर्गत' },
   ]);
@@ -132,7 +132,7 @@ export const AdminStudents: React.FC = () => {
       showToast(`विद्यार्थी ${formData.name} को अनुक्रमांक ${newRoll} आवंटित हो गया है!`, 'success');
     } finally {
       setIsAddModalOpen(false);
-      setFormData({ name: '', fatherName: '', classLevel: 'कक्षा 5वीं', subject: 'हिंदी', schoolName: 'दिल्ली पब्लिक स्कूल, आर के पुरम', city: 'नई दिल्ली' });
+      setFormData({ name: '', fatherName: '', classLevel: 'कक्षा 5वीं', subject: 'हिंदी', schoolName: 'दिल्ली पब्लिक विद्यालय, आर के पुरम', city: 'नई दिल्ली' });
     }
   };
 

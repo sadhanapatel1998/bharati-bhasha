@@ -18,7 +18,7 @@ export const AdminResults: React.FC = () => {
   const [isPublished, setIsPublished] = useState(true);
 
   const toppers = [
-    { rank: '1st (राष्ट्रीय स्वर्ण)', name: 'आदित्य नारायण शर्मा', classLevel: 'कक्षा 5वीं', score: '98/100', school: 'दिल्ली पब्लिक स्कूल, आर के पुरम', award: '₹51,000 + स्वर्ण पदक' },
+    { rank: '1st (राष्ट्रीय स्वर्ण)', name: 'आदित्य नारायण शर्मा', classLevel: 'कक्षा 5वीं', score: '98/100', school: 'दिल्ली पब्लिक विद्यालय, आर के पुरम', award: '₹51,000 + स्वर्ण पदक' },
     { rank: '2nd (राष्ट्रीय रजत)', name: 'अनन्या त्रिपाठी', classLevel: 'कक्षा 8वीं', score: '97/100', school: 'भारतीय विद्या भवन, जयपुर', award: '₹31,000 + रजत पदक' },
     { rank: '3rd (राष्ट्रीय कांस्य)', name: 'देवव्रत पांडे', classLevel: 'कक्षा 10वीं', score: '96.5/100', school: 'सरस्वती शिशु मंदिर, वाराणसी', award: '₹21,000 + कांस्य पदक' },
   ];

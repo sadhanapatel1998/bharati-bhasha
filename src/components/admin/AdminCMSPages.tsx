@@ -181,7 +181,7 @@ export const AdminCMSPages: React.FC<{ subTab?: string }> = ({ subTab = 'announc
 
   // 6. Testimonials Data & State
   const [testimonials, setTestimonials] = useState([
-    { id: 't1', name: 'डॉ. रमेश चंद्र झा', role: 'प्रधानाचार्य', school: 'दिल्ली पब्लिक स्कूल, आर के पुरम', comment: 'भारती भाषा ओलंपियाड ने हमारे विद्यालय के छात्रों में हिंदी साहित्य और देववाणी संस्कृत के प्रति अभूतपूर्व उत्साह जगाया है। मूल्यांकन प्रणाली अत्यंत पारदर्शी है।', rating: 5, photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80', featured: true },
+    { id: 't1', name: 'डॉ. रमेश चंद्र झा', role: 'प्रधानाचार्य', school: 'दिल्ली पब्लिक विद्यालय, आर के पुरम', comment: 'भारती भाषा ओलंपियाड ने हमारे विद्यालय के छात्रों में हिंदी साहित्य और देववाणी संस्कृत के प्रति अभूतपूर्व उत्साह जगाया है। मूल्यांकन प्रणाली अत्यंत पारदर्शी है।', rating: 5, photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80', featured: true },
     { id: 't2', name: 'अनन्या शर्मा', role: 'राष्ट्रीय स्वर्ण पदक विजेता (कक्षा 8)', school: 'भारतीय विद्या भवन, जयपुर', comment: 'वैज्ञानिक मूल्यांकन पद्धति और सुंदर ई-सर्टिफिकेट से मुझे बहुत प्रोत्साहन मिला। आगामी सत्र में भी मैं अवश्य भाग लूँगी।', rating: 5, photo: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&q=80', featured: true },
     { id: 't3', name: 'प्रो. सर्वेश शास्त्री', role: 'संस्कृत विभागाध्यक्ष', school: 'केंद्रीय विद्यालय, वाराणसी', comment: 'संस्कृत श्लोक पाठ एवं व्याकरण प्रतियोगिता से छात्रों की उच्चारण क्षमता एवं आत्मविश्वास में अद्भुत सुधार देखा गया है।', rating: 5, photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80', featured: true },
   ]);
@@ -1215,7 +1215,7 @@ export const AdminCMSPages: React.FC<{ subTab?: string }> = ({ subTab = 'announc
                   type="text"
                   value={newTestimonial.school}
                   onChange={(e) => setNewTestimonial({ ...newTestimonial, school: e.target.value })}
-                  placeholder="दिल्ली पब्लिक स्कूल"
+                  placeholder="दिल्ली पब्लिक विद्यालय"
                   className="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl"
                 />
               </div>

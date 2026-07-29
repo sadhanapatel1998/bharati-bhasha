@@ -42,9 +42,9 @@ export const DashboardOverview: React.FC<{ onNavigateTab: (tab: string) => void 
 
   // Recent Registrations State
   const [recentRegistrations, setRecentRegistrations] = useState([
-    { id: 'REG-1092', school: 'दिल्ली पब्लिक स्कूल, आर के पुरम', city: 'नई दिल्ली', state: 'दिल्ली', students: 420, date: 'आज, 02:15 PM', status: 'लंबित', principal: 'डॉ. अलोक नाथ', phone: '+91 98765 43210', email: 'dps.rkp@edu.in' },
+    { id: 'REG-1092', school: 'दिल्ली पब्लिक विद्यालय, आर के पुरम', city: 'नई दिल्ली', state: 'दिल्ली', students: 420, date: 'आज, 02:15 PM', status: 'लंबित', principal: 'डॉ. अलोक नाथ', phone: '+91 98765 43210', email: 'dps.rkp@edu.in' },
     { id: 'REG-1091', school: 'भारतीय विद्या भवन, जयपुर', city: 'जयपुर', state: 'राजस्थान', students: 280, date: 'आज, 11:30 AM', status: 'स्वीकृत', principal: 'श्रीमती सुनीता शर्मा', phone: '+91 98123 45678', email: 'bvb.jaipur@edu.in' },
-    { id: 'REG-1090', school: 'सेंट जेवियर्स स्कूल, रांची', city: 'रांची', state: 'झारखंड', students: 195, date: 'कल, 05:40 PM', status: 'स्वीकृत', principal: 'फादर थॉमस', phone: '+91 94321 09876', email: 'stxaviers.ranchi@edu.in' },
+    { id: 'REG-1090', school: 'सेंट जेवियर्स विद्यालय, रांची', city: 'रांची', state: 'झारखंड', students: 195, date: 'कल, 05:40 PM', status: 'स्वीकृत', principal: 'फादर थॉमस', phone: '+91 94321 09876', email: 'stxaviers.ranchi@edu.in' },
     { id: 'REG-1089', school: 'सरस्वती शिशु मंदिर, वाराणसी', city: 'वाराणसी', state: 'उत्तर प्रदेश', students: 310, date: 'कल, 03:10 PM', status: 'स्वीकृत', principal: 'श्री मयंक त्रिपाठी', phone: '+91 97654 32109', email: 'ssm.vns@edu.in' },
     { id: 'REG-1088', school: 'केंद्रीय विद्यालय, पटना', city: 'पटना', state: 'बिहार', students: 510, date: '22 जुलाई, 2026', status: 'सत्यापन जारी', principal: 'डॉ. के. के. सिंह', phone: '+91 91234 56789', email: 'kv.patna@edu.in' },
   ]);
@@ -96,9 +96,9 @@ export const DashboardOverview: React.FC<{ onNavigateTab: (tab: string) => void 
 
   // Live Activity Stream
   const activityLogs = [
-    { time: '02:15 PM', text: 'दिल्ली पब्लिक स्कूल द्वारा 420 विद्यार्थियों का नया पंजीकरण आवेदन प्राप्त हुआ।', type: 'registration' },
+    { time: '02:15 PM', text: 'दिल्ली पब्लिक विद्यालय द्वारा 420 विद्यार्थियों का नया पंजीकरण आवेदन प्राप्त हुआ।', type: 'registration' },
     { time: '01:40 PM', text: 'जयपुर OMR परीक्षा केंद्र 104 द्वारा 1,200 उत्तर पुस्तिकाओं की स्कैनिंग पूर्ण।', type: 'exam' },
-    { time: '11:30 AM', text: 'भारतीय विद्या भवन, जयपुर का स्कूल सत्यापन सफल रहा।', type: 'approval' },
+    { time: '11:30 AM', text: 'भारतीय विद्या भवन, जयपुर का विद्यालय सत्यापन सफल रहा।', type: 'approval' },
     { time: '10:15 AM', text: 'उत्तर प्रदेश राज्य हेतु हॉल टिकट बैच 2026 निर्गत किया गया।', type: 'hallticket' },
   ];
 
@@ -360,7 +360,7 @@ export const DashboardOverview: React.FC<{ onNavigateTab: (tab: string) => void 
             <h2 className="font-playfair text-lg font-bold text-gray-900 dark:text-white">
               हाल के विद्यालय पंजीकरण आवेदन (Recent School Applications)
             </h2>
-            <p className="text-xs text-gray-500">प्राप्त हालिया स्कूल आवेदन, कोड सत्यापन एवं स्वीकृति स्थिति</p>
+            <p className="text-xs text-gray-500">प्राप्त हालिया विद्यालय आवेदन, कोड सत्यापन एवं स्वीकृति स्थिति</p>
           </div>
           
           <div className="flex items-center gap-3">
@@ -368,7 +368,7 @@ export const DashboardOverview: React.FC<{ onNavigateTab: (tab: string) => void 
               <Search className="w-3.5 h-3.5 text-gray-400" />
               <input 
                 type="text"
-                placeholder="स्कूल के नाम से खोजें..."
+                placeholder="विद्यालय के नाम से खोजें..."
                 value={searchSchool}
                 onChange={(e) => setSearchSchool(e.target.value)}
                 className="bg-transparent border-none outline-none text-xs"

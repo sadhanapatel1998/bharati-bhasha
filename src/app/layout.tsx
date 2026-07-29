@@ -5,7 +5,7 @@ import { ToastContainer } from '../components/shared/ToastContainer';
 
 export const metadata = {
   title: 'भारती भाषा ओलंपियाड (BBO) - राष्ट्रभाषा एवं संस्कृति की राष्ट्रीय परीक्षा',
-  description: 'राष्ट्रीय शिक्षा नीति 2020 के अंतर्गत स्कूली छात्रों के लिए राष्ट्रव्यापी हिन्दी एवं संस्कृत भाषा ओलंपियाड परीक्षा।',
+  description: 'राष्ट्रीय शिक्षा नीति 2020 के अंतर्गत विद्यालयी छात्रों के लिए राष्ट्रव्यापी हिन्दी एवं संस्कृत भाषा ओलंपियाड परीक्षा।',
 };
 
 export default function RootLayout({

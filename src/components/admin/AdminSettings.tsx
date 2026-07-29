@@ -60,7 +60,7 @@ export const AdminSettings: React.FC = () => {
             <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/40 rounded-2xl">
               <div>
                 <div className="font-bold text-gray-900 dark:text-white">सार्वजनिक पंजीकरण पोर्टल</div>
-                <div className="text-[11px] text-gray-500">विद्यार्थी एवं स्कूल हेतु ऑनलाइन पंजीकरण चालू रखें</div>
+                <div className="text-[11px] text-gray-500">विद्यार्थी एवं विद्यालय हेतु ऑनलाइन पंजीकरण चालू रखें</div>
               </div>
               <input 
                 type="checkbox"

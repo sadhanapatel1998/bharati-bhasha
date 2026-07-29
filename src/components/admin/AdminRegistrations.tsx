@@ -73,7 +73,7 @@ export const AdminRegistrations: React.FC<{ subTab?: string }> = ({ subTab = 'sc
 
   // School Registrations Data
   const [schoolApps, setSchoolApps] = useState<SchoolApp[]>([
-    { id: 'SCH-2026-089', name: 'दिल्ली पब्लिक स्कूल, आर के पुरम', principal: 'डॉ. एम. के. शर्मा', phone: '+91 98102 34567', email: 'dpsrkp@edu.in', state: 'दिल्ली', city: 'नई दिल्ली', studentsCount: 420, paymentStatus: 'सफल (Paid)', amount: 64500, appliedDate: '24 जुलाई 2026' },
+    { id: 'SCH-2026-089', name: 'दिल्ली पब्लिक विद्यालय, आर के पुरम', principal: 'डॉ. एम. के. शर्मा', phone: '+91 98102 34567', email: 'dpsrkp@edu.in', state: 'दिल्ली', city: 'नई दिल्ली', studentsCount: 420, paymentStatus: 'सफल (Paid)', amount: 64500, appliedDate: '24 जुलाई 2026' },
     { id: 'SCH-2026-088', name: 'भारतीय विद्या भवन, जयपुर', principal: 'श्रीमती सुनीता राठौड़', phone: '+91 94140 12345', email: 'bvhjaipur@gmail.com', state: 'राजस्थान', city: 'जयपुर', studentsCount: 280, paymentStatus: 'सफल (Paid)', amount: 43500, appliedDate: '23 जुलाई 2026' },
     { id: 'SCH-2026-087', name: 'सरस्वती शिशु मंदिर, वाराणसी', principal: 'श्री देवेन्द्र पांडे', phone: '+91 94152 98765', email: 'ssmvaranasi@org.in', state: 'उत्तर प्रदेश', city: 'वाराणसी', studentsCount: 310, paymentStatus: 'सफल (Paid)', amount: 48000, appliedDate: '22 जुलाई 2026' },
     { id: 'SCH-2026-086', name: 'केंद्रीय विद्यालय, पटना', principal: 'श्री आर. के. वर्मा', phone: '+91 93341 55443', email: 'kvpatna@kvs.ac.in', state: 'बिहार', city: 'पटना', studentsCount: 510, paymentStatus: 'लंबित (Pending)', amount: 78000, appliedDate: '21 जुलाई 2026' },
@@ -82,7 +82,7 @@ export const AdminRegistrations: React.FC<{ subTab?: string }> = ({ subTab = 'sc
 
   // Payment Transactions Data
   const [transactions, setTransactions] = useState<PaymentTransaction[]>([
-    { txnId: 'TXN-98213401', entityName: 'दिल्ली पब्लिक स्कूल, आर के पुरम', type: 'विद्यालय पंजीकरण', amount: 64500, method: 'UPI / QR', status: 'सफल', timestamp: '24 जुलाई 2026, 02:45 PM' },
+    { txnId: 'TXN-98213401', entityName: 'दिल्ली पब्लिक विद्यालय, आर के पुरम', type: 'विद्यालय पंजीकरण', amount: 64500, method: 'UPI / QR', status: 'सफल', timestamp: '24 जुलाई 2026, 02:45 PM' },
     { txnId: 'TXN-98213400', entityName: 'अभिषेक कुमार (कक्षा 8)', type: 'व्यक्तिगत छात्र', amount: 150, method: 'UPI / QR', status: 'सफल', timestamp: '24 जुलाई 2026, 01:12 PM' },
     { txnId: 'TXN-98213399', entityName: 'भारतीय विद्या भवन, जयपुर', type: 'विद्यालय पंजीकरण', amount: 43500, method: 'नेट बैंकिंग', status: 'सफल', timestamp: '23 जुलाई 2026, 11:30 AM' },
     { txnId: 'TXN-98213398', entityName: 'केंद्रीय विद्यालय, पटना', type: 'विद्यालय पंजीकरण', amount: 78000, method: 'क्रेडिट/डेबिट कार्ड', status: 'प्रक्रियाधीन', timestamp: '21 जुलाई 2026, 04:20 PM' },
@@ -298,7 +298,7 @@ export const AdminRegistrations: React.FC<{ subTab?: string }> = ({ subTab = 'sc
             <div className="bg-white dark:bg-[#1A1414] p-5 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-1">
               <span className="text-xs font-bold text-gray-500">सत्र 2026 कुल प्राप्त शुल्क</span>
               <div className="text-2xl font-bold text-emerald-600 font-playfair">₹6,78,27,000</div>
-              <p className="text-[10px] text-gray-400">2,850+ स्कूल व व्यक्तिगत छात्र भुगतान</p>
+              <p className="text-[10px] text-gray-400">2,850+ विद्यालय व व्यक्तिगत छात्र भुगतान</p>
             </div>
 
             <div className="bg-white dark:bg-[#1A1414] p-5 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-1">
@@ -379,7 +379,7 @@ export const AdminRegistrations: React.FC<{ subTab?: string }> = ({ subTab = 'sc
               <h2 className="font-playfair text-lg font-bold text-gray-900 dark:text-white">
                 पंजीकरण प्रपत्र फ़ील्ड अनुकूलन (Form Field Configurator)
               </h2>
-              <p className="text-xs text-gray-500">विद्यार्थी एवं स्कूल पंजीकरण फॉर्म हेतु डायनेमिक फ़ील्ड जोड़ें या छिपाएं</p>
+              <p className="text-xs text-gray-500">विद्यार्थी एवं विद्यालय पंजीकरण फॉर्म हेतु डायनेमिक फ़ील्ड जोड़ें या छिपाएं</p>
             </div>
 
             {/* Add New Field Box */}

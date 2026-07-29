@@ -90,7 +90,7 @@ export const AdminLayout: React.FC = () => {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
   const [notifications, setNotifications] = useState([
-    { id: 1, title: 'नया विद्यालय पंजीकरण', desc: 'दिल्ली पब्लिक स्कूल, आर के पुरम का आवेदन प्राप्त हुआ।', time: '10 मिनट पूर्व', unread: true },
+    { id: 1, title: 'नया विद्यालय पंजीकरण', desc: 'दिल्ली पब्लिक विद्यालय, आर के पुरम का आवेदन प्राप्त हुआ।', time: '10 मिनट पूर्व', unread: true },
     { id: 2, title: 'शुल्क भुगतान सत्यापित', desc: 'भारतीय विद्या भवन जयपुर (₹42,000) सफल रहा।', time: '1 घंटा पूर्व', unread: true },
     { id: 3, title: 'हॉल टिकट बैच 2026', desc: 'उत्तर प्रदेश राज्य के 1,12,400 प्रवेश पत्र तैयार।', time: '3 घंटे पूर्व', unread: false },
   ]);

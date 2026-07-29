@@ -56,7 +56,7 @@ export const AdminSchools: React.FC = () => {
   });
 
   const [schools, setSchools] = useState<SchoolData[]>([
-    { code: 'BBO-SCH-1001', name: 'दिल्ली पब्लिक स्कूल, आर के पुरम', board: 'CBSE', city: 'नई दिल्ली', state: 'दिल्ली', principal: 'डॉ. रमेश शर्मा', phone: '+91 98765 43210', email: 'principal@dpsrkp.edu.in', studentsCount: 420, status: 'लंबित', appliedDate: '24 जुलाई 2026' },
+    { code: 'BBO-SCH-1001', name: 'दिल्ली पब्लिक विद्यालय, आर के पुरम', board: 'CBSE', city: 'नई दिल्ली', state: 'दिल्ली', principal: 'डॉ. रमेश शर्मा', phone: '+91 98765 43210', email: 'principal@dpsrkp.edu.in', studentsCount: 420, status: 'लंबित', appliedDate: '24 जुलाई 2026' },
     { code: 'BBO-SCH-1002', name: 'भारतीय विद्या भवन, जयपुर', board: 'CBSE', city: 'जयपुर', state: 'राजस्थान', principal: 'श्रीमती सुनीता राठौड़', phone: '+91 98123 45678', email: 'bvb.jaipur@bhavans.edu', studentsCount: 280, status: 'स्वीकृत', appliedDate: '20 जुलाई 2026' },
     { code: 'BBO-SCH-1003', name: 'सेंट जेवियर्स उच्च विद्यालय, रांची', board: 'ICSE', city: 'रांची', state: 'झारखंड', principal: 'फादर थॉमस कुजूर', phone: '+91 94311 88990', email: 'info@stxaviersranchi.org', studentsCount: 195, status: 'स्वीकृत', appliedDate: '18 जुलाई 2026' },
     { code: 'BBO-SCH-1004', name: 'सरस्वती शिशु मंदिर वरिष्ठ माध्यमिक विद्यालय', board: 'राज्य बोर्ड', city: 'वाराणसी', state: 'उत्तर प्रदेश', principal: 'श्री मदन मोहन मालवीय', phone: '+91 99350 11223', email: 'ssm.varanasi@gmail.com', studentsCount: 310, status: 'स्वीकृत', appliedDate: '15 जुलाई 2026' },
@@ -283,7 +283,7 @@ export const AdminSchools: React.FC = () => {
           <table className="w-full text-left border-collapse min-w-[800px]">
             <thead>
               <tr className="bg-gray-50/80 dark:bg-gray-800/50 border-b border-gray-100 dark:border-gray-800 text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                <th className="py-3.5 px-4">स्कूल कोड</th>
+                <th className="py-3.5 px-4">विद्यालय कोड</th>
                 <th className="py-3.5 px-4">विद्यालय नाम एवं विवरण</th>
                 <th className="py-3.5 px-4">बोर्ड / स्थान</th>
                 <th className="py-3.5 px-4">नोडल / प्राचार्य</th>
@@ -379,7 +379,7 @@ export const AdminSchools: React.FC = () => {
                   <h3 className="font-playfair text-lg font-bold text-gray-900 dark:text-white">
                     नया विद्यालय पंजीकृत करें
                   </h3>
-                  <p className="text-xs text-gray-500">प्रशासनिक अधिकार क्षेत्र द्वारा सीधा स्कूल जोड़ें</p>
+                  <p className="text-xs text-gray-500">प्रशासनिक अधिकार क्षेत्र द्वारा सीधा विद्यालय जोड़ें</p>
                 </div>
               </div>
               <button 
@@ -396,7 +396,7 @@ export const AdminSchools: React.FC = () => {
                 <input 
                   type="text" 
                   required
-                  placeholder="उदा. सेंट जेवियर्स स्कूल या केंद्रीय विद्यालय"
+                  placeholder="उदा. सेंट जेवियर्स विद्यालय या केंद्रीय विद्यालय"
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                   className="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:border-[#7B1E1E]"
