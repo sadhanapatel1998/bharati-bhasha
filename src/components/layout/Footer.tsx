@@ -319,12 +319,12 @@ export const Footer: React.FC = () => {
               करियर
             </Link>
             <span>•</span>
-            <Link
+            {/* <Link
               href="/admin/login"
               className="text-[#C79A2D] font-bold hover:underline transition-colors flex items-center gap-1"
             >
               <span>प्रशासक पोर्टल (Admin Login)</span>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

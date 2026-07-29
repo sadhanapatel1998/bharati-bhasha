@@ -13,7 +13,7 @@ export const AboutPage: React.FC = () => {
     <>
       <section
         id="about"
-        className="mb-0 relative py-10 pb-16 overflow-hidden bg-gradient-to-b from-amber-50/50 via-white to-amber-50/80"
+        className="mb-0 relative py-10 pb-16 overflow-hidden bg-gradient-to-b from-amber-50/50 via-white to-amber-50/80 mx-3"
       >
         <div className="relative mx-auto max-w-7xl h-[200px] md:h-[300px] overflow-hidden rounded-2xl mb-10">
           {/* Background */}
