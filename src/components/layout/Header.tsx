@@ -64,7 +64,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
     // 🏠
     {
       key: "/",
-      label: "मुख्य पृष्ठ",
+      label: "होम"
     },
 
     // 📖

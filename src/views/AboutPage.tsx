@@ -15,7 +15,7 @@ export const AboutPage: React.FC = () => {
         id="about"
         className="mb-0 relative py-10 pb-16 overflow-hidden bg-gradient-to-b from-amber-50/50 via-white to-amber-50/80"
       >
-        <div className="relative mx-auto max-w-7xl h-[200px] md:h-[300px] overflow-hidden rounded-3xl mb-10">
+        <div className="relative mx-auto max-w-7xl h-[200px] md:h-[300px] overflow-hidden rounded-2xl mb-10">
           {/* Background */}
           <Image
             src="/banner/breadcrumb.jpg"
@@ -37,11 +37,11 @@ export const AboutPage: React.FC = () => {
             <Breadcrumb
               items={[
                 {
-                  label: "परीक्षाएँ",
+                  label: "परिचय",
                   route: "/olympiads",
                 },
                 {
-                  label: "हिंदी ओलंपियाड",
+                  label: "ओलंपियाड परिचय",
                 },
               ]}
             />

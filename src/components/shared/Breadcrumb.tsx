@@ -14,14 +14,14 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="flex items-center gap-1.5 my-4 flex-wrap rounded-full border border-[#7B1E1E]/10 dark:border-[#C79A2D]/20 bg-white dark:bg-white/[0.03] px-3 py-1.5 w-fit max-w-full text-xs font-medium"
+      className="flex items-center gap-1.5 mt-4 flex-wrap rounded-full border border-[#7B1E1E]/10 dark:border-[#C79A2D]/20 bg-white dark:bg-white/[0.03] px-3 py-1.5 w-fit max-w-full text-xs font-medium"
     >
       <button
         onClick={() => navigateTo('/')}
         className="text-sm group flex items-center gap-1.5 rounded-full px-2 py-1 text-gray-800 dark:text-gray-400 transition-colors hover:text-[#7B1E1E] dark:hover:text-[#C79A2D] hover:bg-[#7B1E1E]/[0.06] dark:hover:bg-[#C79A2D]/[0.08]"
       >
         <Home className="w-3.5 h-3.5 shrink-0 transition-transform group-hover:-translate-y-px" />
-        <span>मुख्य पृष्ठ</span>
+        <span>होम</span>
       </button>
 
       {items.map((item, idx) => {
