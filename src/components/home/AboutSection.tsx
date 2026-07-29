@@ -68,34 +68,7 @@ export const AboutSection: React.FC = () => {
                                 </p>
 
                                 <div className="w-12 h-0.5 bg-gradient-to-r from-amber-400 to-transparent" />
-                                {/* <div
-                                    className={`overflow-hidden transition-all duration-500 ease-in-out ${expanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                                        }`}
-                                > */}
-                                {/* <div className="pt-4 space-y-4 border-t border-amber-200/60">
-                                        <p className="text-lg text-slate-800 leading-relaxed font-devanagari">
-                                            ये भाषाएँ हमें हमारी जड़ों से
-                                            जोड़ती हैं और विचारों की गहराई, अभिव्यक्ति की सुंदरता तथा
-                                            संवाद की प्रभावशीलता विकसित करती हैं।
-                                        </p>
 
-                                        <p className="text-lg text-slate-800 leading-relaxed font-devanagari">
-                                            हमारा ओलंपियाड न केवल ज्ञान परीक्षण है, बल्कि यह बच्चों में
-                                            भाषाई रचनात्मकता, तार्किक चिंतन और सांस्कृतिक गर्व को भी
-                                            बढ़ावा देता है। हमारी टीम विशेषज्ञ शिक्षकों, भाषा वैज्ञानिकों
-                                            और परीक्षा निर्माताओं द्वारा गठित है, जो प्रत्येक विद्यार्थी
-                                            के समग्र विकास के लिए प्रतिबद्ध है।
-                                        </p>
-                                        <p className="text-lg text-slate-800 leading-relaxed font-devanagari">
-                                            हम भारतीय भाषाओं के महत्व को पहचानते हैं और उन्हें आधुनिक
-                                            शिक्षा के साथ एकीकृत करने का कार्य करते हैं। इस ओलंपियाड
-                                            के माध्यम से हम हिंदी और संस्कृत की समृद्ध विरासत को नई
-                                            पीढ़ी तक पहुँचाने का प्रयास करते हैं।
-                                        </p>
-                                    </div> */}
-                                {/* </div> */}
-
-                                {/* Read More / Read Less Button */}
                                 <Link
                                     href="/about"
                                     className="inline-flex items-center gap-2 mt-2 text-red-800 font-bold hover:text-amber-700 transition-colors duration-200 group cursor-pointer"

@@ -250,7 +250,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
 
                 {activeDropdown === item.key && (
                   <div className={`absolute top-full left-0 ${item.width} pt-2 z-50`}>
-                    <div className="bg-white dark:bg-[#1A1414] rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 p-2 space-y-1 glass-panel">
+                    <div className="bg-white dark:bg-[#1A1414] rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 p-2 space-y-1">
                       {item.dropdown.map((sub) => {
                         const Icon = sub.icon;
                         return (
@@ -289,7 +289,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
             </button>
 
             {isRegisterOpen && (
-              <div className="absolute right-0 top-full mt-2 w-64 bg-white dark:bg-[#1A1414] rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 p-2 z-50 glass-panel">
+              <div className="absolute right-0 top-full mt-2 w-64 bg-white dark:bg-[#1A1414] rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 p-2 z-50">
                 <button
                   onClick={() => handleNavClick('/school-registration')}
                   className="w-full text-left px-3 py-2.5 text-base rounded-xl hover:bg-[#790e03]/5 dark:hover:bg-white/5 font-semibold flex items-center gap-3 transition-colors"

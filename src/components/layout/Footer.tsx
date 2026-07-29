@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useApp } from "../../context/AppContext";
+import Image from "next/image";
 import {
   Phone,
   Mail,
@@ -80,15 +81,22 @@ export const Footer: React.FC = () => {
           {/* Col 1: About & Trust Seals */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7B1E1E] to-[#C79A2D] flex items-center justify-center text-white font-bold font-playfair text-2xl shadow-md">
-                भा
+              <div className="w-30 h-30 flex items-center justify-center text-white font-bold font-playfair ">
+                <Image
+                  src="/logo/logo.png"
+                  alt="Logo"
+                  width={80}
+                  height={80}
+                  className="object-contain rounded-full"
+                  priority
+                />
               </div>
               <div>
                 <h2 className="font-playfair font-bold text-2xl text-white">
                   भारती भाषा <span className="text-[#C79A2D]">ओलंपियाड</span>
                 </h2>
                 <p className="text-base text-[#C79A2D] font-medium tracking-wide">
-                  भारत का प्रथम व अग्रणी राष्ट्रीय हिंदी एवं संस्कृत ओलंपियाड
+                  अपनी भाषा, अपनी पहचान
                 </p>
               </div>
             </div>
