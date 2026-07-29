@@ -14,9 +14,51 @@ import {
   ExamDetail,
   RegistrationStep,
   VisionMissionPage,
-  WhyUsData
+  WhyUsData,
+  SchoolRegistrationFormData
 } from "../types";
 
+
+
+export const BOARD_OPTIONS = [
+  'CBSE',
+  'ICSE',
+  'राज्य बोर्ड (State Board)',
+  'IB',
+  'ब्रिटिश (British)',
+  'अमेरिकी (American)',
+  'अन्य (Other)',
+] as const;
+
+export const COUNTRY_OPTIONS = [
+  'भारत (India)',
+  'विदेश (Other)',
+] as const;
+
+export const INITIAL_FORM_DATA: SchoolRegistrationFormData = {
+  schoolCode: '',
+  schoolName: '',
+  address: '',
+  city: '',
+  district: '',
+  state: '',
+  pincode: '',
+  country: 'भारत (India)',
+  mobileNumber: '',
+  landline: '',
+  email: '',
+  website: '',
+  boardAffiliation: 'CBSE',
+  otherBoard: '',
+  principalName: '',
+  principalMobile: '',
+  principalEmail: '',
+  coordinatorName: '',
+  coordinatorMobile: '',
+  coordinatorEmail: '',
+  estimatedParticipantsHindi: 50,
+  estimatedParticipantsSanskrit: 25,
+};
 
 export const WHY_US_DATA: WhyUsData = {
 

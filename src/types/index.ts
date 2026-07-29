@@ -1,6 +1,31 @@
 export type Language = 'hi';
 export type Theme = 'light' | 'dark';
 
+export interface SchoolRegistrationFormData {
+  schoolCode: string;
+  schoolName: string;
+  address: string;
+  city: string;
+  district: string;
+  state: string;
+  pincode: string;
+  country: string;
+  mobileNumber: string;
+  landline: string;
+  email: string;
+  website: string;
+  boardAffiliation: string;
+  otherBoard: string;
+  principalName: string;
+  principalMobile: string;
+  principalEmail: string;
+  coordinatorName: string;
+  coordinatorMobile: string;
+  coordinatorEmail: string;
+  estimatedParticipantsHindi: number;
+  estimatedParticipantsSanskrit: number;
+}
+
 export interface AdvantageItem {
   id: string;
   title: string;
