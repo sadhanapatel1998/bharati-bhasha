@@ -13,7 +13,125 @@ import {
   SubjectSchedule,
   ExamDetail,
   RegistrationStep,
+  VisionMissionPage,
+  WhyUsData
 } from "../types";
+
+
+export const WHY_US_DATA: WhyUsData = {
+
+  advantages: [
+    {
+      id: "adv1",
+      title: "12-आयामी वैज्ञानिक मूल्यांकन",
+      description:
+        "व्याकरण, वर्तनी, शब्दज्ञान, समझ, साहित्य व गति का सूक्ष्म विश्लेषण।",
+      icon: "Cpu",
+      color: "from-blue-600 to-indigo-900",
+    },
+    {
+      id: "adv2",
+      title: "₹1 करोड़ की विशाल छात्रवृत्ति",
+      description:
+        "राष्ट्रीय विजेताओं को नकद राशि, लैपटॉप, आईपैड एवं पदक।",
+      icon: "Award",
+      color: "from-amber-600 to-yellow-900",
+    },
+    {
+      id: "adv3",
+      title: "विज्ञान भवन नई दिल्ली में सम्मान",
+      description:
+        "मान्यवर केंद्रीय मंत्रियों एवं शिक्षाविदों द्वारा प्रशस्ति पत्र।",
+      icon: "Trophy",
+      color: "from-rose-600 to-rose-900",
+    },
+    {
+      id: "adv4",
+      title: "एनईपी 2020 पूर्ण सामंजस्य",
+      description:
+        "NCERT व राष्ट्रीय पाठ्यचर्या रूपरेखा (NCF) के अनुसार निर्मित।",
+      icon: "GraduationCap",
+      color: "from-emerald-600 to-teal-900",
+    },
+    {
+      id: "adv5",
+      title: "डिजिटल रिपोर्ट कार्ड व ई-सर्टिफिकेट",
+      description:
+        "QR कोड सत्यापित डिजिटल प्रमाण पत्र एवं पर्सेंटाइल रिपोर्ट।",
+      icon: "ShieldCheck",
+      color: "from-lime-600 to-lime-900",
+    },
+    {
+      id: "adv6",
+      title: "शिक्षकों व विद्यालयों का अभिनंदन",
+      description:
+        "संयोजक शिक्षकों को नकद प्रोत्साहन राशि एवं सेवा सम्मान।",
+      icon: "Users",
+      color: "from-red-600 to-pink-900",
+    },
+  ],
+};
+
+export const VISION_MISSION: VisionMissionPage = {
+  vision: {
+    title: "दूरदृष्टि",
+    description:
+      "भारतीय भाषाओं के माध्यम से प्रत्येक विद्यार्थी में ज्ञान, संस्कार, आत्मविश्वास और नेतृत्व क्षमता का विकास करना हमारा लक्ष्य है। हम हिंदी एवं संस्कृत को केवल अध्ययन का विषय नहीं, बल्कि भारतीय संस्कृति और राष्ट्रीय पहचान का आधार मानते हैं। हमारा संकल्प है कि प्रत्येक विद्यार्थी अपनी भाषा पर गर्व करे और वैश्विक मंच पर भारत का गौरव बढ़ाए।",
+  },
+
+  mission: {
+    title: "हमारा लक्ष्य",
+    items: [
+      "राष्ट्रीय स्तर पर वैज्ञानिक व 12-आयामी भाषा परीक्षा आयोजित करना।",
+      "शिक्षकों एवं विद्यालयों को उत्कृष्ट भाषा शिक्षण हेतु सम्मानित करना।",
+      "NEP 2020 की त्रि-भाषा सूत्र नीति को जमीनी स्तर पर क्रियान्वित करना।",
+    ],
+  },
+
+  coreValues: [
+    {
+      id: "cv1",
+      icon: "ShieldCheck",
+      title: "सत्य व शुद्धता",
+      description: "पारदर्शिता और निष्पक्षता।",
+      color: "emerald",
+    },
+    {
+      id: "cv2",
+      icon: "Sparkles",
+      title: "वैज्ञानिकता",
+      description: "बेंचमार्क आधारित मूल्यांकन।",
+      color: "blue",
+    },
+    {
+      id: "cv3",
+      icon: "Award",
+      title: "प्रतिभा प्रोत्साहन",
+      description: "हर प्रतिभा को पहचान।",
+      color: "amber",
+    },
+    {
+      id: "cv4",
+      icon: "Heart",
+      title: "संस्कृति संरक्षण",
+      description: "भारतीय विरासत का संवर्धन।",
+      color: "rose",
+    },
+    {
+      id: "cv5",
+      icon: "Star",
+      title: "पारदर्शिता",
+      description: "स्पष्ट मूल्यांकन।",
+      color: "purple",
+    },
+  ],
+
+  quote: {
+    text: "हमारे सिद्धांत हमें सही दिशा देते हैं – हर छात्र, हर शिक्षक और हर विद्यालय का सम्मान हमारा कर्तव्य है।",
+    author: "भारती भाषा ओलंपियाड",
+  },
+};
+
 export const KEY_STATS = {
   schoolsRegistered: 2850,
   studentsParticipated: 450000,
@@ -22,6 +140,7 @@ export const KEY_STATS = {
   districtsCovered: 520,
   teachersTrained: 12400,
 };
+
 export const ANNOUNCEMENTS = [
   {
     id: "a1",

@@ -6,47 +6,25 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import PurposeSection from '@/components/shared/PurposeSection';
 import CtaSection from '@/components/shared/CtaSection';
 
-
-
 export const AboutPage: React.FC = () => {
   return (
     <>
       <section
         id="about"
-        className="mb-0 relative py-10 pb-16 overflow-hidden bg-gradient-to-b from-amber-50/50 via-white to-amber-50/80 mx-3"
+        className="mb-0 relative py-10 pb-0 overflow-hidden bg-gradient-to-b from-amber-50/50 via-white to-amber-50/80 mx-3"
       >
-        <div className="relative mx-auto max-w-7xl h-[200px] md:h-[300px] overflow-hidden rounded-2xl mb-10">
-          {/* Background */}
-          <Image
-            src="/banner/breadcrumb.jpg"
-            alt="Hindi Olympiad"
-            fill
-            priority
-            className="object-cover"
-          />
-
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-white/15" />
-
-          {/* Center Content */}
-          <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-            <h1 className="mb-2 font-devanagari text-3xl font-bold text-[#0F2B5B] md:text-5xl">
-              हिंदी ओलंपियाड
-            </h1>
-
-            <Breadcrumb
-              items={[
-                {
-                  label: "परिचय",
-                  route: "/olympiads",
-                },
-                {
-                  label: "ओलंपियाड परिचय",
-                },
-              ]}
-            />
-          </div>
-        </div>
+        <Breadcrumb
+          title="ओलंपियाड परिचय"
+          items={[
+            {
+              label: "परिचय",
+              route: "/about",
+            },
+            {
+              label: "ओलंपियाड परिचय",
+            },
+          ]}
+        />
 
         {/* Decorative background pattern */}
         <div
@@ -60,7 +38,6 @@ export const AboutPage: React.FC = () => {
             backgroundPosition: "0 0, 40px 40px",
           }}
         />
-
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
 
           {/* Section Header */}
@@ -69,7 +46,6 @@ export const AboutPage: React.FC = () => {
             badge="भारतीय भाषाओं के संवर्धन हेतु समर्पित"
             title="भारती भाषा ओलंपियाड का परिचय"
           />
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-8">
             <div className="lg:col-span-7 space-y-6">
               <div className="relative bg-white p-6 sm:p-8 rounded-2xl border border-amber-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -164,25 +140,6 @@ export const AboutPage: React.FC = () => {
             </div>
           </div>
 
-          {/* <div className="mt-15 bg-gradient-to-br from-[#7B1E1E] to-[#541313] text-[#F5F0E6] rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
-            <div className="max-w-3xl space-y-4">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#C79A2D]">
-                संयोजक संदेश
-              </span>
-              <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-white">
-                "भाषा केवल अभिव्यक्ति का माध्यम नहीं, बल्कि हमारी संस्कृति की प्राणवायु है।"
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed italic">
-                "जब हमारा विद्यार्थी हिंदी व संस्कृत के छंदों, मुहावरों और व्याकरण नियमों में प्रवीण होता है, तो वह केवल परीक्षा में उत्तम अंक नहीं लाता, बल्कि भारत की अमूल्य बौद्धिक संपदा का संवाहक बनता है।"
-              </p>
-              <div className="pt-4 border-t border-white/10 flex items-center gap-3">
-                <div>
-                  <div className="font-bold text-sm text-white">प्रो. वी. के. चतुर्वेदी</div>
-                  <div className="text-xs text-[#C79A2D]">राष्ट्रीय संयोजक, भारती भाषा ओलंपियाड न्यास</div>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <CtaSection
             title="अपने विद्यालय को पंजीकृत करें"
             description="हिंदी एवं संस्कृत ओलंपियाड 2026-27 में सहभागिता हेतु आज ही पंजीकरण करें।"

@@ -13,6 +13,7 @@ import {
   Heart,
 } from 'lucide-react';
 import Image from 'next/image';
+import SectionHeader from './SectionHeader';
 
 const purposeData = [
   {
@@ -85,21 +86,14 @@ export const PurposeSection: React.FC = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-red-800 text-amber-50 text-xs font-bold uppercase tracking-wider rounded-full">
-            <Target className="w-3.5 h-3.5" />
-            <span>हमारा संकल्प</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading-hi text-red-950 mt-3">
-            हमारा उद्देश्य
-          </h2>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-red-800 via-amber-500 to-red-800 mx-auto rounded-full mt-3" />
-          <p className="text-amber-700 font-devanagari mt-4 text-lg max-w-2xl mx-auto">
-            भारती भाषा ओलंपियाड का लक्ष्य भारतीय भाषाओं को नई पीढ़ी से जोड़ना,
+        <SectionHeader
+          icon={Target}
+          badge="हमारा संकल्प"
+          title="हमारा उद्देश्य"
+          description='भारती भाषा ओलंपियाड का लक्ष्य भारतीय भाषाओं को नई पीढ़ी से जोड़ना,
             उनकी क्षमताओं को वैज्ञानिक तरीके से आँकना और उन्हें समग्र रूप से
-            विकसित करना है।
-          </p>
-        </div>
+            विकसित करना है।'
+        />
 
         {/* Purpose Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -109,27 +103,21 @@ export const PurposeSection: React.FC = () => {
               <div
                 key={item.id}
                 className="group relative bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-md hover:shadow-2xl border border-amber-200/50 hover:border-amber-400 transition-all duration-300 hover:-translate-y-2 overflow-hidden"
-              >
-                {/* Decorative gradient bar (top) */}
-                <div
+              >                <div
                   className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.color}`}
                 />
-
-                {/* Icon with gradient circle */}
                 <div
                   className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300`}
                 >
                   <Icon className="w-7 h-7 text-white" />
                 </div>
 
-                <h3 className="text-xl font-bold font-heading-hi text-red-950 mt-4 group-hover:text-red-700 transition-colors">
+                <h3 className="text-2xl font-bold font-heading-hi text-red-950 mt-4 group-hover:text-red-700 transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-sm text-slate-600 font-devanagari leading-relaxed mt-2">
+                <p className="text-lg text-slate-600 font-devanagari leading-relaxed mt-2">
                   {item.description}
                 </p>
-
-                {/* Decorative corner dot */}
                 <div className="absolute bottom-3 right-3 w-2 h-2 rounded-full bg-amber-300/50 group-hover:bg-amber-500 transition-colors" />
               </div>
             );

@@ -1,5 +1,46 @@
 export type Language = 'hi';
 export type Theme = 'light' | 'dark';
+
+export interface AdvantageItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string; 
+  color: string; 
+}
+
+export interface WhyUsData {
+  advantages: AdvantageItem[];
+}
+
+export interface VisionMissionPage {
+  vision: {
+    title: string;
+    description: string;
+  };
+
+  mission: {
+    title: string;
+    items: string[];
+  };
+
+  coreValues: CoreValue[];
+
+  quote: {
+    text: string;
+    author: string;
+  };
+}
+
+export interface CoreValue {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  color: string;
+}
+
+
 export interface SubjectSchedule {
   subject: string;
   subjectHindi: string;
@@ -18,11 +59,6 @@ export interface ExamDetail {
   icon: string;
 }
 
-// export interface RegistrationStep {
-//   stepNumber: number;
-//   title: string;
-//   description: string;
-// }
 export interface RegistrationStep {
   stepNumber: number;
   title: string;
