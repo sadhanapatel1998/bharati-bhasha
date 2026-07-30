@@ -22,7 +22,7 @@ export default function SectionHeader({
         <span>{badge}</span>
       </div>
 
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading-hi text-[#021545]">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading-hi text-[#02206b]">
         {title}
       </h2>
 

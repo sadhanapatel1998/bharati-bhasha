@@ -2,49 +2,151 @@
 
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Breadcrumb } from '../components/shared/Breadcrumb';
+import SectionHeader from '../components/shared/SectionHeader';
 import { SAMPLE_PAPERS } from '../data/olympiadData';
-import { FileText, Download, Search } from 'lucide-react';
+import {
+  FileText,
+  Download,
+  BookOpen,
+  Sparkles,
+  ChevronRight,
+  Award,
+  Filter,
+} from 'lucide-react';
+
 export const SamplePapersPage: React.FC = () => {
-  const {
-    language,
-    showToast
-  } = useApp();
-  const [filterSubject, setFilterSubject] = useState<string>('All');
-  const filtered = filterSubject === 'All' ? SAMPLE_PAPERS : SAMPLE_PAPERS.filter(sp => sp.subject === filterSubject);
-  return <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+  const { language, showToast } = useApp();
+  const [filterSubject, setFilterSubject] = useState<string>('सभी');
 
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="bg-[#7B1E1E]/10 text-[#7B1E1E] dark:text-[#C79A2D] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
-          {'निःशुल्क अभ्यास सामग्री'}
-        </span>
-        <h1 className="font-playfair text-3xl sm:text-5xl font-bold text-gray-900 dark:text-white">
-          {'अभ्यास प्रश्न पत्र (Sample Papers)'}
-        </h1>
-      </div>
+  const filtered =
+    filterSubject === 'सभी'
+      ? SAMPLE_PAPERS
+      : SAMPLE_PAPERS.filter((sp) => sp.subject === filterSubject);
 
-      <div className="flex justify-center gap-2">
-        {['All', 'Hindi', 'Sanskrit'].map(sub => <button key={sub} onClick={() => setFilterSubject(sub)} className={`px-5 py-2 rounded-xl text-xs font-bold transition-all ${filterSubject === sub ? 'bg-[#7B1E1E] text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300'}`}>
-            {sub}
-          </button>)}
-      </div>
+  const handleDownload = (title: string) => {
+    showToast(`"${title}" डाउनलोड होना प्रारम्भ हुआ।`, 'success');
+  };
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filtered.map(sp => <div key={sp.id} className="bg-white dark:bg-[#1A1414] p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="px-2.5 py-1 rounded-md bg-[#C79A2D]/10 text-[#C79A2D] font-bold text-[10px]">
-                {sp.subject} • {sp.classLevel}
-              </span>
-              <span className="text-[10px] text-gray-400 font-bold">{sp.year} Edition</span>
-            </div>
-            <h3 className="font-bold text-sm text-gray-900 dark:text-white">{sp.title}</h3>
-            <p className="text-xs text-gray-500">{sp.questionsCount} Multiple Choice Questions with Answer Key</p>
-            <button onClick={() => showToast(`Downloading ${sp.title}...`, 'success')} className="w-full mt-2 bg-[#7B1E1E] hover:bg-[#541313] text-white py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2">
-              <Download className="w-4 h-4" />
-              <span>Download PDF</span>
+  return (
+    <div className="py-8 relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden">
+      {/* Decorative pattern */}
+      <div
+        className="
+    absolute inset-0 pointer-events-none opacity-[0.04]
+    bg-[radial-gradient(circle_at_20%_30%,#790e03_1px,transparent_1px),radial-gradient(circle_at_80%_70%,#C79A2D_1px,transparent_1px)]
+    bg-[length:60px_60px,80px_80px]
+    bg-[position:0_0,40px_40px]
+  "
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14 z-10">
+
+        {/* Hero Section – fully in Hindi */}
+        <SectionHeader
+          icon={BookOpen}
+          badge="निःशुल्क अभ्यास सामग्री"
+          title="अभ्यास प्रश्न पत्र (Sample Papers)"
+          description="ओलंपियाड की तैयारी हेतु कक्षा 1 से 10 तक के विद्यार्थियों के लिए निःशुल्क मॉडल प्रश्न पत्र, अभ्यास सेट एवं उत्तर कुंजी।"
+        />
+
+        {/* Filter Tabs – in Hindi */}
+        <div className="flex flex-wrap justify-center gap-3">
+          {['सभी', 'हिंदी', 'संस्कृत'].map((sub) => (
+            <button
+              key={sub}
+              onClick={() => setFilterSubject(sub)}
+              className={`flex items-center gap-2 px-6 py-3 rounded-2xl text-base font-bold transition-all duration-300 ${filterSubject === sub
+                  ? 'bg-gradient-to-r from-red-900 to-amber-800 text-white shadow-lg scale-105'
+                  : 'bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 border-2 border-amber-200/60 dark:border-gray-700 hover:border-amber-400 hover:shadow-md'
+                }`}
+            >
+              <Filter className="w-5 h-5" />
+              <span>{sub}</span>
+              {filterSubject === sub && <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />}
             </button>
-          </div>)}
-      </div>
+          ))}
+        </div>
 
-    </div>;
+        {/* Sample Papers Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filtered.map((paper) => (
+            <div
+              key={paper.id}
+              className="group relative bg-white/90 dark:bg-[#1A1414] backdrop-blur-sm p-6 rounded-3xl border-2 border-amber-200/60 dark:border-gray-800 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden flex flex-col"
+            >
+              {/* Decorative top accent */}
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-red-800 via-amber-500 to-red-800" />
+
+              <div className="relative z-10 flex-1 space-y-4">
+                {/* Badges row */}
+                <div className="flex items-center justify-between">
+                  <span className="text-base **:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-800/10 dark:bg-red-900/30 text-red-800 dark:text-[#C79A2D] text-sm font-bold uppercase tracking-wider">
+                    <FileText className="w-3.5 h-3.5" />
+                    {paper.subject}
+                  </span>
+                  <span className="text-base font-medium text-amber-600 dark:text-amber-400">
+                    {paper.classLevel}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="font-playfair text-2xl font-semibold text-gray-900 dark:text-white leading-tight">
+                  {paper.title}
+                </h3>
+
+                {/* Details */}
+                <div className="space-y-1.5 text-base text-gray-800 dark:text-gray-400">
+                  <p className="flex items-center gap-2">
+                    <Award className="w-4 h-4 text-[#C79A2D]" />
+                    <span>{paper.questionsCount} बहुविकल्पीय प्रश्न</span>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-[#C79A2D]" />
+                    <span>उत्तर कुंजी सहित</span>
+                  </p>
+                </div>
+
+                {/* Edition tag */}
+                <span className="inline-block text-base text-gray-800 dark:text-gray-400 font-medium">
+                  {paper.year} संस्करण
+                </span>
+              </div>
+
+              {/* Download Button */}
+              <button
+                onClick={() => handleDownload(paper.title)}
+                className="mt-4 w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#7B1E1E] to-red-800 hover:from-red-800 hover:to-[#7B1E1E] text-white font-bold text-base rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group"
+              >
+                <Download className="w-5 h-5 text-amber-300" />
+                <span>PDF डाउनलोड करें</span>
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Empty state */}
+        {filtered.length === 0 && (
+          <div className="text-center py-12">
+            <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <p className="text-lg text-gray-600 dark:text-gray-400">
+              इस विषय के लिए कोई नमूना प्रश्नपत्र उपलब्ध नहीं है।
+            </p>
+          </div>
+        )}
+
+        {/* Bottom CTA */}
+        <div className="text-center pt-4">
+          <div className="inline-flex items-center gap-3 bg-amber-100/70 dark:bg-amber-900/30 backdrop-blur-sm px-8 py-4 rounded-2xl border border-amber-300 dark:border-amber-700 shadow-sm">
+            <Sparkles className="w-6 h-6 text-[#C79A2D]" />
+            <p className="text-medium text-gray-700 dark:text-gray-300 font-semibold">
+              अधिक अभ्यास सामग्री हेतु <strong className="text-red-800 dark:text-[#C79A2D]">मॉक टेस्ट</strong> आज़माएँ।
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
+
+export default SamplePapersPage;

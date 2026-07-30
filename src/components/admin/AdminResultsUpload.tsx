@@ -61,11 +61,11 @@ export const AdminResultsUpload: React.FC = () => {
         </div>
 
         <button 
-          onClick={() => showToast('नमूना (Sample Format) Excel शीट डाउनलोड हो गई है।', 'info')}
+          onClick={() => showToast('मॉडल (Sample Format) Excel शीट डाउनलोड हो गई है।', 'info')}
           className="bg-[#7B1E1E]/10 text-[#7B1E1E] dark:text-[#C79A2D] hover:bg-[#7B1E1E] hover:text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 self-start md:self-auto"
         >
           <Download className="w-4 h-4" />
-          नमूना (Sample) Excel टेम्प्लेट
+          मॉडल (Sample) Excel टेम्प्लेट
         </button>
       </div>
 

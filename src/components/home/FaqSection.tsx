@@ -50,7 +50,7 @@ export const FaqSection: React.FC = () => {
               >
                 {/* Decorative left accent (only when open) */}
                 {isOpen && (
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-800 to-amber-500 rounded-l-2xl" />
+                  <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl" />
                 )}
 
                 {/* Question Button */}
@@ -59,7 +59,7 @@ export const FaqSection: React.FC = () => {
                   className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
                 >
                   <span
-                    className={`text-lg font-bold font-heading-hi transition-colors duration-200 ${isOpen
+                    className={`text-lg font-bold font-heading-hi transition-colors duration-200 rounded-xl ${isOpen
                         ? "text-red-900"
                         : "text-slate-800 group-hover:text-red-800"
                       }`}

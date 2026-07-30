@@ -26,9 +26,9 @@ export const HomePage: React.FC = () => {
       <WhyChooseSection/>
       <StatsSection/>
       <ExamScheduleSection />
-      {/* <OlympiadShowcaseSection />
+       {/* <OlympiadShowcaseSection />
       <ComparisonSection />
-      <MapSection /> */} 
+      <MapSection />  */}
       <TestimonialsSection />
       <FaqSection />
 

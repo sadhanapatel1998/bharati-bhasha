@@ -100,18 +100,18 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
       label: "परीक्षाएँ",
       width: "w-72",
       dropdown: [
-        {
-          key: "/hindi-olympiad",
-          icon: GraduationCap,
-          color: "text-[#790e03]",
-          hi: "हिंदी ओलंपियाड",
-        },
-        {
-          key: "/sanskrit-olympiad",
-          icon: GraduationCap,
-          color: "text-[#C79A2D]",
-          hi: "संस्कृत ओलंपियाड",
-        },
+        // {
+        //   key: "/hindi-olympiad",
+        //   icon: GraduationCap,
+        //   color: "text-[#790e03]",
+        //   hi: "हिंदी ओलंपियाड",
+        // },
+        // {
+        //   key: "/sanskrit-olympiad",
+        //   icon: GraduationCap,
+        //   color: "text-[#C79A2D]",
+        //   hi: "संस्कृत ओलंपियाड",
+        // },
         {
           key: "/syllabus",
           icon: FileText,
@@ -149,7 +149,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
           key: "/sample-papers",
           icon: FileText,
           color: "text-gray-500",
-          hi: "नमूना प्रश्नपत्र",
+          hi: "मॉडल पेपर",
         },
         {
           key: "/performance-report",
@@ -157,12 +157,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
           color: "text-[#C79A2D]",
           hi: "परिणाम",
         },
-        {
-          key: "/downloads",
-          icon: FileText,
-          color: "text-gray-500",
-          hi: "डाउनलोड",
-        },
+        // {
+        //   key: "/downloads",
+        //   icon: FileText,
+        //   color: "text-gray-500",
+        //   hi: "डाउनलोड",
+        // },
         {
           key: "/faqs",
           icon: HelpCircle,

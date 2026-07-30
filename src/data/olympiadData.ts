@@ -381,7 +381,7 @@ export const EXAM_SCHEDULE: ExamDateItem[] = [
     date: "October 18, 2026",
     time: "10:00 AM - 11:30 AM IST",
     mode: "Online (School Portal)",
-    eligibleClasses: "Classes 1st to 12th",
+    eligibleClasses: "Classes 1st to 10th",
   },
   {
     id: "ed2",
@@ -390,7 +390,7 @@ export const EXAM_SCHEDULE: ExamDateItem[] = [
     date: "October 25, 2026",
     time: "10:00 AM - 11:30 AM IST",
     mode: "Online (School Portal)",
-    eligibleClasses: "Classes 3rd to 12th",
+    eligibleClasses: "Classes 3rd to 10th",
   },
   {
     id: "ed3",
@@ -399,7 +399,7 @@ export const EXAM_SCHEDULE: ExamDateItem[] = [
     date: "November 12, 2026",
     time: "11:00 AM - 12:30 PM IST",
     mode: "Offline (OMR Based)",
-    eligibleClasses: "Classes 1st to 12th",
+    eligibleClasses: "Classes 1st to 10th",
   },
   {
     id: "ed4",
@@ -473,7 +473,7 @@ export const SYLLABUS_DATA: SyllabusItem[] = [
     totalMarks: 100,
   },
   {
-    classLevel: "Classes 9th - 12th",
+    classLevel: "Classes 9th - 10th",
     hindiTopics: [
       "उच्चतर व्याकरण (छंद, रस, अलंकार)",
       "वाक्य शुद्धि व पद परिचय",
@@ -651,7 +651,7 @@ export const SAMPLE_PAPERS: SamplePaper[] = [
     id: "sp6",
     title: "संस्कृत उच्चतर राष्ट्रीय ओलंपियाड पत्र",
     subject: "संस्कृत",
-    classLevel: "कक्षा 12वीं",
+    classLevel: "कक्षा 10वीं",
     year: "2025",
     questionsCount: 60,
     pdfUrl: "#",

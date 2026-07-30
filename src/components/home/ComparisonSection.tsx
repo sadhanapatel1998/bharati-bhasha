@@ -46,7 +46,7 @@ export const ComparisonSection: React.FC = () => {
 
         <div className="mt-8 text-center">
           <button onClick={() => navigateTo('/benchmark')} className="bg-[#7B1E1E] text-white px-6 py-3 rounded-xl text-xs font-bold hover:bg-[#541313] transition-colors">
-            {'नमूना बेंचमार्क रिपोर्ट डाउनलोड करें'}
+            {'मॉडल बेंचमार्क रिपोर्ट डाउनलोड करें'}
           </button>
         </div>
       </div>
