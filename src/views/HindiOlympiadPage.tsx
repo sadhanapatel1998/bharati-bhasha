@@ -10,9 +10,6 @@ export const HindiOlympiadPage: React.FC = () => {
     navigateTo
   } = useApp();
   return <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-      <Breadcrumb items={[{
-      label: 'हिंदी भाषा ओलंपियाड'
-    }]} />
 
       <div className="bg-gradient-to-r from-[#7B1E1E] to-[#A32A2A] text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
         <div className="max-w-3xl space-y-4">

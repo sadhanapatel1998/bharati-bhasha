@@ -57,9 +57,6 @@ export const MockTestPage: React.FC = () => {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
   return <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      <Breadcrumb items={[{
-      label: 'ऑनलाइन अभ्यास परीक्षा (मॉक टेस्ट)'
-    }]} />
 
       {/* Top Header */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white dark:bg-[#1A1414] p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md">

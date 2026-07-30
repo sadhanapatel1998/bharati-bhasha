@@ -37,7 +37,6 @@ export const SitemapPage: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      <Breadcrumb items={[{ label: 'साइटमैप' }]} />
 
       <h1 className="font-playfair text-3xl font-bold text-gray-900 dark:text-white">
         संपूर्ण वेबसाइट साइटमैप

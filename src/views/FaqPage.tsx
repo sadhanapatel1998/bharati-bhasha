@@ -13,9 +13,6 @@ export const FaqPage: React.FC = () => {
   const [search, setSearch] = useState('');
   const filtered = FAQS.filter(f => f.question.toLowerCase().includes(search.toLowerCase()) || f.answer.toLowerCase().includes(search.toLowerCase()));
   return <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      <Breadcrumb items={[{
-      label: 'सामान्य प्रश्न'
-    }]} />
 
       <div className="text-center max-w-2xl mx-auto space-y-4">
         <span className="bg-[#C79A2D]/10 text-[#C79A2D] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">

@@ -15,12 +15,15 @@ export const BlogDetailPage: React.FC = () => {
   const blogId = routeParams?.blogId || 'blog1';
   const post = BLOG_POSTS.find(b => b.id === blogId) || BLOG_POSTS[0];
   return <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      <Breadcrumb items={[{
-      label: 'ब्लॉग',
-      route: '/blogs'
-    }, {
-      label: post.title
-    }]} />
+            <Breadcrumb
+              title="ब्लॉग"
+              items={[
+                {
+                  label: "ओलंपियाड परिचय",
+                },
+              ]}
+            />
+
 
       <button onClick={() => navigateTo('/blogs')} className="inline-flex items-center gap-1.5 text-xs font-bold text-[#7B1E1E] dark:text-[#C79A2D] hover:underline">
         <ArrowLeft className="w-4 h-4" />

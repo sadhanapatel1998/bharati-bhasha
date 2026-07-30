@@ -13,9 +13,6 @@ export const SamplePapersPage: React.FC = () => {
   const [filterSubject, setFilterSubject] = useState<string>('All');
   const filtered = filterSubject === 'All' ? SAMPLE_PAPERS : SAMPLE_PAPERS.filter(sp => sp.subject === filterSubject);
   return <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-      <Breadcrumb items={[{
-      label: 'सैंपल पेपर्स'
-    }]} />
 
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="bg-[#7B1E1E]/10 text-[#7B1E1E] dark:text-[#C79A2D] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">

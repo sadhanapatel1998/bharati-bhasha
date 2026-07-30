@@ -10,9 +10,6 @@ export const TestimonialsPage: React.FC = () => {
     language
   } = useApp();
   return <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-      <Breadcrumb items={[{
-      label: 'अनुभव व विचार'
-    }]} />
 
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="bg-[#C79A2D]/10 text-[#C79A2D] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">

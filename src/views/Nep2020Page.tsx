@@ -9,9 +9,6 @@ export const Nep2020Page: React.FC = () => {
     language
   } = useApp();
   return <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-      <Breadcrumb items={[{
-      label: 'एनईपी 2020 नीति'
-    }]} />
 
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="bg-[#2E8B57]/10 text-[#2E8B57] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">

@@ -15,9 +15,6 @@ export const ScholarshipsPage: React.FC = () => {
   if (targetRank === 'rank3') estimatedScholarship = "₹25,000 Cash + Smart Tab + Bronze Medal";
   if (targetRank === 'state1') estimatedScholarship = "₹5,000 Cash + State Trophy + Certificate";
   return <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-      <Breadcrumb items={[{
-      label: 'छात्रवृत्ति कैलकुलेटर'
-    }]} />
 
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="bg-[#C79A2D]/10 text-[#C79A2D] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">

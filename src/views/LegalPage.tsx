@@ -9,10 +9,6 @@ export const LegalPage: React.FC = () => {
     language
   } = useApp();
   return <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      <Breadcrumb items={[{
-      label: 'गोपनीयता नीति व नियम'
-    }]} />
-
       <h1 className="font-playfair text-3xl font-bold text-gray-900 dark:text-white">
         Privacy Policy, Terms & Legal Disclaimer
       </h1>
