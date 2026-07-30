@@ -754,59 +754,7 @@ export const MOCK_QUESTIONS_SANSKRIT: MockQuestion[] = [
     category: "Sanskrit Vyakaran",
   },
 ];
-export const AWARDS_LIST: AwardItem[] = [
-  {
-    id: "aw1",
-    rank: "Rank 1 (National Winner)",
-    title: "भारती भाषा राष्ट्रीय रत्न स्वर्ण पदक एवं छात्रवृत्ति",
-    cashPrize: "₹1,00,000 Cash + Apple iPad",
-    perks: [
-      "24K स्वर्ण मण्डित ट्रॉफी व स्मृति चिह्न",
-      "आजीवन राष्ट्रीय भाषा विद्वान सम्मान",
-      "वाराणसी व नई दिल्ली की पूर्ण प्रायोजित सांस्कृतिक यात्रा",
-      "मान्यवर अतिथियों द्वारा हस्ताक्षरित उत्कृष्टता प्रमाण पत्र",
-    ],
-    iconName: "Trophy",
-  },
-  {
-    id: "aw2",
-    rank: "Rank 2 (National Runner Up)",
-    title: "राष्ट्रीय भाषा श्रेष्ठ पुरस्कार",
-    cashPrize: "₹50,000 Cash + Laptop",
-    perks: [
-      "रजत पदक एवं प्रशंसा शील्ड",
-      "राष्ट्रीय भाषा ओलंपियाड प्रमाण पत्र",
-      "उन्नत संस्कृत व हिंदी ई-पुस्तकालय की नि:शुल्क सदस्यता",
-      "राष्ट्रीय पोर्टल एवं मीडिया में विशेष उल्लेख",
-    ],
-    iconName: "Medal",
-  },
-  {
-    id: "aw3",
-    rank: "Rank 3 (National Bronze Winner)",
-    title: "भाषा गौरव सम्मान",
-    cashPrize: "₹25,000 Cash + Smart Tab",
-    perks: [
-      "कांस्य पदक एवं शिखा",
-      "मेधावी छात्रवृत्ति प्रमाण पत्र",
-      "वार्षिक पुस्तक उपहार व पत्रिका सदस्यता",
-      "विद्यालय स्तर पर विशेष अभिनंदन",
-    ],
-    iconName: "Award",
-  },
-  {
-    id: "aw4",
-    rank: "State Rank 1 to 10",
-    title: "राज्य भाषा प्रतिभा पुरस्कार",
-    cashPrize: "₹5,000 Cash + Gold Medal (State Level)",
-    perks: [
-      "राज्यस्तरीय ट्रॉफी एवं प्रशस्ति पत्र",
-      "विशिष्टता प्रमाण पत्र",
-      "पुस्तक वाउचर एवं छात्रवृत्ति",
-    ],
-    iconName: "Star",
-  },
-];
+
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: "t1",

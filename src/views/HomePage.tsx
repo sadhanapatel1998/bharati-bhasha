@@ -12,7 +12,6 @@ const ExamScheduleSection = dynamic(() => import('@/components/home/ExamSchedule
 const OlympiadShowcaseSection = dynamic(() => import('../components/home/OlympiadShowcaseSection').then(m => m.OlympiadShowcaseSection), { loading: () => <SkeletonSection /> });
 const ComparisonSection = dynamic(() => import('../components/home/ComparisonSection').then(m => m.ComparisonSection), { loading: () => <SkeletonSection /> });
 const MapSection = dynamic(() => import('../components/home/MapSection').then(m => m.MapSection), { loading: () => <SkeletonSection /> });
-const AwardsSection = dynamic(() => import('../components/home/AwardsSection').then(m => m.AwardsSection), { loading: () => <SkeletonSection /> });
 const TestimonialsSection = dynamic(() => import('../components/home/TestimonialsSection').then(m => m.TestimonialsSection), { loading: () => <SkeletonSection /> });
 const FaqSection = dynamic(() => import('../components/home/FaqSection').then(m => m.FaqSection), { loading: () => <SkeletonSection /> });
 const VideoModal = dynamic(() => import('../components/home/VideoModal').then(m => m.VideoModal));
@@ -29,8 +28,7 @@ export const HomePage: React.FC = () => {
       <ExamScheduleSection />
       {/* <OlympiadShowcaseSection />
       <ComparisonSection />
-      <MapSection />
-      <AwardsSection /> */}
+      <MapSection /> */} 
       <TestimonialsSection />
       <FaqSection />
 

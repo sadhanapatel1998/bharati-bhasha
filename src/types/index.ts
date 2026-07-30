@@ -207,7 +207,7 @@ export interface Testimonial {
 }
 // export interface AwardItem {
 //   id: string;
-//   rank: string;
+//   rank: string; 
 //   title: string;
 //   cashPrize: string;
 //   perks: string[];
