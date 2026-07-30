@@ -15,9 +15,186 @@ import {
   RegistrationStep,
   VisionMissionPage,
   WhyUsData,
-  SchoolRegistrationFormData
+  SchoolRegistrationFormData,
+  AwardsPageData
 } from "../types";
 
+
+
+
+
+
+
+
+export const AWARDS_DATA: AwardsPageData = {
+
+  awards: [
+    {
+      id: 'gold',
+      title: 'स्वर्ण पदक (Gold Medal)',
+      level: 'national',
+      icon: 'Trophy',
+      description: 'राष्ट्रीय स्तर पर प्रथम स्थान प्राप्त करने वाले विद्यार्थियों को स्वर्ण पदक एवं प्रमाणपत्र।',
+      cashPrize: '₹50,000 + लैपटॉप',
+      perks: ['राष्ट्रीय सम्मान', 'विज्ञान भवन में सम्मान', 'मेधा छात्रवृत्ति'],
+      color: 'from-yellow-500 to-amber-600',
+    },
+    {
+      id: 'silver',
+      title: 'रजत पदक (Silver Medal)',
+      level: 'national',
+      icon: 'Medal',
+      description: 'राष्ट्रीय स्तर पर द्वितीय स्थान प्राप्त करने वाले विद्यार्थियों को रजत पदक एवं प्रमाणपत्र।',
+      cashPrize: '₹30,000 + टैबलेट',
+      perks: ['राष्ट्रीय सम्मान', 'उत्कृष्टता प्रमाणपत्र'],
+      color: 'from-gray-300 to-gray-400',
+    },
+    {
+      id: 'bronze',
+      title: 'कांस्य पदक (Bronze Medal)',
+      level: 'national',
+      icon: 'Award',
+      description: 'राष्ट्रीय स्तर पर तृतीय स्थान प्राप्त करने वाले विद्यार्थियों को कांस्य पदक एवं प्रमाणपत्र।',
+      cashPrize: '₹20,000',
+      perks: ['राष्ट्रीय सम्मान', 'प्रशस्ति पत्र'],
+      color: 'from-amber-600 to-amber-700',
+    },
+    {
+      id: 'state',
+      title: 'राज्य स्तर पुरस्कार',
+      level: 'state',
+      icon: 'Star',
+      description: 'प्रत्येक राज्य के शीर्ष 10 प्रतिभागियों को राज्य स्तरीय पुरस्कार।',
+      cashPrize: '₹10,000',
+      perks: ['राज्य स्तर पर सम्मान', 'प्रमाणपत्र'],
+      color: 'from-blue-600 to-blue-700',
+    },
+    {
+      id: 'district',
+      title: 'जिला स्तर पुरस्कार',
+      level: 'district',
+      icon: 'Star',
+      description: 'जिला स्तर पर उत्कृष्ट प्रदर्शन करने वाले विद्यार्थियों हेतु विशेष पुरस्कार।',
+      cashPrize: '₹5,000',
+      perks: ['जिला स्तर पर प्रशंसा', 'स्मृति चिह्न'],
+      color: 'from-emerald-600 to-emerald-700',
+    },
+    {
+      id: 'school',
+      title: 'विद्यालय स्तर पुरस्कार',
+      level: 'school',
+      icon: 'Star',
+      description: 'प्रत्येक विद्यालय के शीर्ष 3 प्रतिभागियों को विद्यालय स्तरीय पुरस्कार।',
+      cashPrize: '₹2,000',
+      perks: ['विद्यालय स्तर पर सम्मान', 'स्मृति चिह्न'],
+      color: 'from-purple-600 to-purple-700',
+    },
+    {
+      id: 'participation',
+      title: 'सहभागिता प्रमाणपत्र',
+      level: 'participation',
+      icon: 'ShieldCheck',
+      description: 'सभी प्रतिभागियों को ई-प्रमाणपत्र एवं विस्तृत प्रदर्शन रिपोर्ट प्रदान की जाती है।',
+      perks: ['डिजिटल प्रमाणपत्र', 'प्रदर्शन रिपोर्ट', 'QR कोड सत्यापन'],
+      color: 'from-teal-600 to-teal-700',
+    },
+  ],
+  scholarships: [
+    {
+      id: 'scholar1',
+      title: 'शैक्षणिक उत्कृष्टता छात्रवृत्ति',
+      description: 'श्रेष्ठ प्रदर्शन करने वाले विद्यार्थियों के लिए विशेष छात्रवृत्ति।',
+      icon: 'GraduationCap',
+      color: 'from-blue-600 to-blue-700',
+    },
+    {
+      id: 'scholar2',
+      title: 'बालिका प्रोत्साहन छात्रवृत्ति',
+      description: 'बालिकाओं की शिक्षा को प्रोत्साहित करने हेतु विशेष छात्रवृत्ति।',
+      icon: 'Heart',
+      color: 'from-pink-600 to-rose-600',
+    },
+    {
+      id: 'scholar3',
+      title: 'मेधा छात्रवृत्ति',
+      description: 'मेधावी छात्रों को उनकी प्रतिभा के अनुरूप वित्तीय सहायता।',
+      icon: 'Sparkles',
+      color: 'from-amber-600 to-yellow-600',
+    },
+  ],
+  schoolTeacherAwards: [
+    {
+      id: 'school-excellence',
+      title: 'विद्यालय उत्कृष्टता सम्मान',
+      level: 'school',
+      icon: 'Building2',
+      description: 'श्रेष्ठ प्रदर्शन करने वाले विद्यालयों को विशेष सम्मान एवं ट्रॉफी।',
+      perks: ['विद्यालय ट्रॉफी', 'प्रशस्ति पत्र', 'मीडिया कवरेज'],
+      color: 'from-indigo-600 to-indigo-700',
+    },
+    {
+      id: 'acharya',
+      title: 'आचार्य सम्मान',
+      level: 'school',
+      icon: 'User',
+      description: 'श्रेष्ठ शिक्षक को उनके उत्कृष्ट मार्गदर्शन हेतु सम्मानित किया जाता है।',
+      cashPrize: '₹25,000 + शिल्ड',
+      perks: ['राष्ट्रीय स्तर पर सम्मान', 'प्रशस्ति पत्र'],
+      color: 'from-red-600 to-red-700',
+    },
+    {
+      id: 'teacher',
+      title: 'शिक्षक सम्मान',
+      level: 'school',
+      icon: 'Users',
+      description: 'शिक्षकों के उत्कृष्ट मार्गदर्शन के लिए विशेष सम्मान एवं पुरस्कार।',
+      cashPrize: '₹10,000',
+      perks: ['प्रमाणपत्र', 'स्मृति चिह्न'],
+      color: 'from-green-600 to-green-700',
+    },
+  ],
+  performanceFeatures: [
+    {
+      id: 'pf1',
+      title: 'विषयवार प्रदर्शन का विश्लेषण',
+      description: 'प्रत्येक विषय में छात्र की दक्षता और कमजोरी का सूक्ष्म विश्लेषण।',
+      icon: 'BarChart2',
+      color: 'from-blue-600 to-cyan-600',
+    },
+    {
+      id: 'pf2',
+      title: 'स्कूल एवं राष्ट्रीय स्तर पर तुलना',
+      description: 'विद्यार्थी के प्रदर्शन की तुलना स्कूल और राष्ट्रीय स्तर से की जाती है।',
+      icon: 'TrendingUp',
+      color: 'from-emerald-600 to-teal-600',
+    },
+    {
+      id: 'pf3',
+      title: 'मजबूत क्षेत्रों की पहचान',
+      description: 'छात्र के प्रमुख कौशलों एवं दक्षताओं की स्पष्ट पहचान।',
+      icon: 'Target',
+      color: 'from-amber-600 to-orange-600',
+    },
+    {
+      id: 'pf4',
+      title: 'सुधार के लिए सुझाव',
+      description: 'विद्यार्थियों के विकास हेतु विशेषज्ञ सुझाव एवं मार्गदर्शन।',
+      icon: 'Lightbulb',
+      color: 'from-yellow-600 to-amber-600',
+    },
+    {
+      id: 'pf5',
+      title: 'निरंतर प्रगति पर निगरानी',
+      description: 'छात्र की प्रगति की निरंतर निगरानी एवं समय-समय पर प्रतिवेदन।',
+      icon: 'Activity',
+      color: 'from-purple-600 to-violet-600',
+    },
+  ],
+  quote: {
+    text: 'हर प्रतिभा की पहचान, हर प्रयास को सम्मान और हर सफलता का उत्सव। आइए, भाषा से जुड़ें, संस्कृति से बढ़ें और राष्ट्र निर्माण में योगदान दें।',
+    author: 'भारती भाषा ओलंपियाड न्यास',
+  },
+};
 
 
 export const BOARD_OPTIONS = [
@@ -44,6 +221,7 @@ export const INITIAL_FORM_DATA: SchoolRegistrationFormData = {
   state: '',
   pincode: '',
   country: 'भारत (India)',
+  otherCountry: '', 
   mobileNumber: '',
   landline: '',
   email: '',

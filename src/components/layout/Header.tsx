@@ -136,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
     // 🏆
     {
       key: "/awards",
-      label: "पुरस्कार",
+      label: "पुरस्कार एवं सम्मान",
     },
 
     // 👨‍🎓

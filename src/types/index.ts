@@ -1,6 +1,48 @@
 export type Language = 'hi';
 export type Theme = 'light' | 'dark';
 
+// for AwardItem page
+
+export interface AwardItem {
+  id: string;
+  title: string;
+  level: 'national' | 'state' | 'district' | 'school' | 'participation';
+  icon: string; // Lucide icon name
+  description?: string;
+  cashPrize?: string;
+  perks?: string[];
+  color?: string; // gradient for icon bg
+}
+
+export interface Scholarship {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+export interface PerformanceFeature {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+export interface AwardsPageData {
+  awards: AwardItem[];
+  scholarships: Scholarship[];
+  schoolTeacherAwards: AwardItem[];
+  performanceFeatures: PerformanceFeature[];
+  quote: {
+    text: string;
+    author: string;
+  };
+}
+
+// for SchoolRegistrationFormData page
+
 export interface SchoolRegistrationFormData {
   schoolCode: string;
   schoolName: string;
@@ -10,6 +52,7 @@ export interface SchoolRegistrationFormData {
   state: string;
   pincode: string;
   country: string;
+  otherCountry?: string; // <-- add this
   mobileNumber: string;
   landline: string;
   email: string;
@@ -162,14 +205,14 @@ export interface Testimonial {
   avatar: string;
   videoUrl?: string;
 }
-export interface AwardItem {
-  id: string;
-  rank: string;
-  title: string;
-  cashPrize: string;
-  perks: string[];
-  iconName: string;
-}
+// export interface AwardItem {
+//   id: string;
+//   rank: string;
+//   title: string;
+//   cashPrize: string;
+//   perks: string[];
+//   iconName: string;
+// }
 export interface StudentReport {
   rollNumber: string;
   studentName: string;
