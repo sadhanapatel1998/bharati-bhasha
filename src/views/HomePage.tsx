@@ -22,19 +22,18 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-16 sm:space-y-24 pb-16">
       <HeroSection />
-      <AboutSection/>
-      <WhyChooseSection/>
-      <StatsSection/>
+      <AboutSection />
+      <WhyChooseSection />
+      <StatsSection />
       <ExamScheduleSection />
-       {/* <OlympiadShowcaseSection />
+      {/* <OlympiadShowcaseSection />
       <ComparisonSection />
       <MapSection />  */}
       <TestimonialsSection />
       <FaqSection />
-
-      <VideoModal 
-        isOpen={isVideoModalOpen} 
-        onClose={() => setIsVideoModalOpen(false)} 
+      <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
       />
     </div>
   );

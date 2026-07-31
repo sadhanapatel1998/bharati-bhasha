@@ -62,7 +62,6 @@ export const VisionMissionPage: React.FC = () => {
         icon={Compass}
         badge="हमारी सोच • हमारा संकल्प"
         title="दृष्टि एवं उद्देश्य"
-        className="py-6"
       />
 
       {/* Vision & Mission Cards */}

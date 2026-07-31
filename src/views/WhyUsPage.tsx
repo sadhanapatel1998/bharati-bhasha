@@ -53,7 +53,7 @@ export const WhyUsPage: React.FC = () => {
           icon={Sparkles}
           badge="हमें क्या बनाता है विशेष"
           title="हमारी विशेषताएँ"
-          className="py-6"
+          className="pb-4"
         />
 
         {/* 🔥 New Cards – completely different design */}

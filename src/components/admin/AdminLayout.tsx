@@ -3,21 +3,22 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useApp } from '../../context/AppContext';
-import { 
-  LayoutDashboard, 
-  Building2, 
-  Users, 
-  Calendar, 
-  Award, 
-  Settings, 
-  LogOut, 
-  Search, 
-  Bell, 
-  Moon, 
-  Sun, 
-  Menu, 
-  X, 
-  ShieldCheck, 
+import Image from 'next/image';
+import {
+  LayoutDashboard,
+  Building2,
+  Users,
+  Calendar,
+  Award,
+  Settings,
+  LogOut,
+  Search,
+  Bell,
+  Moon,
+  Sun,
+  Menu,
+  X,
+  ShieldCheck,
   ChevronRight,
   ChevronDown,
   Globe,
@@ -35,7 +36,7 @@ import {
   ShieldAlert,
   Inbox,
   History,
-  UserCheck
+  UserCheck,
 } from 'lucide-react';
 
 import { DashboardOverview } from './DashboardOverview';
@@ -72,15 +73,10 @@ export const AdminLayout: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<string>(() => tabFromPath(pathname || ''));
 
-  // Keep the active section in sync with the real /admin/<section> URL,
-  // so each admin route (categories, exams, economic-survey, ...) shows
-  // its own content on direct load, refresh, or back/forward navigation.
   useEffect(() => {
     setActiveTab(tabFromPath(pathname || ''));
   }, [pathname]);
 
-  // Selecting a sidebar item navigates to the real folder route AND
-  // updates the tab instantly (no flash of the previous section).
   const selectTab = (id: string) => {
     setActiveTab(id);
     navigateTo(`/admin/${id === 'dashboard' ? 'dashboard' : id}`);
@@ -100,33 +96,34 @@ export const AdminLayout: React.FC = () => {
     showToast('सभी अधिसूचनाएँ पढ़ी हुई चिह्नित कर दी गईं।', 'success');
   };
 
-  // Auth Guard Protection
+  // Auth Guard
   if (!isLoggedInAdmin) {
     return (
       <div className="min-h-screen bg-[#F8F5F0] dark:bg-[#120D0D] flex items-center justify-center p-4 font-poppins">
-        <div className="bg-white dark:bg-[#1A1414] max-w-md w-full rounded-3xl p-8 border border-gray-200 dark:border-gray-800 shadow-2xl text-center space-y-6">
-          <div className="w-16 h-16 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto">
+        <div className="bg-white/90 dark:bg-[#1A1414]/90 backdrop-blur-sm max-w-md w-full rounded-3xl p-8 border-2 border-amber-200/60 dark:border-gray-800 shadow-2xl text-center space-y-6 relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#FF9933] via-white to-[#138808]" />
+          <div className="w-16 h-16 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto border-2 border-rose-200 dark:border-rose-800">
             <ShieldAlert className="w-8 h-8" />
           </div>
           <div className="space-y-2">
             <h2 className="font-playfair text-xl font-bold text-gray-900 dark:text-white">
-              सुरक्षित प्रशासनिक पहुंच आवश्यक (Access Denied)
+              सुरक्षित प्रशासनिक पहुंच आवश्यक
             </h2>
-            <p className="text-xs text-gray-500 leading-relaxed">
+            <p className="text-sm text-gray-500 leading-relaxed">
               भारती भाषा ओलंपियाड राष्ट्रीय डैशबोर्ड देखने हेतु प्रशासक क्रेडेंशियल्स द्वारा लॉगिन होना अनिवार्य है।
             </p>
           </div>
           <div className="space-y-3 pt-2">
-            <button 
+            <button
               onClick={() => navigateTo('/admin/login')}
-              className="w-full bg-[#7B1E1E] hover:bg-[#541313] text-white font-bold py-3.5 px-6 rounded-2xl text-xs transition-all shadow-md flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-[#7B1E1E] to-red-800 hover:from-red-800 hover:to-[#7B1E1E] text-white font-bold py-3.5 px-6 rounded-2xl text-base transition-all shadow-md flex items-center justify-center gap-2"
             >
-              <ShieldCheck className="w-4 h-4 text-[#C79A2D]" />
-              <span>प्रशासक लॉगिन करें (Admin Login)</span>
+              <ShieldCheck className="w-4 h-4 text-amber-300" />
+              <span>प्रशासक लॉगिन करें</span>
             </button>
-            <button 
+            <button
               onClick={() => navigateTo('/')}
-              className="w-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold py-3 px-6 rounded-2xl text-xs hover:bg-gray-200 transition-all"
+              className="w-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold py-3 px-6 rounded-2xl text-base hover:bg-gray-200 transition-all"
             >
               मुख्य वेबसाइट पर लौटें
             </button>
@@ -208,16 +205,12 @@ export const AdminLayout: React.FC = () => {
     switch (activeTab) {
       case 'dashboard':
         return <DashboardOverview key="dashboard" onNavigateTab={(tab) => selectTab(tab)} />;
-      
-      // Registrations
       case 'school-registrations':
         return <AdminRegistrations key="school-registrations" subTab="school-registrations" />;
       case 'payments':
         return <AdminRegistrations key="payments" subTab="payments" />;
       case 'form-builder':
         return <AdminRegistrations key="form-builder" subTab="form-builder" />;
-
-      // Participation
       case 'schools':
         return <AdminSchools key="schools" />;
       case 'students':
@@ -228,8 +221,6 @@ export const AdminLayout: React.FC = () => {
         return <AdminResults key="all-results" />;
       case 'exams':
         return <AdminExams key="exams" />;
-
-      // Special Sections (real API-backed, DB-ready)
       case 'categories':
         return (
           <AdminDataTable
@@ -312,8 +303,6 @@ export const AdminLayout: React.FC = () => {
             ]}
           />
         );
-
-      // CMS
       case 'announcements':
       case 'hero-section':
       case 'pages':
@@ -323,185 +312,200 @@ export const AdminLayout: React.FC = () => {
       case 'policies':
       case 'media-library':
         return <AdminCMSPages key={activeTab} subTab={activeTab} />;
-
-      // Engagement
       case 'contact-queries':
       case 'notifications':
         return <AdminEngagement key={activeTab} subTab={activeTab} />;
-
-      // Configuration
       case 'site-settings':
       case 'seo-defaults':
       case 'admin-users':
       case 'audit-logs':
       case 'review-ranks':
         return <AdminConfiguration key={activeTab} subTab={activeTab} />;
-
       default:
         return <DashboardOverview key="default" onNavigateTab={(tab) => selectTab(tab)} />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F7F5] dark:bg-[#120D0D] text-gray-900 dark:text-gray-100 flex flex-col font-poppins">
-      
-      {/* Top Admin Header Bar */}
-      <header className="sticky top-0 z-30 bg-white/90 dark:bg-[#1A1414]/90 backdrop-blur-md border-b border-gray-200/80 dark:border-gray-800 px-4 sm:px-6 py-3 transition-all">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-          
-          {/* Left: Mobile Menu Toggle & Brand Logo */}
+    <div className="min-h-screen bg-gradient-to-br from-amber-50/30 via-white to-amber-100/30 dark:from-[#120D0D] dark:via-[#1A1414] dark:to-[#0D0A0A] text-gray-900 dark:text-gray-100 flex flex-col font-poppins relative overflow-hidden">
+      {/* Decorative background pattern */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 20% 30%, #790e03 1px, transparent 1px),
+            radial-gradient(circle at 80% 70%, #C79A2D 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px, 80px 80px',
+          backgroundPosition: '0 0, 40px 40px',
+        }}
+      />
+      <div className="absolute top-20 right-20 w-96 h-96 bg-[#7B1E1E]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-20 w-96 h-96 bg-[#C79A2D]/10 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Header */}
+      <header className="sticky top-0 z-30 bg-white/95 dark:bg-[#1A1414]/95 backdrop-blur-md border-b-2 border-amber-200/40 dark:border-gray-800 px-4 sm:px-6 py-3 transition-all shadow-sm relative">
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#FF9933] via-white to-[#138808] rounded-t-lg" />
+        <div className="max-w-full mx-auto flex items-center justify-between gap-4 relative z-10">
           <div className="flex items-center gap-3">
-            <button 
+            <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="lg:hidden p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300"
+              className="lg:hidden p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 transition-all"
             >
               {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
 
-            <div 
-              onClick={() => navigateTo('/')}
-              className="flex items-center gap-2.5 cursor-pointer group"
-            >
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#7B1E1E] to-[#C79A2D] p-0.5 shadow-sm group-hover:scale-105 transition-transform">
-                <div className="w-full h-full bg-[#FAFAF8] dark:bg-[#121010] rounded-[10px] flex items-center justify-center">
-                  <span className="font-playfair text-base font-bold text-[#7B1E1E] dark:text-[#C79A2D]">
-                    भा
-                  </span>
+            <div onClick={() => navigateTo('/')} className="flex items-center gap-2.5 cursor-pointer group">
+              <div className="w-20 h-20 rounded-xl group-hover:scale-105 transition-transform">
+                <div className="w-full h-full rounded-[10px] flex items-center justify-center">
+                  <Image
+                    src="/logo/logo.png"
+                    alt="भारती भाषा ओलंपियाड"
+                    width={70}
+                    height={70}
+                    priority
+                    className="object-contain rounded-2xl"
+                  />
                 </div>
               </div>
               <div className="hidden sm:block">
                 <div className="flex items-center gap-1.5">
-                  <h1 className="font-playfair font-bold text-base text-[#7B1E1E] dark:text-[#F5F0E6] leading-none">
+                  <h1 className="font-playfair font-bold text-3xl text-[#7B1E1E] dark:text-[#F5F0E6] leading-none">
                     भारती भाषा <span className="text-[#C79A2D]">एडमिन कंट्रोल</span>
                   </h1>
-                  <span className="bg-[#7B1E1E]/10 text-[#7B1E1E] dark:text-[#C79A2D] text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider border border-[#7B1E1E]/20">
+                  <span className="bg-[#7B1E1E]/10 text-[#7B1E1E] dark:text-[#C79A2D] text-sm font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider border border-[#7B1E1E]/20 flex items-center gap-1">
+                    <Sparkles className="w-3 h-3 text-[#C79A2D]" />
                     प्रशासन
                   </span>
                 </div>
-                <p className="text-[10px] text-gray-500 dark:text-gray-400 font-medium">
+                <p className="text-sm text-gray-800 dark:text-gray-400 font-semibold">
                   राष्ट्रीय मुख्यालय नियंत्रण कक्ष (National HQ Portal)
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Right: Actions, Notifications, Theme, User Badge */}
           <div className="flex items-center gap-2.5 sm:gap-4">
-            
-            {/* Return to Public Portal */}
-            <button 
+            <button
               onClick={() => navigateTo('/')}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-gray-200 dark:border-gray-700 text-xs font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              title="मुख्य वेबसाइट पर वापस जाएं"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-2xl 
+             bg-gradient-to-br from-amber-100 to-amber-200 
+             dark:from-amber-900/30 dark:to-amber-800/30 
+             border-2 border-amber-300 dark:border-amber-700 
+             text-sm font-bold text-[#7B1E1E] dark:text-[#C79A2D] 
+             hover:scale-105 hover:shadow-lg hover:border-amber-400 
+             transition-all duration-300 group"
             >
-              <Globe className="w-3.5 h-3.5 text-[#C79A2D]" />
+              <Globe className="w-4 h-4 text-[#7B1E1E] dark:text-[#C79A2D] group-hover:rotate-12 transition-transform" />
               <span>मुख्य पोर्टल</span>
-              <ExternalLink className="w-3 h-3 text-gray-400" />
+              <ExternalLink className="w-3.5 h-3.5 text-[#7B1E1E] dark:text-[#C79A2D] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
 
-            {/* Notification Bell Dropdown */}
-            <div className="relative">
-              <button 
+            {/* <div className="relative">
+              <button
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 relative transition-colors"
-                title="अधिसूचनाएँ"
+                className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 relative transition-all"
               >
                 <Bell className="w-4 h-4" />
                 {notifications.some(n => n.unread) && (
-                  <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                  <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse ring-2 ring-white dark:ring-gray-800" />
                 )}
               </button>
-
               {isNotificationsOpen && (
-                <div className="absolute right-0 top-full mt-2 w-80 bg-white dark:bg-[#1A1414] rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 p-4 z-50 space-y-3">
-                  <div className="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-2">
-                    <h4 className="font-playfair text-xs font-bold text-gray-900 dark:text-white">
-                      प्रशासनिक सूचनाएँ ({notifications.filter(n => n.unread).length})
+                <div className="absolute right-0 top-full mt-2 w-80 bg-white/95 dark:bg-[#1A1414]/95 backdrop-blur-md rounded-2xl shadow-2xl border border-amber-200/60 dark:border-gray-800 p-4 z-50 space-y-3">
+                  <div className="flex items-center justify-between border-b border-amber-200/40 dark:border-gray-800 pb-2">
+                    <h4 className="font-playfair text-sm font-bold text-gray-900 dark:text-white flex items-center gap-1.5">
+                      <Bell className="w-5 h-5 text-[#C79A2D]" />
+                      सूचनाएँ <span className="text-[#C79A2D]">({notifications.filter(n => n.unread).length})</span>
                     </h4>
-                    <button 
-                      onClick={handleMarkAllRead} 
-                      className="text-[10px] text-[#7B1E1E] dark:text-[#C79A2D] font-semibold hover:underline"
+                    <button
+                      onClick={handleMarkAllRead}
+                      className="text-sm text-[#7B1E1E] dark:text-[#C79A2D] font-semibold hover:underline"
                     >
-                      सभी पढ़े चिह्नित करें
+                      सभी पढ़े
                     </button>
                   </div>
-
-                  <div className="space-y-2 max-h-60 overflow-y-auto pr-1 text-xs">
+                  <div className="space-y-2 max-h-60 overflow-y-auto pr-1 text-sm">
                     {notifications.map((n) => (
-                      <div key={n.id} className={`p-2.5 rounded-xl border ${n.unread ? 'bg-[#7B1E1E]/5 border-[#7B1E1E]/10' : 'bg-gray-50 dark:bg-gray-800/40 border-gray-100 dark:border-gray-800'}`}>
-                        <div className="font-bold text-gray-900 dark:text-white">{n.title}</div>
-                        <p className="text-[11px] text-gray-600 dark:text-gray-300 mt-0.5">{n.desc}</p>
-                        <span className="text-[9px] text-gray-400 mt-1 block">{n.time}</span>
+                      <div
+                        key={n.id}
+                        className={`p-2.5 rounded-xl border ${n.unread
+                          ? 'bg-[#7B1E1E]/5 border-[#7B1E1E]/20 dark:bg-[#7B1E1E]/10'
+                          : 'bg-gray-50 dark:bg-gray-800/40 border-gray-100 dark:border-gray-800'
+                          }`}
+                      >
+                        <div className="font-bold text-gray-900 dark:text-white flex items-center gap-1.5 text-sm">
+                          {n.unread && <span className="w-1.5 h-1.5 rounded-full bg-[#7B1E1E] inline-block" />}
+                          {n.title}
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-0.5">{n.desc}</p>
+                        <span className="text-sm text-gray-400 mt-1 block">{n.time}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
-            </div>
+            </div> */}
 
-            {/* Theme Toggle */}
-            <button 
+            {/* <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-colors"
+              className="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition-all"
             >
               {theme === 'light' ? <Moon className="w-4 h-4 text-gray-700" /> : <Sun className="w-4 h-4 text-amber-400" />}
-            </button>
+            </button> */}
 
-            {/* Admin User Card */}
             <div className="flex items-center gap-2 pl-2 border-l border-gray-200 dark:border-gray-800">
               {adminUser?.avatar ? (
-                <img 
-                  src={adminUser.avatar} 
-                  alt={adminUser.name} 
-                  className="w-8 h-8 rounded-full object-cover border border-[#C79A2D]"
-                />
+                <img src={adminUser.avatar} alt={adminUser.name} className="w-8 h-8 rounded-full object-cover border-2 border-[#C79A2D] shadow-sm" />
               ) : (
-                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#7B1E1E] to-[#C79A2D] flex items-center justify-center text-white text-xs font-extrabold shadow-sm">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#7B1E1E] to-[#C79A2D] flex items-center justify-center text-white text-2xl font-extrabold shadow-sm">
                   {adminUser?.name?.substring(0, 2) || 'एड'}
                 </div>
               )}
               <div className="hidden md:block text-left">
-                <div className="text-xs font-bold leading-none text-gray-900 dark:text-white">
-                  {adminUser?.name || 'डॉ. सर्वेश कुमार शर्मा'}
+                <div className="text-lg font-bold leading-none text-gray-900 dark:text-white">
+                  {adminUser?.name || <span className="text-[#C79A2D]">डॉ. सर्वेश कुमार शर्मा</span>}
                 </div>
-                <div className="text-[10px] text-[#C79A2D] font-semibold mt-0.5">
+                <div className="text-sm text-[#C79A2D] font-semibold mt-0.5 flex items-center gap-1">
+                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
                   {adminUser?.role || 'मुख्य राष्ट्रीय प्रशासक'}
                 </div>
               </div>
-
-              <button 
+              <button
                 onClick={() => logoutAdmin()}
-                className="p-1.5 text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors ml-1"
-                title="लॉगआउट करें"
+                className="p-1.5 text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-all ml-1"
               >
                 <LogOut className="w-4 h-4" />
               </button>
             </div>
-
           </div>
         </div>
       </header>
 
-      {/* Main Admin Area with Sidebar & Workspace */}
-      <div className="flex-1 max-w-7xl w-full mx-auto flex gap-6 p-4 sm:p-6">
-        
-        {/* Sidebar (Desktop) */}
-        <aside className="hidden lg:block w-72 shrink-0 bg-white dark:bg-[#1A1414] rounded-3xl border border-gray-200/80 dark:border-gray-800 p-4 space-y-6 shadow-xs h-[calc(100vh-120px)] overflow-y-auto sticky top-24 custom-scrollbar">
-          <div className="p-2.5 bg-[#7B1E1E]/5 dark:bg-[#C79A2D]/10 rounded-2xl flex items-center gap-3">
-            <ShieldCheck className="w-5 h-5 text-[#7B1E1E] dark:text-[#C79A2D]" />
+      {/* Main Area */}
+      <div className="flex-1 max-w-full w-full mx-auto flex gap-6 p-4 sm:p-6 relative z-10">
+        {/* Sidebar */}
+        <aside className="hidden lg:block w-90 shrink-0 bg-white/95 dark:bg-[#1A1414]/95 backdrop-blur-sm rounded-3xl border-2 border-amber-200/40 dark:border-gray-800 p-4 space-y-6 shadow-xl h-[150vh] overflow-y-auto sticky top-24 custom-scrollbar relative">
+          <div className="relative p-3 bg-gradient-to-br from-[#7B1E1E]/10 to-[#C79A2D]/10 dark:from-[#7B1E1E]/20 dark:to-[#C79A2D]/20 rounded-2xl flex items-center gap-3 border border-amber-200/40 dark:border-gray-700">
+            <div className="w-8 h-8 rounded-full bg-[#7B1E1E] flex items-center justify-center shadow-md">
+              <ShieldCheck className="w-4 h-4 text-amber-300" />
+            </div>
             <div>
-              <div className="text-xs font-bold text-[#7B1E1E] dark:text-[#C79A2D]">प्रशासनिक नियंत्रण कक्ष</div>
-              <div className="text-[10px] text-gray-500 dark:text-gray-400">सत्र 2026 संपूर्ण पोर्टल</div>
+              <div className="text-sm font-bold text-[#7B1E1E] dark:text-[#C79A2D]">
+                नियंत्रण कक्ष <span className="text-[#C79A2D]">✦</span>
+              </div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">सत्र 2026 • संपूर्ण पोर्टल</div>
             </div>
           </div>
 
           <div className="space-y-5">
             {navGroups.map((group, groupIdx) => (
               <div key={groupIdx} className="space-y-1">
-                <div className="px-3 text-[10px] font-extrabold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+                <div className="px-3 text-sm font-extrabold uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
+                  <span className="w-1 h-3 bg-[#C79A2D] rounded-full" />
                   {group.titleHi}
                 </div>
-                <nav className="space-y-0.5 text-xs font-semibold">
+                <nav className="space-y-0.5 text-sm font-semibold">
                   {group.items.map((item) => {
                     const Icon = item.icon;
                     const isActive = activeTab === item.id;
@@ -509,20 +513,19 @@ export const AdminLayout: React.FC = () => {
                       <button
                         key={item.id}
                         onClick={() => selectTab(item.id)}
-                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl transition-all ${
-                          isActive 
-                            ? 'bg-[#7B1E1E] text-white shadow-md font-bold' 
-                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800/60'
-                        }`}
+                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl transition-all duration-200 group ${isActive
+                          ? 'bg-gradient-to-r from-[#7B1E1E] to-red-800 text-white shadow-md font-bold'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-gray-800/60 hover:shadow-sm'
+                          }`}
                       >
                         <div className="flex items-center gap-2.5 truncate">
-                          <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-[#C79A2D]' : 'text-gray-500 dark:text-gray-400'}`} />
+                          <Icon className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isActive ? 'text-amber-300 scale-110' : 'text-gray-500 dark:text-gray-400 group-hover:scale-110'
+                            }`} />
                           <span className="truncate">{item.labelHi}</span>
                         </div>
                         {item.badge && (
-                          <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold shrink-0 ${
-                            isActive ? 'bg-[#C79A2D] text-[#7B1E1E]' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300'
-                          }`}>
+                          <span className={`text-sm px-2 py-0.5 rounded-full font-bold shrink-0 ${isActive ? 'bg-amber-300 text-[#7B1E1E]' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300'
+                            }`}>
                             {item.badge}
                           </span>
                         )}
@@ -534,42 +537,39 @@ export const AdminLayout: React.FC = () => {
             ))}
           </div>
 
-          <div className="pt-4 border-t border-gray-100 dark:border-gray-800">
-            <button 
+          <div className="pt-4 border-t-2 border-amber-200/40 dark:border-gray-800">
+            <button
               onClick={() => logoutAdmin()}
-              className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors cursor-pointer"
+              className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 transition-all group"
             >
-              <LogOut className="w-4 h-4" />
+              <LogOut className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
               <span>लॉग आउट (Sign Out)</span>
             </button>
           </div>
         </aside>
 
-        {/* Sidebar (Mobile Drawer Backdrop) */}
+        {/* Mobile Drawer */}
         {isSidebarOpen && (
           <div className="fixed inset-0 z-40 lg:hidden">
-            <div 
-              className="absolute inset-0 bg-black/60 backdrop-blur-xs"
-              onClick={() => setIsSidebarOpen(false)}
-            ></div>
-            <aside className="absolute left-0 top-0 bottom-0 w-80 bg-white dark:bg-[#1A1414] p-5 space-y-6 shadow-2xl z-50 overflow-y-auto">
-              <div className="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 pb-4">
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsSidebarOpen(false)} />
+            <aside className="absolute left-0 top-0 bottom-0 w-80 bg-white/95 dark:bg-[#1A1414]/95 backdrop-blur-sm p-5 space-y-6 shadow-2xl z-50 overflow-y-auto border-r-2 border-amber-200/40 dark:border-gray-800">
+              <div className="flex items-center justify-between border-b border-amber-200/40 dark:border-gray-800 pb-4">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-5 h-5 text-[#7B1E1E] dark:text-[#C79A2D]" />
                   <span className="font-playfair font-bold text-sm text-[#7B1E1E] dark:text-[#C79A2D]">एडमिन नेविगेशन</span>
                 </div>
-                <button onClick={() => setIsSidebarOpen(false)} className="p-1 text-gray-500">
+                <button onClick={() => setIsSidebarOpen(false)} className="p-1 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-all">
                   <X className="w-5 h-5" />
                 </button>
               </div>
-
               <div className="space-y-5">
                 {navGroups.map((group, groupIdx) => (
                   <div key={groupIdx} className="space-y-1">
-                    <div className="px-3 text-[10px] font-extrabold uppercase tracking-wider text-gray-400">
+                    <div className="px-3 text-sm font-extrabold uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
+                      <span className="w-1 h-3 bg-[#C79A2D] rounded-full" />
                       {group.titleHi}
                     </div>
-                    <nav className="space-y-1 text-xs font-semibold">
+                    <nav className="space-y-0.5 text-sm font-semibold">
                       {group.items.map((item) => {
                         const Icon = item.icon;
                         const isActive = activeTab === item.id;
@@ -580,18 +580,18 @@ export const AdminLayout: React.FC = () => {
                               selectTab(item.id);
                               setIsSidebarOpen(false);
                             }}
-                            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl transition-all ${
-                              isActive 
-                                ? 'bg-[#7B1E1E] text-white font-bold' 
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                            }`}
+                            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl transition-all ${isActive
+                              ? 'bg-gradient-to-r from-[#7B1E1E] to-red-800 text-white font-bold'
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-gray-800/60'
+                              }`}
                           >
                             <div className="flex items-center gap-2.5">
-                              <Icon className="w-3.5 h-3.5 text-[#C79A2D]" />
+                              <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-amber-300' : 'text-gray-500 dark:text-gray-400'}`} />
                               <span>{item.labelHi}</span>
                             </div>
                             {item.badge && (
-                              <span className="text-[9px] bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">
+                              <span className={`text-sm px-2 py-0.5 rounded-full font-bold ${isActive ? 'bg-amber-300 text-[#7B1E1E]' : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300'
+                                }`}>
                                 {item.badge}
                               </span>
                             )}
@@ -602,26 +602,23 @@ export const AdminLayout: React.FC = () => {
                   </div>
                 ))}
               </div>
-
-              <div className="pt-4 border-t border-gray-100 dark:border-gray-800 space-y-2">
-                <button 
+              <div className="pt-4 border-t-2 border-amber-200/40 dark:border-gray-800 space-y-2">
+                <button
                   onClick={() => {
                     navigateTo('/');
                     setIsSidebarOpen(false);
                   }}
-                  className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-semibold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800"
+                  className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-sm font-semibold text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 transition-all"
                 >
                   <Globe className="w-4 h-4 text-[#C79A2D]" />
                   <span>मुख्य पोर्टल देखें</span>
                 </button>
-
-                <button 
+                <button
                   onClick={() => {
-                    showToast('प्रशासनिक सत्र समाप्त कर दिया गया है।', 'info');
-                    navigateTo('/');
+                    logoutAdmin();
                     setIsSidebarOpen(false);
                   }}
-                  className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-red-600 bg-red-50 dark:bg-red-950/30"
+                  className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-sm font-bold text-red-600 bg-red-50 dark:bg-red-950/30 hover:bg-red-100 transition-all"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>लॉग आउट (Sign Out)</span>
@@ -631,11 +628,17 @@ export const AdminLayout: React.FC = () => {
           </div>
         )}
 
-        {/* Content Workspace Area */}
+        {/* Content */}
         <main className="flex-1 min-w-0">
-          {renderActiveContent()}
+          <div className="bg-white/90 dark:bg-[#1A1414]/90 backdrop-blur-sm rounded-3xl border-2 border-amber-200/40 dark:border-gray-800 shadow-xl p-5 sm:p-6 relative overflow-hidden">
+            <div className="absolute -top-20 -right-20 w-48 h-48 bg-[#C79A2D]/5 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-[#7B1E1E]/5 rounded-full blur-2xl pointer-events-none" />
+            {renderActiveContent()}
+          </div>
         </main>
       </div>
     </div>
   );
 };
+
+export default AdminLayout;

@@ -70,7 +70,7 @@ export const LoginPage: React.FC = () => {
               <div className="flex items-center gap-2 mt-1">
                 <span className="h-px w-6 bg-gradient-to-r from-transparent to-[#C79A2D]" />
                 <span className="text-base font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
-                  प्रशासक लॉगिन
+                  विद्यालय लॉगिन
                 </span>
                 <span className="h-px w-6 bg-gradient-to-l from-transparent to-[#C79A2D]" />
               </div>
@@ -81,7 +81,7 @@ export const LoginPage: React.FC = () => {
               <div className="space-y-1.5">
                 <label className="flex items-center gap-1.5 text-base font-bold text-gray-700 dark:text-gray-300">
                   <Mail className="w-5 h-5 text-[#C79A2D]" />
-                  ईमेल / उपयोगकर्ता नाम
+                  ईमेल 
                 </label>
                 <input
                   type="email"
@@ -163,7 +163,7 @@ export const LoginPage: React.FC = () => {
                   यहाँ क्लिक करें
                 </button>
               </p>
-              <p className="text-xs text-gray-600 dark:text-gray-500 mt-2">
+              <p className="text-sm text-gray-600 dark:text-gray-500 mt-2">
                 © 2026 भारती भाषा ओलंपियाड न्यास
               </p>
             </div>
