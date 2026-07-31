@@ -27,17 +27,14 @@ export const AboutPage: React.FC = () => {
         />
 
         {/* Decorative background pattern */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.04]"
-          style={{
-            backgroundImage: `
-            radial-gradient(circle at 20% 30%, #790e03 1px, transparent 1px),
-            radial-gradient(circle at 80% 70%, #C79A2D 1px, transparent 1px)
-          `,
-            backgroundSize: "60px 60px, 80px 80px",
-            backgroundPosition: "0 0, 40px 40px",
-          }}
-        />
+              <div
+        className="
+    absolute inset-0 pointer-events-none opacity-[0.04]
+    bg-[radial-gradient(circle_at_20%_30%,#790e03_1px,transparent_1px),radial-gradient(circle_at_80%_70%,#C79A2D_1px,transparent_1px)]
+    bg-[length:60px_60px,80px_80px]
+    bg-[position:0_0,40px_40px]
+  "
+      />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
 
           {/* Section Header */}

@@ -134,7 +134,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
         <div className="flex items-center gap-2 sm:gap-3">
           <div className="relative">
             <button
-              onClick={() => handleNavClick("/registration")}
+              onClick={() => handleNavClick("/login")}
               className="bg-gradient-to-r from-[#790e03] to-[#A32A2A] hover:from-[#541313] hover:to-[#790e03] text-[#F5F0E6] px-5 pt-3 pb-2 md:pt-4 md:pb-3 rounded-xl text-medium font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 glow-gold"
             >
               <LogIn className="w-4 h-4 text-[#ffd36b]" />
