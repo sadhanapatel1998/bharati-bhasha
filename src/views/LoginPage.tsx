@@ -130,7 +130,7 @@ export const LoginPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => showToast('पासवर्ड रीसेट लिंक आपके ईमेल पर भेजा गया है।', 'info')}
-                  className="text-[#790e03] dark:text-[#C79A2D] font-bold hover:underline transition-colors"
+                  className="text-[#790e03] dark:text-[#C79A2D] font-bold hover:underline transition-colors cursor-pointer"
                 >
                   पासवर्ड भूल गए?
                 </button>
@@ -140,7 +140,7 @@ export const LoginPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-4 bg-gradient-to-r from-[#790e03] to-red-800 hover:from-red-800 hover:to-[#790e03] text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
+                className="cursor-pointer w-full py-4 bg-gradient-to-r from-[#790e03] to-red-800 hover:from-red-800 hover:to-[#790e03] text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 group"
               >
                 {isLoading ? (
                   <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin" />
@@ -158,7 +158,7 @@ export const LoginPage: React.FC = () => {
                 क्या आप विद्यालय पंजीकरण करना चाहते हैं?{' '}
                 <button
                   onClick={() => navigateTo('/registration')}
-                  className="text-[#790e03] dark:text-[#C79A2D] font-bold hover:underline"
+                  className="text-[#790e03] dark:text-[#C79A2D] font-bold hover:underline cursor-pointer"
                 >
                   यहाँ क्लिक करें
                 </button>
