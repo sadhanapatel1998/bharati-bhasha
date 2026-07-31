@@ -3,28 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import Image from 'next/image';
-import { LogIn, Menu, ChevronDown, GraduationCap, BookOpen, Trophy, FileText, Calendar, HelpCircle, Sparkles } from 'lucide-react';
-
-// Type definitions for navigation items
-type NavItemBase = {
-  key: string;
-  label: string;
-};
-
-type NavItemWithDropdown = NavItemBase & {
-  dropdown: DropdownItem[];
-  width?: string;
-};
-
-type DropdownItem = {
-  key: string;
-  icon: React.ElementType;
-  color: string;
-  hi: string;
-  highlight?: boolean;
-};
-
-type NavItem = NavItemBase | NavItemWithDropdown;
+import { LogIn, Menu, ChevronDown } from 'lucide-react';
+import { navigation, NavItem, NavItemWithDropdown } from './HeaderData'; 
 
 interface HeaderProps {
   onOpenMobileMenu: () => void;
@@ -59,125 +39,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
     setIsRegisterOpen(false);
   };
 
-  // ---- Updated navigation to match the desired menu ----
-  const navigation: NavItem[] = [
-    // 🏠
-    {
-      key: "/",
-      label: "होम"
-    },
-
-    // 📖
-    {
-      key: "about",
-      label: "हमारे बारे में",
-      width: "w-64",
-      dropdown: [
-        {
-          key: "/about",
-          icon: BookOpen,
-          color: "text-[#790e03]",
-          hi: "ओलंपियाड परिचय",
-        },
-        {
-          key: "/vision-mission",
-          icon: Sparkles,
-          color: "text-[#C79A2D]",
-          hi: "दृष्टि एवं उद्देश्य",
-        },
-        {
-          key: "/why-us",
-          icon: GraduationCap,
-          color: "text-[#790e03]",
-          hi: "हमारी विशेषताएँ",
-        },
-      ],
-    },
-
-    // 📝
-    {
-      key: "olympiads",
-      label: "परीक्षाएँ",
-      width: "w-72",
-      dropdown: [
-        // {
-        //   key: "/hindi-olympiad",
-        //   icon: GraduationCap,
-        //   color: "text-[#790e03]",
-        //   hi: "हिंदी ओलंपियाड",
-        // },
-        // {
-        //   key: "/sanskrit-olympiad",
-        //   icon: GraduationCap,
-        //   color: "text-[#C79A2D]",
-        //   hi: "संस्कृत ओलंपियाड",
-        // },
-        {
-          key: "/syllabus",
-          icon: FileText,
-          color: "text-gray-500",
-          hi: "पाठ्यक्रम",
-        },
-        {
-          key: "/exam-dates",
-          icon: Calendar,
-          color: "text-gray-500",
-          hi: "परीक्षा कार्यक्रम",
-        },
-        {
-          key: "/benchmark",
-          icon: Trophy,
-          color: "text-[#C79A2D]",
-          hi: "परीक्षा प्रारूप",
-        },
-      ],
-    },
-
-    // 🏆
-    {
-      key: "/awards",
-      label: "पुरस्कार एवं सम्मान",
-    },
-
-    // 👨‍🎓
-    {
-      key: "resources",
-      label: "विद्यार्थी मंच",
-      width: "w-64",
-      dropdown: [
-        {
-          key: "/sample-papers",
-          icon: FileText,
-          color: "text-gray-500",
-          hi: "मॉडल पेपर",
-        },
-        {
-          key: "/performance-report",
-          icon: Trophy,
-          color: "text-[#C79A2D]",
-          hi: "परिणाम",
-        },
-        // {
-        //   key: "/downloads",
-        //   icon: FileText,
-        //   color: "text-gray-500",
-        //   hi: "डाउनलोड",
-        // },
-        {
-          key: "/faqs",
-          icon: HelpCircle,
-          color: "text-gray-500",
-          hi: "प्रश्नोत्तर",
-        },
-      ],
-    },
-
-    // 📞
-    {
-      key: "/contact",
-      label: "संपर्क करें",
-    },
-  ];
   return (
     <header
       className={`sticky top-0 z-40 w-full transition-all duration-300 ${isScrolled
@@ -220,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
                 <button
                   key={item.key}
                   onClick={() => handleNavClick(item.key)}
-                  className={`px-3 py-2 rounded-lg text-base font-semibold transition-colors font-poppins ${currentRoute === item.key
+                  className={`px-3 py-2 cursor-pointer rounded-lg text-base font-semibold transition-colors font-poppins ${currentRoute === item.key
                     ? 'text-[#790e03] dark:text-[#C79A2D] bg-[#790e03]/5 dark:bg-[#C79A2D]/10'
                     : 'text-gray-700 dark:text-gray-300 hover:text-[#790e03] dark:hover:text-[#C79A2D]'
                     }`}
@@ -237,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
                 onMouseEnter={() => setActiveDropdown(item.key)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button className="flex items-center gap-1 px-3 py-2 font-poppins rounded-lg text-base font-semibold text-gray-700 dark:text-gray-300 hover:text-[#790e03] dark:hover:text-[#C79A2D] transition-colors">
+                <button className="cursor-pointer flex items-center gap-1 px-3 py-2 font-poppins rounded-lg text-base font-semibold text-gray-700 dark:text-gray-300 hover:text-[#790e03] dark:hover:text-[#C79A2D] transition-colors">
                   {item.label}
                   <ChevronDown className="w-3.5 h-3.5" />
                 </button>
@@ -251,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
                           <button
                             key={sub.key}
                             onClick={() => handleNavClick(sub.key)}
-                            className={`w-full text-left px-3 py-2 rounded-lg hover:bg-[#790e03]/5 dark:hover:bg-white/5 flex items-center gap-2 ${sub.highlight ? 'font-bold text-[#790e03] dark:text-[#C79A2D]' : 'font-medium'
+                            className={`cursor-pointer w-full text-left px-3 py-2 rounded-lg hover:bg-[#790e03]/5 dark:hover:bg-white/5 flex items-center gap-2 ${sub.highlight ? 'font-bold text-[#790e03] dark:text-[#C79A2D]' : 'font-medium'
                               }`}
                           >
                             <Icon
@@ -283,7 +144,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
 
           {/* Mobile Menu Toggle */}
           <button
-            onClick={() => handleNavClick("/registration")}
+            onClick={onOpenMobileMenu}
             className="lg:hidden p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200"
           >
             <Menu className="w-6 h-6" />

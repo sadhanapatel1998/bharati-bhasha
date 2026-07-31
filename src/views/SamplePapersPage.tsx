@@ -13,6 +13,7 @@ import {
   Award,
   Filter,
 } from 'lucide-react';
+import { Breadcrumb } from '@/components/shared/Breadcrumb';
 
 export const SamplePapersPage: React.FC = () => {
   const { language, showToast } = useApp();
@@ -28,7 +29,7 @@ export const SamplePapersPage: React.FC = () => {
   };
 
   return (
-    <div className="py-8 relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden">
+    <div className="pb-8 relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden">
       {/* Decorative pattern */}
       <div
         className="
@@ -40,6 +41,19 @@ export const SamplePapersPage: React.FC = () => {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14 z-10">
+
+        <Breadcrumb
+          title="मॉडल पेपर"
+          items={[
+            {
+              label: "विद्यार्थी मंच",
+              route: "/sample-papers",
+            },
+            {
+              label: "मॉडल पेपर",
+            },
+          ]}
+        />
 
         {/* Hero Section – fully in Hindi */}
         <SectionHeader
@@ -55,9 +69,9 @@ export const SamplePapersPage: React.FC = () => {
             <button
               key={sub}
               onClick={() => setFilterSubject(sub)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-2xl text-base font-bold transition-all duration-300 ${filterSubject === sub
-                  ? 'bg-gradient-to-r from-red-900 to-amber-800 text-white shadow-lg scale-105'
-                  : 'bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 border-2 border-amber-200/60 dark:border-gray-700 hover:border-amber-400 hover:shadow-md'
+              className={`cursor-pointer flex items-center gap-2 px-6 py-3 rounded-2xl text-base font-bold transition-all duration-300 ${filterSubject === sub
+                ? 'bg-gradient-to-r from-red-900 to-amber-800 text-white shadow-lg scale-105'
+                : 'bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 border-2 border-amber-200/60 dark:border-gray-700 hover:border-amber-400 hover:shadow-md'
                 }`}
             >
               <Filter className="w-5 h-5" />

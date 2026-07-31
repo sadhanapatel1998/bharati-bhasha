@@ -42,7 +42,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         >
           <button
             onClick={() => navigateTo("/")}
-            className="flex items-center gap-1.5 px-2 py-1 rounded-full hover:text-[#7B1E1E]"
+            className="cursor-pointer flex items-center gap-1.5 px-2 py-1 rounded-full hover:text-[#7B1E1E]"
           >
             <Home className="w-4 h-4" />
             <span>मुखपृष्ठ</span>
@@ -50,12 +50,15 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
           {items.map((item, index) => (
             <React.Fragment key={index}>
-              <ChevronRight className="w-3 h-3 text-gray-400" />
+              <ChevronRight
+                className={`w-3 h-3 text-gray-400 ${item.route ? "hidden md:block" : ""
+                  }`}
+              />
 
               {item.route ? (
                 <button
                   onClick={() => navigateTo(item.route!)}
-                  className="px-2 py-1 hover:text-[#7B1E1E]"
+                  className="hidden md:block px-2 py-1 hover:text-[#7B1E1E]"
                 >
                   {item.label}
                 </button>

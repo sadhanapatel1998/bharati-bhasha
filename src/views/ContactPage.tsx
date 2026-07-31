@@ -63,13 +63,22 @@ export const ContactPage: React.FC = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14 z-10">
 
+        <Breadcrumb
+          title="संपर्क करें"
+          items={[
+            {
+              label: "संपर्क करें",
+            },
+          ]}
+        />
+
         {/* Hero Section */}
         <SectionHeader
           icon={MessageSquare}
           badge="राष्ट्रीय सहायता केंद्र"
           title="हमसे संपर्क करें"
           description=' हम आपकी हर शिक्षा-संबंधी जिज्ञासा का समाधान करने के लिए यहाँ हैं। किसी भी प्रश्न, सुझाव या सहायता के लिए नीचे दिए गए माध्यमों से हमसे जुड़ें।'
-          className='py-8'
+          className='py-6'
         />
 
         {/* Contact Cards & Form Grid */}

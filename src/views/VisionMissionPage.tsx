@@ -45,14 +45,14 @@ export const VisionMissionPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14">
       <Breadcrumb
-        title="लक्ष्य एवं उद्देश्य"
+        title="दृष्टि एवं उद्देश्य"
         items={[
           {
             label: "परिचय",
             route: "/about",
           },
           {
-            label: "लक्ष्य एवं उद्देश्य",
+            label: "दृष्टि एवं उद्देश्य",
           },
         ]}
       />

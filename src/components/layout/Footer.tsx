@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
             />
             <button
               type="submit"
-              className="w-full sm:w-auto bg-[#C79A2D] hover:bg-[#E2B855] text-[#7B1E1E] px-6 py-3 rounded-xl font-bold text-base shadow-md transition-colors flex items-center justify-center gap-2 shrink-0"
+              className="w-full sm:w-auto bg-[#C79A2D] cursor-pointer hover:bg-[#E2B855] text-[#7B1E1E] px-6 py-3 rounded-xl font-bold text-base shadow-md transition-colors flex items-center justify-center gap-2 shrink-0"
             >
               <span>{"सदस्यता लें"}</span>
               <Send className="w-4 h-4" />
@@ -80,8 +80,8 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
           {/* Col 1: About & Trust Seals */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-30 h-30 flex items-center justify-center text-white font-bold font-playfair ">
+            <Link href="/" className="flex items-center gap-0">
+              <div className="w-25 h-25 flex items-center text-white font-bold font-playfair">
                 <Image
                   src="/logo/logo.png"
                   alt="Logo"
@@ -91,6 +91,7 @@ export const Footer: React.FC = () => {
                   priority
                 />
               </div>
+
               <div>
                 <h2 className="font-playfair font-bold text-2xl text-white">
                   भारती भाषा <span className="text-[#C79A2D]">ओलंपियाड</span>
@@ -99,7 +100,7 @@ export const Footer: React.FC = () => {
                   अपनी भाषा, अपनी पहचान
                 </p>
               </div>
-            </div>
+            </Link>
 
             <p className="text-base text-gray-300 leading-relaxed max-w-md">
               भारती भाषा ओलंपियाड भारत का प्रथम राष्ट्रीय स्तर का हिंदी व
@@ -133,6 +134,15 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-base text-gray-300">
               <li>
                 <Link
+                  href="/"
+                  className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
+                >
+                  <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
+                  {"होम"}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
                 >
@@ -146,7 +156,7 @@ export const Footer: React.FC = () => {
                   className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
                 >
                   <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
-                  {"लक्ष्य एवं दूरदृष्टि"}
+                  {"दृष्टि एवं उद्देश्य"}
                 </Link>
               </li>
               <li>
@@ -155,34 +165,25 @@ export const Footer: React.FC = () => {
                   className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
                 >
                   <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
-                  {"हमारा चयन क्यों?"}
+                  {"हमारी विशेषताएँ"}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/nep-2020"
+                  href="/awards"
                   className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
                 >
                   <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
-                  {"राष्ट्रीय शिक्षा नीति 2020"}
+                  {"पुरस्कार एवं सम्मान"}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/benchmark"
+                  href="/contact"
                   className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
                 >
                   <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
-                  {"बेंचमार्क मूल्यांकन"}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/testimonials"
-                  className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
-                >
-                  <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
-                  {"अभिभावक एवं विद्यालय विचार"}
+                  {"संपर्क करें"}
                 </Link>
               </li>
             </ul>
@@ -196,38 +197,29 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-base text-gray-300">
               <li>
                 <Link
-                  href="/hindi-olympiad"
-                  className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
-                >
-                  <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
-                  {"राष्ट्रीय हिंदी ओलंपियाड"}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/sanskrit-olympiad"
-                  className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
-                >
-                  <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
-                  {"राष्ट्रीय संस्कृत ओलंपियाड"}
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/syllabus"
                   className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
                 >
                   <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
-                  {"पाठ्यक्रम (कक्षा 1 से 12)"}
+                  {"पाठ्यक्रम (कक्षा 1 से 10)"}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/mock-test"
+                  href="/exam-dates"
                   className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5 font-bold text-[#C79A2D]"
                 >
                   <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
-                  {"ऑनलाइन मॉक टेस्ट (फ्री)"}
+                  {"परीक्षा कार्यक्रम"}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/benchmark"
+                  className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5 font-bold text-[#C79A2D]"
+                >
+                  <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
+                  {"परीक्षा प्रारूप"}
                 </Link>
               </li>
               <li>
@@ -246,6 +238,15 @@ export const Footer: React.FC = () => {
                 >
                   <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
                   {"परिणाम व स्कोर कार्ड"}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/faqs"
+                  className="hover:text-[#C79A2D] transition-colors flex items-center gap-1.5"
+                >
+                  <ChevronRight className="w-4 h-4 text-[#C79A2D]" />
+                  {"प्रश्नोत्तर"}
                 </Link>
               </li>
             </ul>
@@ -319,7 +320,7 @@ export const Footer: React.FC = () => {
               करियर
             </Link>
             <span>•</span>
-           
+
           </div>
         </div>
       </div>

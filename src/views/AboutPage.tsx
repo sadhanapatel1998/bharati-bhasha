@@ -11,7 +11,7 @@ export const AboutPage: React.FC = () => {
     <>
       <section
         id="about"
-        className="mb-0 relative py-10 pb-0 overflow-hidden bg-gradient-to-b from-amber-50/50 via-white to-amber-50/80 mx-3"
+        className="mb-0 relative py-8 pb-0 overflow-hidden bg-gradient-to-b from-amber-50/50 via-white to-amber-50/80 mx-3"
       >
         <Breadcrumb
           title="ओलंपियाड परिचय"

@@ -130,7 +130,7 @@ export default function RegistrationFlow() {
                 {/* CTA */}
                 <div className="mt-12 text-center">
                     <button
-                        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-800 to-red-900 hover:from-red-700 hover:to-red-800 text-amber-50 font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                        className="inline-flex cursor-pointer items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-800 to-red-900 hover:from-red-700 hover:to-red-800 text-amber-50 font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                         style={{ fontFamily: baloo2.style.fontFamily }}
                     >
                         <BadgeCheck className="w-6 h-6" />

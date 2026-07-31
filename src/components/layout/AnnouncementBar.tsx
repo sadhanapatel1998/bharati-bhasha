@@ -55,7 +55,7 @@ export const AnnouncementBar: React.FC = () => {
 
         <button
           onClick={() => navigateTo('/registration')}
-          className="hidden sm:flex items-center gap-1.5 bg-[#C79A2D] text-[#7B1E1E] px-3.5 py-1.5 rounded-full font-bold text-xs hover:bg-[#d4af37] hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg"
+          className="hidden cursor-pointer sm:flex items-center gap-1.5 bg-[#C79A2D] text-[#7B1E1E] px-3.5 py-1.5 rounded-full font-bold text-xs hover:bg-[#d4af37] hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg"
         >
           <span>{'अभी पंजीकरण करें'}</span>
           <ChevronRight className="w-3.5 h-3.5" />

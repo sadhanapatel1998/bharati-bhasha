@@ -5,6 +5,7 @@ import { useApp } from '../context/AppContext';
 import { SYLLABUS_DATA } from '../data/olympiadData';
 import { Download, CheckCircle2, BookOpen, GraduationCap, Sparkles, ChevronRight } from 'lucide-react';
 import SectionHeader from '@/components/shared/SectionHeader';
+import { Breadcrumb } from '@/components/shared/Breadcrumb';
 
 export const SyllabusPage: React.FC = () => {
   const { language, showToast } = useApp();
@@ -14,7 +15,7 @@ export const SyllabusPage: React.FC = () => {
   const classLabels = SYLLABUS_DATA.map((item) => item.classLevel);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden py-8">
+    <div className="relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden pb-8">
       {/* Decorative pattern */}
       <div
         className="
@@ -26,6 +27,19 @@ export const SyllabusPage: React.FC = () => {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14 z-10">
+
+        <Breadcrumb
+          title="ओलंपियाड पाठ्यक्रम"
+          items={[
+            {
+              label: "परीक्षाएँ",
+              route: "/syllabus",
+            },
+            {
+              label: "पाठ्यक्रम",
+            },
+          ]}
+        />
 
         {/* Hero Section */}
         <SectionHeader
@@ -41,7 +55,7 @@ export const SyllabusPage: React.FC = () => {
             <button
               key={idx}
               onClick={() => setActiveTab(idx)}
-              className={`group flex items-center gap-2 px-6 py-3 rounded-xl text-base font-bold transition-all duration-300 ${activeTab === idx
+              className={`cursor-pointer group flex items-center gap-2 px-6 py-3 rounded-xl text-base font-bold transition-all duration-300 ${activeTab === idx
                 ? 'bg-gradient-to-r from-[#790e03] to-[#A32A2A] text-white shadow-lg scale-105'
                 : 'bg-white/80 dark:bg-gray-800/80 text-gray-800 dark:text-gray-300 border-2 border-amber-200/60 dark:border-gray-700 hover:border-amber-400 hover:shadow-md'
                 }`}
@@ -114,7 +128,7 @@ export const SyllabusPage: React.FC = () => {
         <div className="text-center pt-4">
           <button
             onClick={() => showToast('पाठ्यक्रम डाउनलोड होना प्रारम्भ हुआ।', 'success')}
-            className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-[#eca809] to-amber-500 hover:from-amber-500 hover:to-[#C79A2D] text-red-950 font-bold text-lg rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
+            className="cursor-pointer inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-[#eca809] to-amber-500 hover:from-amber-500 hover:to-[#C79A2D] text-red-950 font-bold text-lg rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
           >
             <Download className="w-6 h-6" />
             <span>पूर्ण पाठ्यक्रम PDF डाउनलोड करें</span>

@@ -15,6 +15,7 @@ import {
   ChevronRight,
   Bell,
 } from 'lucide-react';
+import { Breadcrumb } from '@/components/shared/Breadcrumb';
 
 export const ExamDatesPage: React.FC = () => {
   const { language, navigateTo, showToast } = useApp();
@@ -24,7 +25,7 @@ export const ExamDatesPage: React.FC = () => {
   };
 
   return (
-    <div className="py-8 relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden">
+    <div className="pb-8 relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden">
       {/* Decorative pattern */}
       <div
         className="
@@ -36,6 +37,18 @@ export const ExamDatesPage: React.FC = () => {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14 z-10">
+        <Breadcrumb
+          title="परीक्षा कार्यक्रम"
+          items={[
+            {
+              label: "परीक्षाएँ",
+              route: "/syllabus",
+            },
+            {
+              label: "परीक्षा कार्यक्रम",
+            },
+          ]}
+        />
         {/* Hero with SectionHeader and Login Button */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
           <SectionHeader

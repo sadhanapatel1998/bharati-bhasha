@@ -23,6 +23,7 @@ import {
   Activity,
 } from 'lucide-react';
 import SectionHeader from '@/components/shared/SectionHeader';
+import CtaSection from '@/components/shared/CtaSection';
 
 // Icon map
 const iconMap: Record<string, React.ElementType> = {
@@ -113,7 +114,7 @@ const levelLabel: Record<string, string> = {
 
 export const AwardsPage: React.FC = () => {
   const { language, navigateTo } = useApp();
-  const {awards, scholarships, schoolTeacherAwards, performanceFeatures, quote } = AWARDS_DATA;
+  const { awards, scholarships, schoolTeacherAwards, performanceFeatures, quote } = AWARDS_DATA;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
@@ -174,6 +175,15 @@ export const AwardsPage: React.FC = () => {
           })}
         </div>
       </div>
+
+      <CtaSection
+        title="अपने विद्यालय को पंजीकृत करें"
+        description="हिंदी एवं संस्कृत ओलंपियाड 2026-27 में सहभागिता हेतु आज ही पंजीकरण करें।"
+        buttonText="अभी पंजीकरण करें"
+        buttonRoute="/registration"
+        badge="सीमित समय की पेशकश"
+        className='mt-15'
+      />
 
       {/* Scholarships Section */}
       <div className="space-y-8">
@@ -308,7 +318,7 @@ export const AwardsPage: React.FC = () => {
 
       {/* Quote – engraved plaque */}
       <div className="relative max-w-3xl mx-auto">
-        <div className="relative bg-gradient-to-br from-[#541313] to-[#2A0A0A] rounded-2xl px-8 sm:px-14 py-10 text-center shadow-xl border border-[#C79A2D]/40 overflow-hidden">
+        <div className="relative bg-gradient-to-br from-[#014a7a] to-[#031c3d] rounded-2xl px-8 sm:px-14 py-10 text-center shadow-xl border border-[#C79A2D]/40 overflow-hidden">
           <span className="absolute top-1 left-4 font-playfair text-7xl text-[#C79A2D]/25 select-none leading-none">
             “
           </span>

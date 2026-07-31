@@ -93,12 +93,12 @@ export const FaqSection: React.FC = () => {
 
         {/* Bottom CTA */}
         <div className="mt-12 text-center">
-          <p className="text-lg text-amber-700 font-devanagari">
+          <p className="text-xl text-amber-700 font-devanagari">
             {language === "hi"
               ? "क्या आपका प्रश्न सूची में नहीं है?"
               : "Still have a question?"}
             <button
-              className="ml-2 text-red-800 font-bold hover:text-amber-700 transition-colors underline-offset-2 hover:underline"
+              className="ml-2 text-red-800 cursor-pointer font-bold hover:text-amber-700 transition-colors underline-offset-2 hover:underline"
               onClick={() => window.location.href = "/contact"}
             >
               {language === "hi" ? "हमसे संपर्क करें" : "Contact us"}

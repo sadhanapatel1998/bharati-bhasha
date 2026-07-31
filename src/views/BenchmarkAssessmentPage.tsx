@@ -4,6 +4,7 @@ import React from 'react';
 import { useApp } from '../context/AppContext';
 import SectionHeader from '../components/shared/SectionHeader';
 import { Award, CheckCircle2, FileText, Sparkles, BarChart, TrendingUp, Users, BookOpen, Brain, Target, Zap, Medal, ChevronRight } from 'lucide-react';
+import { Breadcrumb } from '@/components/shared/Breadcrumb';
 
 // 12 assessment dimensions with icons and descriptions
 const assessmentDimensions = [
@@ -85,9 +86,9 @@ export const BenchmarkAssessmentPage: React.FC = () => {
   const { language, navigateTo } = useApp();
 
   return (
-    <div className="py-8 relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden">
+    <div className="pb-8 relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden">
       {/* Decorative pattern */}
-     <div
+      <div
         className="
     absolute inset-0 pointer-events-none opacity-[0.04]
     bg-[radial-gradient(circle_at_20%_30%,#790e03_1px,transparent_1px),radial-gradient(circle_at_80%_70%,#C79A2D_1px,transparent_1px)]
@@ -97,6 +98,18 @@ export const BenchmarkAssessmentPage: React.FC = () => {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14 z-10">
+        <Breadcrumb
+          title="परीक्षा प्रारूप"
+          items={[
+            {
+              label: "परीक्षाएँ",
+              route: "/syllabus",
+            },
+            {
+              label: "परीक्षा प्रारूप",
+            },
+          ]}
+        />
         {/* Hero Section */}
         <SectionHeader
           icon={Award}
@@ -177,7 +190,7 @@ export const BenchmarkAssessmentPage: React.FC = () => {
 
             <button
               onClick={() => navigateTo('/performance-report')}
-              className="shrink-0 inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#C79A2D] to-amber-500 hover:from-amber-500 hover:to-[#C79A2D] text-red-950 font-bold text-base rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
+              className="cursor-pointer shrink-0 inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#C79A2D] to-amber-500 hover:from-amber-500 hover:to-[#C79A2D] text-red-950 font-bold text-base rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
             >
               <span>रिपोर्ट कार्ड खोजें</span>
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

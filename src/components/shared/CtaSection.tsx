@@ -73,7 +73,7 @@ export const CtaSection: React.FC<CtaSectionProps> = ({
 
         <button
           onClick={() => navigateTo(buttonRoute)}
-          className="inline-flex items-center gap-2.5 px-8 pt-4 pb-3  bg-[#C79A2D] hover:bg-[#E2B855] text-[#1A1212] font-bold text-base rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl group"
+          className="cursor-pointer inline-flex items-center gap-2.5 px-8 pt-4 pb-3  bg-[#C79A2D] hover:bg-[#E2B855] text-[#1A1212] font-bold text-base rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl group"
         >
           <span>{buttonText}</span>
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

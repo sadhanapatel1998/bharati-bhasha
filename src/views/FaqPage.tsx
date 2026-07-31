@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Breadcrumb } from '../components/shared/Breadcrumb';
 import SectionHeader from '../components/shared/SectionHeader';
 import { FAQS } from '../data/olympiadData';
 import { ChevronDown, Search, HelpCircle } from 'lucide-react';
+import { Breadcrumb } from '@/components/shared/Breadcrumb';
 
 export const FaqPage: React.FC = () => {
   const { language } = useApp();
@@ -19,19 +19,31 @@ export const FaqPage: React.FC = () => {
   );
 
   return (
-    <section className="mb-0 relative py-16 overflow-hidden bg-white">
+    <section className="mb-0 relative pb-16 overflow-hidden">
       {/* Decorative background pattern */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.04]"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 20% 30%, #790e03 1px, transparent 1px),
-            radial-gradient(circle at 80% 70%, #C79A2D 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px, 80px 80px',
-          backgroundPosition: '0 0, 40px 40px',
-        }}
+        className="
+    absolute inset-0 pointer-events-none opacity-[0.04]
+    bg-[radial-gradient(circle_at_20%_30%,#790e03_1px,transparent_1px),radial-gradient(circle_at_80%_70%,#C79A2D_1px,transparent_1px)]
+    bg-[length:60px_60px,80px_80px]
+    bg-[position:0_0,40px_40px]
+  "
       />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-14 z-10">
+        <Breadcrumb
+          title="प्रश्नोत्तर"
+          items={[
+            {
+              label: "विद्यार्थी मंच",
+              route: "/sample-papers",
+            },
+            {
+              label: "प्रश्नोत्तर",
+            },
+          ]}
+        />
+      </div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         {/* Section Header */}
@@ -64,11 +76,10 @@ export const FaqPage: React.FC = () => {
             return (
               <div
                 key={faq.id}
-                className={`relative rounded-2xl border shadow-sm transition-all duration-300 ${
-                  isOpen
+                className={`relative rounded-2xl border shadow-sm transition-all duration-300 ${isOpen
                     ? 'border-amber-400 bg-white shadow-lg'
                     : 'border-amber-200/60 bg-white/80 hover:bg-white hover:shadow-md hover:border-amber-300'
-                }`}
+                  }`}
               >
                 {/* Decorative left accent (only when open) */}
                 {isOpen && (
@@ -81,11 +92,10 @@ export const FaqPage: React.FC = () => {
                   className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
                 >
                   <span
-                    className={`text-lg font-bold font-heading-hi transition-colors duration-200 ${
-                      isOpen
+                    className={`text-lg font-bold font-heading-hi transition-colors duration-200 ${isOpen
                         ? 'text-red-900'
                         : 'text-slate-800 group-hover:text-red-800'
-                    }`}
+                      }`}
                   >
                     <span className="inline-block w-10 h-10 rounded-full bg-amber-100 text-red-800 text-base font-black text-center leading-10 mr-3 shrink-0">
                       {String(index + 1).padStart(2, '0')}
@@ -93,17 +103,15 @@ export const FaqPage: React.FC = () => {
                     {faq.question}
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 text-amber-500 shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180' : ''
-                    } group-hover:scale-110`}
+                    className={`w-5 h-5 text-amber-500 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
+                      } group-hover:scale-110`}
                   />
                 </button>
 
                 {/* Answer (collapsible) */}
                 <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                  }`}
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
                 >
                   <div className="px-6 pb-5 pt-1 border-t border-amber-200/40">
                     <p className="text-lg text-slate-800 font-devanagari leading-relaxed">
@@ -137,7 +145,7 @@ export const FaqPage: React.FC = () => {
                 ? 'क्या आपका प्रश्न सूची में नहीं है?'
                 : 'Still have a question?'}
               <button
-                className="ml-2 text-red-800 font-bold hover:text-amber-700 transition-colors underline-offset-2 hover:underline"
+                className="cursor-pointer ml-2 text-red-800 font-bold hover:text-amber-700 transition-colors underline-offset-2 hover:underline"
                 onClick={() => (window.location.href = '/contact')}
               >
                 {language === 'hi' ? 'हमसे संपर्क करें' : 'Contact us'}

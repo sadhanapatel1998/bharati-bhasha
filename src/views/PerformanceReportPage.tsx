@@ -73,7 +73,7 @@ export const PerformanceReportPage: React.FC = () => {
   };
 
   return (
-    <div className="py-8 relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden">
+    <div className="pb-8 relative min-h-screen bg-gradient-to-b from-amber-50/40 via-white to-amber-100/30 overflow-hidden">
       {/* Decorative pattern */}
       <div
         className="
@@ -85,6 +85,18 @@ export const PerformanceReportPage: React.FC = () => {
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14 z-10">
+        <Breadcrumb
+          title="परिणाम"
+          items={[
+            {
+              label: "विद्यार्थी मंच",
+              route: "/sample-papers",
+            },
+            {
+              label: "परिणाम",
+            },
+          ]}
+        />
 
         {/* Hero Section */}
         <SectionHeader
