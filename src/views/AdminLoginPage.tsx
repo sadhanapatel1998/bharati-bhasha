@@ -15,8 +15,8 @@ import {
 export const AdminLoginPage: React.FC = () => {
   const { loginAdmin, navigateTo, showToast } = useApp();
 
-  const [email, setEmail] = useState('admin@bharatibhasha.org');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
 
@@ -126,7 +126,7 @@ export const AdminLoginPage: React.FC = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@bharatibhasha.org"
+                  placeholder=""
                   className="w-full pl-12 pr-4 py-3.5 bg-amber-50/50 dark:bg-gray-800/60 border-2 border-amber-200/60 dark:border-gray-700 rounded-2xl text-base font-semibold text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-[#C79A2D]/30 focus:border-[#C79A2D] focus:bg-white dark:focus:bg-gray-800 transition-all duration-300 group-hover:border-amber-300"
                 />
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-amber-400 group-focus-within:text-[#C79A2D] transition-colors" />
