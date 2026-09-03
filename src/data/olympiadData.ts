@@ -1193,3 +1193,44 @@ export const NEP_2020_PILLARS = [
     icon: "Users",
   },
 ];
+
+/** Homepage hero slider. Editable from /superadmin/site-content → Hero banners. */
+export const HERO_BANNERS = [
+  {
+    id: "b1",
+    image: "/banner/banner-1.png",
+    alt: "Bharati Bhasha Olympiad 2026",
+    link: "",
+    isActive: true,
+  },
+  {
+    id: "b2",
+    image: "/banner/banner-2.png",
+    alt: "National Hindi & Sanskrit Olympiad",
+    link: "",
+    isActive: true,
+  },
+];
+
+/** Slider behaviour for the homepage hero. */
+export const HERO_SETTINGS = {
+  autoplay: true,
+  intervalMs: 5000,
+  showArrows: true,
+  showDots: true,
+  /** natural = use each image's own aspect ratio (auto height) */
+  heightMode: "natural",
+  /** used only when heightMode is "fixed" */
+  fixedHeightPx: 560,
+};
+
+/**
+ * Downloadable documents offered across the site. Upload the PDFs from
+ * /superadmin/site-content → Downloads.
+ */
+export const DOWNLOADS = {
+  syllabusPdf: "",
+  prospectusPdf: "",
+  sampleOmrPdf: "",
+  registrationFormPdf: "",
+};

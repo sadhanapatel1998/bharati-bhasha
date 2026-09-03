@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { printElement } from '@/utils/printElement';
 import { Breadcrumb } from '../components/shared/Breadcrumb';
 import SectionHeader from '../components/shared/SectionHeader';
-import { SAMPLE_STUDENT_REPORTS } from '../data/olympiadData';
 import { StudentReport } from '../types';
 import {
   Search,
@@ -12,7 +12,6 @@ import {
   Medal,
   Award,
   CheckCircle2,
-  AlertCircle,
   Download,
   Share2,
   Sparkles,
@@ -20,7 +19,6 @@ import {
   User,
   School,
   GraduationCap,
-  BarChart3,
   TrendingUp,
   Target,
   ChevronRight,
@@ -28,48 +26,77 @@ import {
 
 export const PerformanceReportPage: React.FC = () => {
   const { language, showToast } = useApp();
-  const [inputRollNumber, setInputRollNumber] = useState('BBO2026-9842');
-  const [report, setReport] = useState<StudentReport | null>(
-    SAMPLE_STUDENT_REPORTS['BBO2026-9842']
-  );
-  const [hasSearched, setHasSearched] = useState(true);
+  const [inputRollNumber, setInputRollNumber] = useState('');
+  const [report, setReport] = useState<StudentReport | null>(null);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [notFound, setNotFound] = useState('');
 
-  const handleSearch = (e: React.FormEvent) => {
+  const [searching, setSearching] = useState(false);
+
+  /** turns a published Result row from the API into the page's report shape */
+  const toReport = (r: Record<string, unknown>): StudentReport => ({
+    rollNumber: String(r.rollNo || ''),
+    studentName: String(r.studentName || ''),
+    schoolName: String(r.schoolName || ''),
+    classLevel: `कक्षा ${r.classLevel || ''}`,
+    subject:
+      r.subject === 'sanskrit'
+        ? 'संस्कृत ओलंपियाड'
+        : r.subject === 'both'
+        ? 'हिंदी एवं संस्कृत ओलंपियाड'
+        : 'हिंदी ओलंपियाड',
+    examName: String(r.examName || ''),
+    score: Number(r.marksObtained) || 0,
+    totalMarks: Number(r.totalMarks) || 100,
+    percentile: Number(r.percentage) || 0,
+    nationalRank: Number(r.rankNational) || 0,
+    stateRank: Number(r.rankState) || 0,
+    schoolRank: Number(r.rankSchool) || 0,
+    grade: String(r.grade || ''),
+    remark: String(r.remark || ''),
+    publishedOn: String(r.updatedAt || r.createdAt || ''),
+  });
+
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     const cleaned = inputRollNumber.trim().toUpperCase();
     if (!cleaned) {
       showToast('कृपया अनुक्रमांक (Roll Number) दर्ज करें।', 'warning');
       return;
     }
-    if (SAMPLE_STUDENT_REPORTS[cleaned]) {
-      setReport(SAMPLE_STUDENT_REPORTS[cleaned]);
-    } else {
-      // Dynamic fallback mock report for any custom entered roll number
-      const mockReport: StudentReport = {
-        rollNumber: cleaned,
-        studentName: 'आरव शर्मा',
-        schoolName: 'सेंट जेवियर्स सीनियर सेकेंडरी स्कूल, जयपुर',
-        classLevel: 'कक्षा 7वीं',
-        subject: 'राष्ट्रीय हिंदी एवं संस्कृत ओलंपियाड',
-        score: 92,
-        totalMarks: 100,
-        percentile: 98.4,
-        nationalRank: 12,
-        stateRank: 2,
-        grade: 'A+ विशिष्ट',
-        strengths: ['व्याकरण एवं संधि नियम', 'देवनागरी शब्द भंडार', 'पठन गति'],
-        areasForImprovement: ['शास्त्रीय संस्कृत साहित्य संदर्भ'],
-        categoryScores: {
-          grammar: 28,
-          literature: 22,
-          vocabulary: 24,
-          comprehension: 18,
-        },
-      };
-      setReport(mockReport);
+
+    setSearching(true);
+    try {
+      const res = await fetch(`/api/public/result?rollNo=${encodeURIComponent(cleaned)}`, { cache: 'no-store' });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && Array.isArray(data.items) && data.items.length) {
+        setReport(toReport(data.items[0]));
+        setHasSearched(true);
+        setNotFound('');
+        showToast('परिणाम सफलतापूर्वक लोड हो गया है!', 'success');
+        return;
+      }
+
+      // show whatever the server actually said, not a canned message
+      const message =
+        data?.message ||
+        (res.status === 404
+          ? 'इस अनुक्रमांक का कोई प्रकाशित परिणाम नहीं मिला।'
+          : 'परिणाम प्राप्त नहीं हो सका। कृपया पुनः प्रयास करें।');
+      setReport(null);
+      setHasSearched(true);
+      setNotFound(message);
+      showToast(message, res.status === 404 || res.status === 403 ? 'warning' : 'error');
+    } catch {
+      const message = 'सर्वर से संपर्क नहीं हो सका। कृपया पुनः प्रयास करें।';
+      setReport(null);
+      setHasSearched(true);
+      setNotFound(message);
+      showToast(message, 'error');
+    } finally {
+      setSearching(false);
     }
-    setHasSearched(true);
-    showToast('परिणाम सफलतापूर्वक लोड हो गया है!', 'success');
   };
 
   return (
@@ -147,9 +174,27 @@ export const PerformanceReportPage: React.FC = () => {
           </div>
         </div>
 
+        {/* No result found — shows the exact reason the server gave */}
+        {hasSearched && !report && notFound && (
+          <div className="max-w-3xl mx-auto bg-white/90 dark:bg-[#1A1414] rounded-3xl p-8 border-2 border-amber-300/60 shadow-xl text-center">
+            <p className="text-lg font-bold text-[#7B1E1E] dark:text-amber-300">{notFound}</p>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              अनुक्रमांक उदाहरण: <span className="font-mono font-bold">BBO26-000001</span>
+            </p>
+          </div>
+        )}
+
         {/* Report Card – enhanced with glass-morphism and larger text */}
         {report && (
-          <div className="max-w-5xl mx-auto bg-white/90 dark:bg-[#1A1414] backdrop-blur-sm rounded-3xl p-6 sm:p-10 border-2 border-[#C79A2D]/40 shadow-2xl space-y-8 animate-in fade-in duration-300 relative overflow-hidden">
+          <div
+            id="result-print"
+            className="max-w-5xl mx-auto bg-white/90 dark:bg-[#1A1414] backdrop-blur-sm rounded-3xl p-6 sm:p-10 border-2 border-[#C79A2D]/40 shadow-2xl space-y-8 animate-in fade-in duration-300 relative overflow-hidden"
+          >
+            {/* printed sheet header — hidden on screen */}
+            <div className="hidden print:block text-center pb-4 mb-2 border-b-2 border-[#7B1E1E]">
+              <h1 className="font-playfair text-2xl font-bold text-[#7B1E1E]">भारती भाषा ओलंपियाड</h1>
+              <p className="text-sm text-gray-600">राष्ट्रीय परिणाम — रिपोर्ट कार्ड</p>
+            </div>
             {/* Decorative glow */}
             <div className="absolute -top-20 -right-20 w-48 h-48 bg-[#C79A2D]/10 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-red-800/5 rounded-full blur-2xl pointer-events-none" />
@@ -216,88 +261,63 @@ export const PerformanceReportPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Category Scores – with larger bars */}
-            <div className="relative z-10 space-y-5">
-              <h3 className="font-bold text-xl text-gray-900 dark:text-white flex items-center gap-2">
-                <BarChart3 className="w-5 h-5 text-[#C79A2D]" />
-                <span>विषयवार दक्षता विभाजन</span>
-              </h3>
-
-              <div className="space-y-4">
-                {[
-                  { label: 'व्याकरण एवं संधि नियम', value: report.categoryScores.grammar, max: 30, color: 'bg-[#7B1E1E]' },
-                  { label: 'साहित्य एवं काव्य समझ', value: report.categoryScores.literature, max: 25, color: 'bg-[#C79A2D]' },
-                  { label: 'शब्द भंडार एवं पर्याय', value: report.categoryScores.vocabulary, max: 25, color: 'bg-emerald-600' },
-                  { label: 'पठन गति एवं समझ', value: report.categoryScores.comprehension, max: 20, color: 'bg-amber-500' },
-                ].map((cat) => (
-                  <div key={cat.label}>
-                    <div className="flex justify-between text-base font-semibold text-gray-700 dark:text-gray-300 mb-1">
-                      <span>{cat.label}</span>
-                      <span>{cat.value}/{cat.max}</span>
-                    </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
-                      <div
-                        className={`${cat.color} h-3 rounded-full transition-all duration-700`}
-                        style={{ width: `${(cat.value / cat.max) * 100}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
+            {/* Exam details — only what the examination office actually published */}
+            <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { label: 'परीक्षा', value: report.examName || '—' },
+                { label: 'विषय', value: report.subject },
+                { label: 'विद्यालय स्तरीय रैंक', value: report.schoolRank ? `#${report.schoolRank}` : '—' },
+                { label: 'ग्रेड', value: report.grade || '—' },
+              ].map((row) => (
+                <div
+                  key={row.label}
+                  className="flex items-center justify-between gap-4 px-4 py-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200 dark:border-gray-800"
+                >
+                  <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">{row.label}</span>
+                  <span className="text-base font-bold text-gray-900 dark:text-white text-right">{row.value}</span>
+                </div>
+              ))}
             </div>
 
-            {/* Strengths & Growth Areas – with larger text */}
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-              <div className="p-5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/30 space-y-3">
+            {report.remark && (
+              <div className="relative z-10 p-5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/30">
                 <h4 className="font-bold text-lg text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5" />
-                  <span>मुख्य सामर्थ्य क्षेत्र</span>
+                  <span>परीक्षा नियंत्रक की टिप्पणी</span>
                 </h4>
-                <ul className="space-y-2 text-base text-black dark:text-gray-300">
-                  {report.strengths.map((str, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-emerald-500">✦</span>
-                      <span>{str}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="mt-2 text-base text-gray-700 dark:text-gray-300">{report.remark}</p>
               </div>
-
-              <div className="p-5 rounded-2xl bg-amber-50/70 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/30 space-y-3">
-                <h4 className="font-bold text-lg text-amber-700 dark:text-amber-400 flex items-center gap-2">
-                  <AlertCircle className="w-5 h-5" />
-                  <span>सुधार के अवसर</span>
-                </h4>
-                <ul className="space-y-2 text-base text-gray-700 dark:text-gray-300">
-                  {report.areasForImprovement.map((imp, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-amber-500">✦</span>
-                      <span>{imp}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            )}
 
             {/* Action Buttons */}
-            <div className="relative z-10 pt-4 border-t-2 border-amber-200/40 dark:border-gray-800 flex flex-wrap items-center justify-between gap-4">
+            <div className="print:hidden relative z-10 pt-4 border-t-2 border-amber-200/40 dark:border-gray-800 flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap gap-3">
                 <button
-                  onClick={() => window.print()}
+                  onClick={() => printElement('result-print', `BBO Report Card ${report.rollNumber}`)}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 hover:bg-black text-white font-bold text-base rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
                 >
                   <Printer className="w-5 h-5" />
                   <span>रिपोर्ट कार्ड प्रिंट करें</span>
                 </button>
                 <button
-                  onClick={() => showToast('रिपोर्ट कार्ड PDF डाउनलोड प्रारम्भ हुआ।', 'success')}
+                  onClick={() => printElement('result-print', `BBO Report Card ${report.rollNumber}`)}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#C79A2D] hover:bg-amber-500 text-[#7B1E1E] font-bold text-base rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
                 >
                   <Download className="w-5 h-5" />
-                  <span>PDF डाउनलोड</span>
+                  <span>PDF सहेजें</span>
                 </button>
                 <button
-                  onClick={() => showToast('लिंक कॉपी किया गया!', 'success')}
+                  onClick={async () => {
+                    const link = `${window.location.origin}/performance-report?rollNo=${encodeURIComponent(
+                      report?.rollNumber || ''
+                    )}`;
+                    try {
+                      await navigator.clipboard.writeText(link);
+                      showToast('लिंक कॉपी किया गया!', 'success');
+                    } catch {
+                      showToast('लिंक कॉपी नहीं हो सका।', 'error');
+                    }
+                  }}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 font-bold text-base rounded-xl border border-amber-300 dark:border-amber-700 hover:bg-amber-200 dark:hover:bg-amber-800/40 transition-all duration-300"
                 >
                   <Share2 className="w-5 h-5" />
@@ -305,13 +325,22 @@ export const PerformanceReportPage: React.FC = () => {
                 </button>
               </div>
               <button
-                onClick={() => showToast('ई-प्रमाण पत्र डाउनलोड प्रारम्भ हुआ।', 'success')}
+                onClick={() => printElement('result-print', `BBO Report Card ${report.rollNumber}`)}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#7B1E1E] to-red-800 hover:from-red-800 hover:to-[#7B1E1E] text-white font-bold text-base rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
               >
                 <Award className="w-5 h-5 text-amber-300" />
                 <span>ई-प्रमाण पत्र</span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
+            </div>
+
+            {/* printed footer — hidden on screen */}
+            <div className="hidden print:block pt-4 mt-2 border-t border-gray-300 text-center text-[11px] text-gray-500">
+              <p>
+                यह रिपोर्ट कार्ड भारती भाषा ओलंपियाड की आधिकारिक वेबसाइट से{' '}
+                {report.publishedOn ? new Date(report.publishedOn).toLocaleDateString('hi-IN') : ''} को जारी किया गया।
+              </p>
+              <p className="mt-0.5">अनुक्रमांक {report.rollNumber} · सत्यापन हेतु वेबसाइट पर पुनः खोजें।</p>
             </div>
           </div>
         )}

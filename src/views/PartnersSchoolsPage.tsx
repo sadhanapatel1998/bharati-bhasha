@@ -3,9 +3,11 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Breadcrumb } from '../components/shared/Breadcrumb';
-import { PARTNER_SCHOOLS } from '../data/olympiadData';
+import { PARTNER_SCHOOLS as PARTNER_SCHOOLS_STATIC } from '../data/olympiadData';
 import { Building2, Award, MapPin, CheckCircle2 } from 'lucide-react';
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const PartnersSchoolsPage: React.FC = () => {
+  const PARTNER_SCHOOLS = useSiteContent<typeof PARTNER_SCHOOLS_STATIC>('partner_schools', PARTNER_SCHOOLS_STATIC);
   const {
     language,
     navigateTo

@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { Tiro_Devanagari_Hindi, Baloo_2 } from "next/font/google";
-import { REGISTRATION_STEPS } from "@/data/olympiadData";
+import { REGISTRATION_STEPS as REGISTRATION_STEPS_STATIC } from "@/data/olympiadData";
+import { useSiteContent } from '@/hooks/useSiteContent';
 import {
     ClipboardList,
     UserSquare2,
@@ -13,18 +14,8 @@ import {
     CheckCircle2,
 } from "lucide-react";
 
-const tiroDevanagari = Tiro_Devanagari_Hindi({
-    weight: ["400"],
-    subsets: ["devanagari"],
-    display: "swap",
-});
-
-const baloo2 = Baloo_2({
-    weight: ["500", "600", "700", "800"],
-    subsets: ["devanagari", "latin"],
-    display: "swap",
-});
-
+const tiroDevanagari = { className: '', style: { fontFamily: 'serif' } };
+const baloo2 = { className: '', style: { fontFamily: 'serif' } };
 const stepIcons = [
     ClipboardList,
     UserSquare2,
@@ -35,6 +26,7 @@ const stepIcons = [
 ];
 
 export default function RegistrationFlow() {
+  const REGISTRATION_STEPS = useSiteContent<typeof REGISTRATION_STEPS_STATIC>('registration_steps', REGISTRATION_STEPS_STATIC);
     const [activeStep, setActiveStep] = useState<number | null>(null);
 
     return (

@@ -105,13 +105,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setAdminUser(user);
     localStorage.setItem('bbo_admin_token', token);
     localStorage.setItem('bbo_admin_user', JSON.stringify(user));
-    router.push('/admin');
+    router.push('/superadmin/dashboard');
   };
 
   const logoutAdmin = async () => {
     try {
       if (adminToken) {
-        await fetch('/api/admin/logout', {
+        await fetch('/api/auth/logout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ token: adminToken })
@@ -125,7 +125,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       localStorage.removeItem('bbo_admin_token');
       localStorage.removeItem('bbo_admin_user');
       showToast('प्रशासक सत्र सफलतापूर्वक समाप्त हो गया।', 'info');
-      router.push('/admin/login');
+      router.push('/login');
     }
   };
 

@@ -2,15 +2,51 @@
 
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
-import { ANNOUNCEMENTS } from '../../data/olympiadData';
+import { ANNOUNCEMENTS as ANNOUNCEMENTS_STATIC } from '../../data/olympiadData';
 import { Bell, Sparkles, ChevronRight, Phone, Mail } from 'lucide-react';
+import { useSiteContent } from '@/hooks/useSiteContent';
+type Ticker = { id: string; text: string; link: string };
+
 export const AnnouncementBar: React.FC = () => {
+  const tickerContent = useSiteContent<typeof ANNOUNCEMENTS_STATIC>('announcements_ticker', ANNOUNCEMENTS_STATIC);
   const {
     language,
     navigateTo
   } = useApp();
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // announcements published from the super admin console ride along with the
+  // editable ticker items
+  const [published, setPublished] = useState<Ticker[]>([]);
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/public/announcements', { cache: 'no-store' })
+      .then((r) => (r.ok ? r.json() : { items: [] }))
+      .then((d) => {
+        if (!alive) return;
+        const items = (d?.items || []) as { _id: string; title?: string; titleHi?: string }[];
+        setPublished(
+          items
+            .map((a) => ({
+              id: a._id,
+              text: (language === 'hi' ? a.titleHi || a.title : a.title || a.titleHi) || '',
+              link: '/events-news',
+            }))
+            .filter((a) => a.text)
+        );
+      })
+      .catch(() => setPublished([]));
+    return () => {
+      alive = false;
+    };
+  }, [language]);
+
+  const ANNOUNCEMENTS: Ticker[] = [...(tickerContent as Ticker[]), ...published];
   const total = ANNOUNCEMENTS.length;
+
+  useEffect(() => {
+    if (currentIndex >= total) setCurrentIndex(0);
+  }, [total, currentIndex]);
 
   // Auto-slide every 5 seconds (if more than one)
   useEffect(() => {
@@ -20,7 +56,8 @@ export const AnnouncementBar: React.FC = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [total]);
-  const announcement = ANNOUNCEMENTS[currentIndex];
+  const announcement = ANNOUNCEMENTS[currentIndex] || ANNOUNCEMENTS[0];
+  if (!announcement) return null;
   const text = announcement.text;
   return <div className="relative bg-gradient-to-r from-[#000a2e] via-[#000a2e] to-[#000a2e] text-[#F5F0E6] text-xs pt-2 pb-1  border-b-2 border-[#C79A2D]/40 shadow-md transition-colors duration-300 overflow-hidden">
     <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between md:gap-2.5 gap-0">

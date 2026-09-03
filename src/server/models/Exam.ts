@@ -1,27 +1,21 @@
-import { Schema, models, model } from "mongoose";
+import { Schema, models, model, Types, InferSchemaType } from 'mongoose';
 
-export interface ExamDoc {
-  _id?: string;
-  title: string;
-  subject: "Hindi" | "Sanskrit" | "Both";
-  date: string;
-  time: string;
-  mode: string;
-  eligibleClasses: string;
-  status: "आगामी" | "सक्रिय" | "समाप्त";
-}
-
-const ExamSchema = new Schema<ExamDoc>(
+const ExamSchema = new Schema(
   {
-    title: { type: String, required: true },
-    subject: { type: String, enum: ["Hindi", "Sanskrit", "Both"], required: true },
-    date: { type: String, required: true },
-    time: { type: String, required: true },
-    mode: { type: String, required: true },
-    eligibleClasses: { type: String, required: true },
-    status: { type: String, enum: ["आगामी", "सक्रिय", "समाप्त"], default: "आगामी" },
+    name: { type: String, required: true, trim: true },
+    nameHi: { type: String, trim: true },
+    session: { type: String, default: '2026', index: true },
+    level: { type: String, enum: ['school', 'state', 'national'], default: 'school', index: true },
+    subject: { type: String, enum: ['hindi', 'sanskrit', 'both'], default: 'both' },
+    classLevels: { type: [String], default: [] },
+    examDate: { type: String, trim: true },
+    durationMinutes: { type: Number, default: 60 },
+    totalMarks: { type: Number, default: 100 },
+    status: { type: String, enum: ['upcoming', 'ongoing', 'completed'], default: 'upcoming', index: true },
+    notes: { type: String, trim: true },
   },
   { timestamps: true }
 );
 
-export const Exam = models.Exam || model<ExamDoc>("Exam", ExamSchema);
+export type ExamDoc = InferSchemaType<typeof ExamSchema> & { _id: Types.ObjectId };
+export const Exam = models.Exam || model('Exam', ExamSchema);

@@ -3,7 +3,7 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import SectionHeader from '../components/shared/SectionHeader';
-import { EXAM_SCHEDULE } from '../data/olympiadData';
+import { EXAM_SCHEDULE as EXAM_SCHEDULE_STATIC } from '../data/olympiadData';
 import {
   Calendar,
   Clock,
@@ -17,11 +17,46 @@ import {
 } from 'lucide-react';
 import { Breadcrumb } from '@/components/shared/Breadcrumb';
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const ExamDatesPage: React.FC = () => {
+  const EXAM_SCHEDULE = useSiteContent<typeof EXAM_SCHEDULE_STATIC>('exam_schedule', EXAM_SCHEDULE_STATIC);
   const { language, navigateTo, showToast } = useApp();
 
+  /** builds a real .ics file the browser downloads into the user's calendar */
   const handleAddToCalendar = (title: string, date: string) => {
-    showToast(`${title} – ${date} को कैलेंडर में जोड़ा गया।`, 'success');
+    const parsed = new Date(date);
+    if (Number.isNaN(parsed.getTime())) {
+      showToast('इस परीक्षा की तिथि अभी निर्धारित नहीं है।', 'warning');
+      return;
+    }
+
+    const stamp = (d: Date) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    const end = new Date(parsed.getTime() + 2 * 60 * 60 * 1000);
+
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Bharati Bhasha Olympiad//EN',
+      'BEGIN:VEVENT',
+      `UID:${Date.now()}@bharatibhasha`,
+      `DTSTAMP:${stamp(new Date())}`,
+      `DTSTART:${stamp(parsed)}`,
+      `DTEND:${stamp(end)}`,
+      `SUMMARY:${title.replace(/\n/g, ' ')}`,
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${title.slice(0, 40).replace(/[^\w\u0900-\u097F]+/g, '-')}.ics`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    showToast('कैलेंडर फ़ाइल डाउनलोड हो गई।', 'success');
   };
 
   return (

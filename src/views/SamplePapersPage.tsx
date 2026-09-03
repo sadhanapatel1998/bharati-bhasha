@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import SectionHeader from '../components/shared/SectionHeader';
-import { SAMPLE_PAPERS } from '../data/olympiadData';
+import { SAMPLE_PAPERS as SAMPLE_PAPERS_STATIC } from '../data/olympiadData';
 import {
   FileText,
   Download,
@@ -15,7 +15,9 @@ import {
 } from 'lucide-react';
 import { Breadcrumb } from '@/components/shared/Breadcrumb';
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const SamplePapersPage: React.FC = () => {
+  const SAMPLE_PAPERS = useSiteContent<typeof SAMPLE_PAPERS_STATIC>('sample_papers', SAMPLE_PAPERS_STATIC);
   const { language, showToast } = useApp();
   const [filterSubject, setFilterSubject] = useState<string>('सभी');
 
@@ -24,8 +26,21 @@ export const SamplePapersPage: React.FC = () => {
       ? SAMPLE_PAPERS
       : SAMPLE_PAPERS.filter((sp) => sp.subject === filterSubject);
 
-  const handleDownload = (title: string) => {
-    showToast(`"${title}" डाउनलोड होना प्रारम्भ हुआ।`, 'success');
+  const handleDownload = (paper: { title: string; pdfUrl?: string }) => {
+    const url = (paper.pdfUrl || '').trim();
+    if (!url || url === '#') {
+      showToast('यह प्रश्न पत्र अभी अपलोड नहीं किया गया है।', 'warning');
+      return;
+    }
+    // real download — opens the uploaded file
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noreferrer';
+    a.download = url.split('/').pop() || `${paper.title}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   };
 
   return (
@@ -128,11 +143,11 @@ export const SamplePapersPage: React.FC = () => {
 
               {/* Download Button */}
               <button
-                onClick={() => handleDownload(paper.title)}
+                onClick={() => handleDownload(paper)}
                 className="mt-4 w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#7B1E1E] to-red-800 hover:from-red-800 hover:to-[#7B1E1E] text-white font-bold text-base rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group"
               >
                 <Download className="w-5 h-5 text-amber-300" />
-                <span>PDF डाउनलोड करें</span>
+                <span>{paper.pdfUrl && paper.pdfUrl !== '#' ? 'PDF डाउनलोड करें' : 'शीघ्र उपलब्ध'}</span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>

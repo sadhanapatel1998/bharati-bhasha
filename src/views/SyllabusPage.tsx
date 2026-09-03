@@ -2,12 +2,31 @@
 
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { SYLLABUS_DATA } from '../data/olympiadData';
+import { SYLLABUS_DATA as SYLLABUS_DATA_STATIC, DOWNLOADS as DOWNLOADS_STATIC } from '../data/olympiadData';
 import { Download, CheckCircle2, BookOpen, GraduationCap, Sparkles, ChevronRight } from 'lucide-react';
 import SectionHeader from '@/components/shared/SectionHeader';
 import { Breadcrumb } from '@/components/shared/Breadcrumb';
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const SyllabusPage: React.FC = () => {
+  const SYLLABUS_DATA = useSiteContent<typeof SYLLABUS_DATA_STATIC>('syllabus', SYLLABUS_DATA_STATIC);
+  const DOWNLOADS = useSiteContent<typeof DOWNLOADS_STATIC>('downloads', DOWNLOADS_STATIC);
+
+  const downloadSyllabus = () => {
+    const url = (DOWNLOADS?.syllabusPdf || '').trim();
+    if (!url) {
+      showToast('पाठ्यक्रम PDF अभी अपलोड नहीं की गई है।', 'warning');
+      return;
+    }
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noreferrer';
+    a.download = url.split('/').pop() || 'syllabus.pdf';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
   const { language, showToast } = useApp();
   const [activeTab, setActiveTab] = useState(0);
   const selected = SYLLABUS_DATA[activeTab];
@@ -127,7 +146,7 @@ export const SyllabusPage: React.FC = () => {
         {/* Download Button – with gradient and larger text */}
         <div className="text-center pt-4">
           <button
-            onClick={() => showToast('पाठ्यक्रम डाउनलोड होना प्रारम्भ हुआ।', 'success')}
+            onClick={downloadSyllabus}
             className="cursor-pointer inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-[#eca809] to-amber-500 hover:from-amber-500 hover:to-[#C79A2D] text-red-950 font-bold text-lg rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
           >
             <Download className="w-6 h-6" />

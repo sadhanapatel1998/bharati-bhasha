@@ -3,9 +3,11 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Breadcrumb } from '../components/shared/Breadcrumb';
-import { BLOG_POSTS } from '../data/olympiadData';
+import { BLOG_POSTS as BLOG_POSTS_STATIC } from '../data/olympiadData';
 import { Calendar, User, Clock, ArrowRight } from 'lucide-react';
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const BlogsPage: React.FC = () => {
+  const BLOG_POSTS = useSiteContent<typeof BLOG_POSTS_STATIC>('blog_posts', BLOG_POSTS_STATIC);
   const {
     language,
     navigateTo

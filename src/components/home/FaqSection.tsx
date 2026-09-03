@@ -2,11 +2,13 @@
 
 import React, { useState } from "react";
 import { useApp } from "@/context/AppContext";
-import { FAQS } from "@/data/olympiadData";
+import { FAQS as FAQS_STATIC } from "@/data/olympiadData";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import SectionHeader from "../shared/SectionHeader";
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const FaqSection: React.FC = () => {
+  const FAQS = useSiteContent<typeof FAQS_STATIC>('faqs', FAQS_STATIC);
   const { language } = useApp();
   const [activeFaq, setActiveFaq] = useState<string | null>("faq1");
 

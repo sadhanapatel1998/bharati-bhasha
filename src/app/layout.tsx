@@ -3,6 +3,13 @@ import '../index.css';
 import { AppProvider } from '../context/AppContext';
 import { ToastContainer } from '../components/shared/ToastContainer';
 
+export const viewport = {
+  // the public site is light-only; without this the browser tints form
+  // controls, scrollbars and autofill fields when the OS is in dark mode
+  colorScheme: 'light' as const,
+  themeColor: '#7B1E1E',
+};
+
 export const metadata = {
   title: 'भारती भाषा ओलंपियाड (BBO) - राष्ट्रभाषा एवं संस्कृति की राष्ट्रीय परीक्षा',
   description: 'राष्ट्रीय शिक्षा नीति 2020 के अंतर्गत विद्यालयी छात्रों के लिए राष्ट्रव्यापी हिन्दी एवं संस्कृत भाषा ओलंपियाड परीक्षा।',
@@ -17,6 +24,7 @@ export default function RootLayout({
     <html lang="hi" className="scroll-smooth">
       <head>
 
+        <meta name="color-scheme" content="light" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 

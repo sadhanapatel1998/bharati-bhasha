@@ -3,9 +3,11 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Breadcrumb } from '../components/shared/Breadcrumb';
-import { TESTIMONIALS } from '../data/olympiadData';
+import { TESTIMONIALS as TESTIMONIALS_STATIC } from '../data/olympiadData';
 import { Star, Quote } from 'lucide-react';
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const TestimonialsPage: React.FC = () => {
+  const TESTIMONIALS = useSiteContent<typeof TESTIMONIALS_STATIC>('testimonials', TESTIMONIALS_STATIC);
   const {
     language
   } = useApp();

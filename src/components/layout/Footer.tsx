@@ -20,17 +20,45 @@ export const Footer: React.FC = () => {
   const { language, showToast } = useApp();
   const [newsletterEmail, setNewsletterEmail] = useState("");
 
-  const handleNewsletter = (e: React.FormEvent) => {
+  const [newsletterBusy, setNewsletterBusy] = useState(false);
+
+  const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail || !newsletterEmail.includes("@")) {
       showToast("कृपया वैध ईमेल पता दर्ज करें।", "warning");
       return;
     }
-    showToast(
-      "धन्यवाद! आप भारती भाषा ओलंपियाड न्यूज़लेटर हेतु सफलतापूर्वक पंजीकृत हो गए हैं।",
-      "success"
-    );
-    setNewsletterEmail("");
+
+    setNewsletterBusy(true);
+    try {
+      const res = await fetch("/api/public/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: newsletterEmail,
+          email: newsletterEmail,
+          subject: "Newsletter subscription",
+          message: `Newsletter subscription request from ${newsletterEmail}`,
+          role: "subscriber",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        showToast(data?.message || "पंजीकरण नहीं हो सका। कृपया पुनः प्रयास करें।", "error");
+        return;
+      }
+
+      showToast(
+        "धन्यवाद! आप भारती भाषा ओलंपियाड न्यूज़लेटर हेतु सफलतापूर्वक पंजीकृत हो गए हैं।",
+        "success"
+      );
+      setNewsletterEmail("");
+    } catch {
+      showToast("सर्वर से संपर्क नहीं हो सका। कृपया पुनः प्रयास करें।", "error");
+    } finally {
+      setNewsletterBusy(false);
+    }
   };
 
   return (
@@ -68,9 +96,10 @@ export const Footer: React.FC = () => {
             />
             <button
               type="submit"
-              className="w-full sm:w-auto bg-[#C79A2D] cursor-pointer hover:bg-[#E2B855] text-[#7B1E1E] px-6 py-3 rounded-xl font-bold text-base shadow-md transition-colors flex items-center justify-center gap-2 shrink-0"
+              disabled={newsletterBusy}
+              className="w-full sm:w-auto bg-[#C79A2D] cursor-pointer hover:bg-[#E2B855] disabled:opacity-60 disabled:cursor-not-allowed text-[#7B1E1E] px-6 py-3 rounded-xl font-bold text-base shadow-md transition-colors flex items-center justify-center gap-2 shrink-0"
             >
-              <span>{"सदस्यता लें"}</span>
+              <span>{newsletterBusy ? "भेजा जा रहा है…" : "सदस्यता लें"}</span>
               <Send className="w-4 h-4" />
             </button>
           </form>

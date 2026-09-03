@@ -3,9 +3,11 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Breadcrumb } from '../components/shared/Breadcrumb';
-import { BLOG_POSTS } from '../data/olympiadData';
+import { BLOG_POSTS as BLOG_POSTS_STATIC } from '../data/olympiadData';
 import { Calendar, User, Clock, ArrowLeft, Share2, Heart } from 'lucide-react';
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const BlogDetailPage: React.FC = () => {
+  const BLOG_POSTS = useSiteContent<typeof BLOG_POSTS_STATIC>('blog_posts', BLOG_POSTS_STATIC);
   const {
     language,
     routeParams,
@@ -71,7 +73,14 @@ export const BlogDetailPage: React.FC = () => {
             </span>)}
         </div>
 
-        <button onClick={() => showToast('ब्लॉग लिंक कॉपी कर दिया गया है!', 'info')} className="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:text-[#7B1E1E]">
+        <button onClick={async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            showToast('ब्लॉग लिंक कॉपी कर दिया गया है!', 'success');
+          } catch {
+            showToast('लिंक कॉपी नहीं हो सका।', 'error');
+          }
+        }} className="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:text-[#7B1E1E]">
           <Share2 className="w-4 h-4" />
         </button>
       </div>

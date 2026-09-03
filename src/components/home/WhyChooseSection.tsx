@@ -1,9 +1,13 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Scroll, Heart, Flag, Trophy, TrendingUp, CheckCircle, XCircle, Sparkles, BookOpen, Brain, Users, Globe2, ArrowRightLeft } from 'lucide-react';
-import { FOUR_PILLARS, NEP_2020_PILLARS } from '@/data/olympiadData';
+import { FOUR_PILLARS as FOUR_PILLARS_STATIC, NEP_2020_PILLARS } from '@/data/olympiadData';
 import SectionHeader from "@/components/shared/SectionHeader";
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const WhyChooseSection: React.FC = () => {
+  const FOUR_PILLARS = useSiteContent<typeof FOUR_PILLARS_STATIC>('four_pillars', FOUR_PILLARS_STATIC);
     const [activeTab, setActiveTab] = useState<'pillars' | 'benchmark'>('pillars');
 
     return (

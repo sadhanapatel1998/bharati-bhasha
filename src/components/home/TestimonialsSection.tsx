@@ -2,11 +2,13 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useApp } from "@/context/AppContext";
-import { TESTIMONIALS } from "@/data/olympiadData";
+import { TESTIMONIALS as TESTIMONIALS_STATIC } from "@/data/olympiadData";
 import { Star, ChevronLeft, ChevronRight, Quote, MessageSquareQuote } from "lucide-react";
 import SectionHeader from "../shared/SectionHeader";
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const TestimonialsSection: React.FC = () => {
+  const TESTIMONIALS = useSiteContent<typeof TESTIMONIALS_STATIC>('testimonials', TESTIMONIALS_STATIC);
   const { language } = useApp();
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);

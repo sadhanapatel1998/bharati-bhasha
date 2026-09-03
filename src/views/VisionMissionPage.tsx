@@ -3,7 +3,7 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Breadcrumb } from '../components/shared/Breadcrumb';
-import { VISION_MISSION } from '../data/olympiadData';
+import { VISION_MISSION as VISION_MISSION_STATIC } from '../data/olympiadData';
 import Image from 'next/image';
 import {
   Compass,
@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import SectionHeader from '@/components/shared/SectionHeader';
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 // Map icon strings to Lucide components
 const iconMap: Record<string, React.ElementType> = {
   ShieldCheck,
@@ -39,6 +40,7 @@ const colorMap: Record<string, string> = {
 };
 
 export const VisionMissionPage: React.FC = () => {
+  const VISION_MISSION = useSiteContent<typeof VISION_MISSION_STATIC>('vision_mission_page', VISION_MISSION_STATIC);
   const { language } = useApp();
   const { vision, mission, coreValues, quote } = VISION_MISSION;
 

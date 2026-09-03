@@ -225,9 +225,14 @@ export interface StudentReport {
   nationalRank: number;
   stateRank: number;
   grade: string;
-  strengths: string[];
-  areasForImprovement: string[];
-  categoryScores: {
+  /** real fields returned by the results API */
+  examName?: string;
+  schoolRank?: number;
+  remark?: string;
+  publishedOn?: string;
+  strengths?: string[];
+  areasForImprovement?: string[];
+  categoryScores?: {
     grammar: number;
     literature: number;
     vocabulary: number;

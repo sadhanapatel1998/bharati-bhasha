@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Breadcrumb } from '../components/shared/Breadcrumb';
-import { GALLERY_ITEMS } from '../data/olympiadData';
+import { GALLERY_ITEMS as GALLERY_ITEMS_STATIC } from '../data/olympiadData';
 import { Play, Image as ImageIcon, X } from 'lucide-react';
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const GalleryPage: React.FC = () => {
+  const GALLERY_ITEMS = useSiteContent<typeof GALLERY_ITEMS_STATIC>('gallery', GALLERY_ITEMS_STATIC);
   const {
     language
   } = useApp();

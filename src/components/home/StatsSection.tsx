@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useApp } from "@/context/AppContext";
-import { KEY_STATS } from "@/data/olympiadData";
+import { KEY_STATS as KEY_STATS_STATIC } from "@/data/olympiadData";
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 // Custom hook to animate a number from 0 to target
 const useCounter = (
   target: number,
@@ -35,6 +36,7 @@ const formatNumber = (num: number) => {
   return num.toLocaleString("en-IN");
 };
 export const StatsSection: React.FC = () => {
+  const KEY_STATS = useSiteContent<typeof KEY_STATS_STATIC>('key_stats', KEY_STATS_STATIC);
   const { language } = useApp();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);

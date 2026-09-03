@@ -3,7 +3,7 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Breadcrumb } from '../components/shared/Breadcrumb';
-import { AWARDS_DATA } from '../data/olympiadData';
+import { AWARDS_DATA as AWARDS_DATA_STATIC } from '../data/olympiadData';
 import {
   Trophy,
   Medal,
@@ -25,6 +25,7 @@ import {
 import SectionHeader from '@/components/shared/SectionHeader';
 import CtaSection from '@/components/shared/CtaSection';
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 // Icon map
 const iconMap: Record<string, React.ElementType> = {
   Trophy,
@@ -113,6 +114,7 @@ const levelLabel: Record<string, string> = {
 };
 
 export const AwardsPage: React.FC = () => {
+  const AWARDS_DATA = useSiteContent<typeof AWARDS_DATA_STATIC>('awards_page', AWARDS_DATA_STATIC);
   const { language, navigateTo } = useApp();
   const { awards, scholarships, schoolTeacherAwards, performanceFeatures, quote } = AWARDS_DATA;
 

@@ -32,16 +32,36 @@ export const ContactPage: React.FC = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    showToast('धन्यवाद! आपका संदेश सफलतापूर्वक प्राप्त हुआ।', 'success');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    });
+    if (!formData.name.trim() || !formData.message.trim()) {
+      showToast('कृपया नाम एवं संदेश भरें।', 'warning');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/public/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, schoolOrCity: '', role: '' }),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        showToast(data?.message || 'संदेश भेजने में समस्या हुई। कृपया पुनः प्रयास करें।', 'error');
+        return;
+      }
+
+      showToast('धन्यवाद! आपका संदेश सफलतापूर्वक प्राप्त हुआ।', 'success');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch {
+      showToast('संदेश भेजने में समस्या हुई। कृपया पुनः प्रयास करें।', 'error');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -296,10 +316,11 @@ export const ContactPage: React.FC = () => {
 
               <button
                 type="submit"
-                className="bg-gradient-to-r from-[#790e03] to-[#A32A2A] hover:from-[#541313] hover:to-[#790e03] text-[#F5F0E6] px-5 pt-3 pb-2 md:pt-4 md:pb-3 rounded-xl text-medium font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 glow-gold"
+                disabled={submitting}
+                className="bg-gradient-to-r from-[#790e03] to-[#A32A2A] hover:from-[#541313] hover:to-[#790e03] disabled:opacity-60 disabled:cursor-not-allowed text-[#F5F0E6] px-5 pt-3 pb-2 md:pt-4 md:pb-3 rounded-xl text-medium font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 glow-gold"
               >
                 <Send className="lucide lucide-log-in w-5 h-5 text-[#ffd36b]" />
-                <span>संदेश भेजें</span>
+                <span>{submitting ? 'भेजा जा रहा है…' : 'संदेश भेजें'}</span>
               </button>
             </form>
           </div>

@@ -1,84 +1,110 @@
-// One-time script to create/update the admin user in MongoDB.
-// Run: npm run seed:admin
-import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
-import fs from "fs";
-import path from "path";
-import dns from "node:dns";
+/**
+ * Seeds the first super admin, default settings and a demo exam.
+ *   node scripts/seed-admin.mjs
+ * Env: MONGODB_URI, SEED_ADMIN_EMAIL, SEED_ADMIN_PASSWORD, SEED_ADMIN_NAME
+ */
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import fs from 'node:fs';
+import path from 'node:path';
 
-// Fixes "querySrv ECONNREFUSED" seen on networks/ISPs/Windows setups that
-// block or mishandle the _mongodb._tcp.* SRV DNS lookup mongodb+srv:// needs.
-dns.setServers(["1.1.1.1", "8.8.8.8"]);
-
-function loadEnv() {
-  const envPath = path.resolve(process.cwd(), ".env");
-  if (!fs.existsSync(envPath)) return;
-  const lines = fs.readFileSync(envPath, "utf8").split("\n");
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#")) continue;
-    const idx = trimmed.indexOf("=");
-    if (idx === -1) continue;
-    const key = trimmed.slice(0, idx).trim();
-    const value = trimmed.slice(idx + 1).trim();
-    if (!process.env[key]) process.env[key] = value;
+// tiny .env.local loader (no dotenv dependency)
+for (const file of ['.env.local', '.env']) {
+  const p = path.resolve(process.cwd(), file);
+  if (!fs.existsSync(p)) continue;
+  for (const line of fs.readFileSync(p, 'utf8').split('\n')) {
+    const m = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
+    if (!m) continue;
+    const key = m[1];
+    let val = (m[2] || '').trim().replace(/^["']|["']$/g, '');
+    if (!process.env[key]) process.env[key] = val;
   }
 }
 
-loadEnv();
-
 const MONGODB_URI = process.env.MONGODB_URI;
-const email = (process.env.SEED_ADMIN_EMAIL || "admin@bharatibhasha.org").toLowerCase();
-const password = process.env.SEED_ADMIN_PASSWORD || "admin123";
-const name = process.env.SEED_ADMIN_NAME || "Admin";
-
 if (!MONGODB_URI) {
-  console.error("❌ MONGODB_URI not found in .env — aborting.");
+  console.error('❌ MONGODB_URI missing. Add it to .env.local');
   process.exit(1);
 }
 
-const AdminSchema = new mongoose.Schema(
+const email = (process.env.SEED_ADMIN_EMAIL || 'admin@bharatibhasha.org').toLowerCase();
+const password = process.env.SEED_ADMIN_PASSWORD || 'admin@123';
+const name = process.env.SEED_ADMIN_NAME || 'National Administrator';
+
+const UserSchema = new mongoose.Schema(
   {
-    email: { type: String, required: true, unique: true, lowercase: true, trim: true },
-    passwordHash: { type: String, required: true },
-    name: { type: String, required: true },
-    role: { type: String, default: "प्रशासक" },
-    designation: { type: String },
-    avatar: { type: String },
-    lastLogin: { type: String },
+    name: String,
+    email: { type: String, unique: true, lowercase: true },
+    phone: String,
+    passwordHash: String,
+    role: { type: String, default: 'superadmin' },
+    designation: String,
+    avatar: String,
+    schoolId: { type: mongoose.Types.ObjectId, default: null },
+    isActive: { type: Boolean, default: true },
+    lastLogin: Date,
   },
   { timestamps: true }
 );
+const SettingSchema = new mongoose.Schema({ key: { type: String, unique: true } }, { strict: false, timestamps: true });
+const ExamSchema = new mongoose.Schema({}, { strict: false, timestamps: true });
 
-const Admin = mongoose.models.Admin || mongoose.model("Admin", AdminSchema);
+const User = mongoose.models.User || mongoose.model('User', UserSchema);
+const Setting = mongoose.models.Setting || mongoose.model('Setting', SettingSchema);
+const Exam = mongoose.models.Exam || mongoose.model('Exam', ExamSchema);
 
-async function run() {
-  console.log("🔌 Connecting to MongoDB...");
-  await mongoose.connect(MONGODB_URI, { family: 4 });
-  console.log("✅ Connected");
+await mongoose.connect(MONGODB_URI, { family: 4 });
+console.log('✅ MongoDB connected');
 
-  const passwordHash = await bcrypt.hash(password, 10);
-
-  const admin = await Admin.findOneAndUpdate(
-    { email },
-    {
-      email,
-      passwordHash,
-      name,
-      role: "मुख्य राष्ट्रीय प्रशासक",
-      designation: "राष्ट्रीय निदेशक, परीक्षा मंडल",
-    },
-    { upsert: true, new: true }
-  );
-
-  console.log("✅ Admin user ready:", admin.email);
-  console.log("   Login with: email =", email, "| password =", password);
-
-  await mongoose.disconnect();
-  process.exit(0);
+const existing = await User.findOne({ email });
+if (existing) {
+  existing.passwordHash = await bcrypt.hash(password, 10);
+  existing.role = 'superadmin';
+  existing.isActive = true;
+  await existing.save();
+  console.log(`♻️  Super admin password reset: ${email}`);
+} else {
+  await User.create({
+    name,
+    email,
+    passwordHash: await bcrypt.hash(password, 10),
+    role: 'superadmin',
+    designation: 'National Examination Control Room',
+  });
+  console.log(`✅ Super admin created: ${email}`);
 }
 
-run().catch((err) => {
-  console.error("❌ Seed failed:", err.message);
-  process.exit(1);
-});
+if (!(await Setting.findOne({ key: 'global' }))) {
+  await Setting.create({
+    key: 'global',
+    siteName: 'Bharati Bhasha Olympiad',
+    siteNameHi: 'भारती भाषा ओलंपियाड',
+    tagline: 'National Hindi & Sanskrit Olympiad',
+    taglineHi: 'राष्ट्रीय हिन्दी एवं संस्कृत ओलंपियाड',
+    contactEmail: email,
+    contactPhone: '+91 00000 00000',
+    currentSession: '2026',
+    feePerStudent: 150,
+    registrationOpen: true,
+    resultsPublic: true,
+  });
+  console.log('✅ Default settings created');
+}
+
+if ((await Exam.countDocuments({})) === 0) {
+  await Exam.create({
+    name: 'BBO National Olympiad 2026 — Round 1',
+    nameHi: 'बीबीओ राष्ट्रीय ओलंपियाड 2026 — चरण 1',
+    session: '2026',
+    level: 'school',
+    subject: 'both',
+    totalMarks: 100,
+    durationMinutes: 60,
+    status: 'upcoming',
+  });
+  console.log('✅ Demo exam created');
+}
+
+console.log(`\n🔑 Login → /login\n   email: ${email}\n   password: ${password}\n`);
+await mongoose.disconnect();
+process.exit(0);

@@ -1,8 +1,12 @@
+'use client';
+
 import React from "react";
 import Image from "next/image";
-import { EXAM_SCHEDULES } from "@/data/olympiadData";
+import { EXAM_SCHEDULES as EXAM_SCHEDULES_STATIC } from "@/data/olympiadData";
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const ExamScheduleDates: React.FC = () => {
+  const EXAM_SCHEDULES = useSiteContent<typeof EXAM_SCHEDULES_STATIC>('exam_schedules_subject', EXAM_SCHEDULES_STATIC);
   return (
     <div className="bg-white rounded-3xl border-2 border-amber-300 p-6 sm:p-8 shadow-xl space-y-8 mb-12">
       <div className="flex items-center justify-between border-b-2 border-amber-200 pb-4">

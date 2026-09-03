@@ -40,7 +40,11 @@ export const CareersPage: React.FC = () => {
       }].map((job, idx) => <div key={idx} className="bg-white dark:bg-[#1A1414] p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-md space-y-3">
             <h3 className="font-bold text-base text-gray-900 dark:text-white">{job.title}</h3>
             <p className="text-xs text-gray-500">{job.type} • {job.loc}</p>
-            <button onClick={() => showToast('CV Submission form opened.', 'info')} className="bg-[#7B1E1E] text-white px-4 py-2 rounded-xl font-bold text-xs">
+            <button onClick={() => {
+              window.location.href = `mailto:careers@bharatibhasha.org?subject=${encodeURIComponent(
+                `Application — ${job.title}`
+              )}&body=${encodeURIComponent('Please find my CV attached.')}`;
+            }} className="bg-[#7B1E1E] text-white px-4 py-2 rounded-xl font-bold text-xs">
               Apply Now
             </button>
           </div>)}

@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { STATE_PARTICIPATION_DATA } from '../../data/olympiadData';
+import { STATE_PARTICIPATION_DATA as STATE_PARTICIPATION_DATA_STATIC } from '../../data/olympiadData';
 import { MapPin, School, Users, Trophy, Sparkles } from 'lucide-react';
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const IndiaMapInteractive: React.FC = () => {
+  const STATE_PARTICIPATION_DATA = useSiteContent<typeof STATE_PARTICIPATION_DATA_STATIC>('state_participation', STATE_PARTICIPATION_DATA_STATIC);
   const {
     language
   } = useApp();

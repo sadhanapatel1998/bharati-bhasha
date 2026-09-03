@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import {
   BookMarked,
@@ -8,9 +10,10 @@ import {
   Scroll,
   Info,
 } from "lucide-react";
-import { EXAM_DETAILS } from "@/data/olympiadData";
+import { EXAM_DETAILS as EXAM_DETAILS_STATIC } from "@/data/olympiadData";
 import SectionHeader from "../shared/SectionHeader";
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 const ICONS = {
   BookMarked,
   FileCheck,
@@ -21,6 +24,7 @@ const ICONS = {
 };
 
 export const ExamKeyInfo: React.FC = () => {
+  const EXAM_DETAILS = useSiteContent<typeof EXAM_DETAILS_STATIC>('exam_details', EXAM_DETAILS_STATIC);
   return (
     <div className="space-y-6 mb-16 ">
       <div className="text-center mt-25">

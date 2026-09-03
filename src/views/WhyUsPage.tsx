@@ -3,7 +3,7 @@
 import React from "react";
 import { useApp } from "../context/AppContext";
 import { Breadcrumb } from "../components/shared/Breadcrumb";
-import { WHY_US_DATA } from "../data/olympiadData";
+import { WHY_US_DATA as WHY_US_DATA_STATIC } from "../data/olympiadData";
 import {
   Cpu,
   Award,
@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import SectionHeader from "@/components/shared/SectionHeader";
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 const iconMap: Record<string, React.ElementType> = {
   Cpu,
   Award,
@@ -30,6 +31,7 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export const WhyUsPage: React.FC = () => {
+  const WHY_US_DATA = useSiteContent<typeof WHY_US_DATA_STATIC>('why_us_page', WHY_US_DATA_STATIC);
   const { language, navigateTo } = useApp();
   const { advantages } = WHY_US_DATA;
 

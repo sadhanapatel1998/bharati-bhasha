@@ -8,7 +8,14 @@
     "start": "next start",
     "clean": "rm -rf .next",
     "lint": "tsc --noEmit",
-    "seed:admin": "node scripts/seed-admin.mjs"
+    "seed:admin": "node scripts/seed-admin.mjs",
+    "gen:content-seed": "node scripts/generate-content-seed.mjs",
+    "seed:content": "node scripts/seed-content.mjs",
+    "seed:demo": "node scripts/seed-demo.mjs",
+    "seed:all": "npm run seed:admin && npm run gen:content-seed && npm run seed:content",
+    "test:ranks": "node tests/ranks.test.mjs",
+    "test:e2e": "node scripts/smoke-test.mjs",
+    "fix:settings": "node scripts/fix-settings.mjs"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -17,7 +24,8 @@
     "motion": "^12.23.24",
     "next": "^16.2.11",
     "react": "^19.0.1",
-    "react-dom": "^19.0.1"
+    "react-dom": "^19.0.1",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.14",
@@ -26,6 +34,7 @@
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1",
     "autoprefixer": "^10.4.21",
+    "esbuild": "^0.28.2",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.8.2"
   }

@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Dark mode is OPT-IN, never automatic.
+
+   Tailwind v4 wires `dark:` to the browser's prefers-color-scheme by
+   default, so a visitor whose OS/browser is in dark mode saw the public
+   site render with half-finished dark styles. The site only has a light
+   design; the admin panels are the only place with a real dark theme, and
+   they toggle a `.dark` class on <html> themselves. Rebinding the variant
+   to that class keeps the public pages light for everyone.
+   ------------------------------------------------------------------ */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* @layer utilities {
   .font-playfair {
     font-family: 'Playfair Display', Georgia, serif;
@@ -28,6 +40,7 @@
 }
 
 :root {
+  color-scheme: light;
   --primary: #7B1E1E;
   --secondary: #C79A2D;
   --accent: #F5F0E6;
@@ -150,4 +163,65 @@ h1, h2, h3, .font-serif-heading {
 }
 .animate-shimmer {
   animation: shimmer 6s infinite linear;
+}
+
+/* ------------------------------------------------------------------
+   Printing
+
+   The report card is printed through src/utils/printElement.ts, which clones
+   it into an empty iframe — that is what guarantees a single sheet with no
+   trailing blank pages. The rules below are a fallback for someone hitting
+   Ctrl+P on the page itself: siblings are collapsed with `display: none`
+   rather than `visibility: hidden`, because hidden elements still take up
+   space and push blank pages out of the printer.
+   ------------------------------------------------------------------ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .hidden.print\:block {
+    display: block !important;
+  }
+
+  #result-print {
+    box-shadow: none !important;
+    border: 0 !important;
+    background: #fff !important;
+    backdrop-filter: none !important;
+  }
+
+  #result-print .blur-2xl {
+    display: none !important;
+  }
+
+  #result-print > div {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  #result-print * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* the panels opt in by adding .dark to <html> */
+html.dark {
+  color-scheme: dark;
 }

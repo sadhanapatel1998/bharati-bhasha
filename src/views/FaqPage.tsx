@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import SectionHeader from '../components/shared/SectionHeader';
-import { FAQS } from '../data/olympiadData';
+import { FAQS as FAQS_STATIC } from '../data/olympiadData';
 import { ChevronDown, Search, HelpCircle } from 'lucide-react';
 import { Breadcrumb } from '@/components/shared/Breadcrumb';
 
+import { useSiteContent } from '@/hooks/useSiteContent';
 export const FaqPage: React.FC = () => {
+  const FAQS = useSiteContent<typeof FAQS_STATIC>('faqs', FAQS_STATIC);
   const { language } = useApp();
   const [activeId, setActiveId] = useState<string | null>('faq1');
   const [search, setSearch] = useState('');
