@@ -3,9 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 9650",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 9650",
     "clean": "rm -rf .next",
     "lint": "tsc --noEmit",
     "seed:admin": "node scripts/seed-admin.mjs",
