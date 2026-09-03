@@ -139,11 +139,13 @@ const ScalarEditor: React.FC<{
 const StringListEditor: React.FC<{ value: string[]; onChange: (v: string[]) => void }> = ({ value, onChange }) => {
   const { t } = useI18n();
   return (
-    <div className="space-y-1.5">
+    <div className="min-w-0 space-y-1.5">
       {value.map((item, i) => (
-        <div key={i} className="flex items-center gap-1.5">
+        <div key={i} className="flex min-w-0 items-center gap-1.5">
           <span className="w-5 shrink-0 text-center text-[11px] font-bold text-stone-400">{i + 1}</span>
-          <Input value={item} onChange={(e) => onChange(value.map((x, j) => (j === i ? e.target.value : x)))} />
+          <span className="min-w-0 flex-1">
+            <Input value={item} onChange={(e) => onChange(value.map((x, j) => (j === i ? e.target.value : x)))} />
+          </span>
           <button
             type="button"
             onClick={() => onChange(value.filter((_, j) => j !== i))}
@@ -182,10 +184,10 @@ const ObjectListEditor: React.FC<{
   };
 
   return (
-    <div className="space-y-2">
+    <div className="min-w-0 space-y-2">
       {value.map((row, i) => (
-        <div key={i} className="rounded-xl border border-stone-200 dark:border-white/10">
-          <div className="flex items-center gap-2 px-3 py-2.5">
+        <div key={i} className="min-w-0 overflow-hidden rounded-xl border border-stone-200 dark:border-white/10">
+          <div className="flex items-center gap-1 px-2 py-2 sm:gap-2 sm:px-3 sm:py-2.5">
             <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-stone-100 text-[11px] font-bold text-stone-500 dark:bg-white/10">
               {i + 1}
             </span>
@@ -196,10 +198,10 @@ const ObjectListEditor: React.FC<{
             >
               {String(rowTitle(row, i, titleField)).slice(0, 90)}
             </button>
-            <button type="button" onClick={() => move(i, -1)} className="rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 dark:hover:bg-white/10">
+            <button type="button" onClick={() => move(i, -1)} className="shrink-0 rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 dark:hover:bg-white/10">
               <ChevronUp className="h-4 w-4" />
             </button>
-            <button type="button" onClick={() => move(i, 1)} className="rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 dark:hover:bg-white/10">
+            <button type="button" onClick={() => move(i, 1)} className="shrink-0 rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 dark:hover:bg-white/10">
               <ChevronDown className="h-4 w-4" />
             </button>
             <button
@@ -210,21 +212,21 @@ const ObjectListEditor: React.FC<{
                 if (typeof copy.id === 'string') copy.id = `${copy.id}-copy`;
                 onChange([...value.slice(0, i + 1), copy, ...value.slice(i + 1)]);
               }}
-              className="rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 dark:hover:bg-white/10"
+              className="hidden shrink-0 rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 sm:block dark:hover:bg-white/10"
             >
               <Copy className="h-4 w-4" />
             </button>
             <button
               type="button"
               onClick={() => onChange(value.filter((_, j) => j !== i))}
-              className="rounded-lg p-1.5 text-stone-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-500/10"
+              className="shrink-0 rounded-lg p-1.5 text-stone-400 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-500/10"
             >
               <Trash2 className="h-4 w-4" />
             </button>
           </div>
 
           {open[i] && (
-            <div className="border-t border-stone-200 p-4 dark:border-white/10">
+            <div className="border-t border-stone-200 p-3 sm:p-4 dark:border-white/10">
               <SchemaForm
                 value={row}
                 folder={folder}
@@ -281,7 +283,7 @@ export const SchemaForm: React.FC<{
     const keys = Object.keys(obj);
 
     return (
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid min-w-0 gap-4 sm:grid-cols-2">
         {keys.map((k) => {
           const v = obj[k];
           const nested = v !== null && typeof v === 'object';
@@ -289,7 +291,7 @@ export const SchemaForm: React.FC<{
 
           if (nested) {
             return (
-              <div key={k} className="sm:col-span-2">
+              <div key={k} className="min-w-0 sm:col-span-2">
                 <p className="mb-2 flex items-center gap-2 text-xs font-extrabold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                   <span className="h-2.5 w-1 rounded-full bg-[#C79A2D]" />
                   {humanize(k)}
@@ -299,7 +301,7 @@ export const SchemaForm: React.FC<{
                     </span>
                   )}
                 </p>
-                <div className={depth < 2 ? 'rounded-xl border border-stone-200 p-3 dark:border-white/10' : ''}>
+                <div className={`min-w-0 ${depth < 2 ? 'rounded-xl border border-stone-200 p-3 dark:border-white/10' : ''}`}>
                   <SchemaForm
                     value={v}
                     folder={folder}
@@ -312,7 +314,7 @@ export const SchemaForm: React.FC<{
           }
 
           return (
-            <Field key={k} label={humanize(k)} className={wide ? 'sm:col-span-2' : ''}>
+            <Field key={k} label={humanize(k)} className={`min-w-0 ${wide ? 'sm:col-span-2' : ''}`}>
               <ScalarEditor name={k} value={v} folder={folder} onChange={(nv) => onChange({ ...obj, [k]: nv })} />
             </Field>
           );

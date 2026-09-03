@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, Loader2, ChevronLeft, ChevronRight, Inbox, AlertTriangle } from 'lucide-react';
 import { useI18n } from '../../i18n/LangProvider';
 
@@ -9,7 +9,7 @@ import { useI18n } from '../../i18n/LangProvider';
 /* ------------------------------------------------------------------ */
 export const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
   <div
-    className={`rounded-2xl border border-stone-200/80 bg-white shadow-[0_1px_2px_rgba(16,24,40,0.05)] dark:border-white/10 dark:bg-[#171313] ${className}`}
+    className={`min-w-0 rounded-2xl border border-stone-200/80 bg-white shadow-[0_1px_2px_rgba(16,24,40,0.05)] dark:border-white/10 dark:bg-[#171313] ${className}`}
   >
     {children}
   </div>
@@ -37,14 +37,14 @@ export const PageHeader: React.FC<{ title: string; subtitle?: string; children?:
   subtitle,
   children,
 }) => (
-  <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+  <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
     <div>
       <h1 className="font-serif text-2xl font-bold tracking-tight text-stone-900 dark:text-stone-50 sm:text-[28px]">
         {title}
       </h1>
       {subtitle && <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{subtitle}</p>}
     </div>
-    <div className="flex flex-wrap items-center gap-2">{children}</div>
+    <div className="flex flex-wrap items-center gap-2 [&>*]:flex-1 sm:[&>*]:flex-none">{children}</div>
   </div>
 );
 
@@ -86,7 +86,7 @@ export const Button: React.FC<
 /* Form fields                                                         */
 /* ------------------------------------------------------------------ */
 const fieldClass =
-  'w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-[#7B1E1E] focus:ring-2 focus:ring-[#7B1E1E]/15 disabled:bg-stone-50 dark:border-white/10 dark:bg-white/5 dark:text-stone-100 dark:placeholder:text-stone-500';
+  'w-full min-w-0 max-w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-[#7B1E1E] focus:ring-2 focus:ring-[#7B1E1E]/15 disabled:bg-stone-50 dark:border-white/10 dark:bg-white/5 dark:text-stone-100 dark:placeholder:text-stone-500';
 
 export const Field: React.FC<{
   label: string;
@@ -96,7 +96,7 @@ export const Field: React.FC<{
   className?: string;
   children: React.ReactNode;
 }> = ({ label, required, hint, error, className = '', children }) => (
-  <label className={`block ${className}`}>
+  <label className={`block min-w-0 ${className}`}>
     <span className="mb-1.5 block text-xs font-semibold text-stone-600 dark:text-stone-300">
       {label}
       {required && <span className="ml-0.5 text-rose-500">*</span>}
@@ -237,10 +237,10 @@ export const Modal: React.FC<{
   const widths = { sm: 'max-w-md', md: 'max-w-2xl', lg: 'max-w-4xl' };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-4 sm:p-6">
+    <div className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-0 sm:p-6">
       <div className="fixed inset-0 bg-stone-900/50 backdrop-blur-sm" onClick={onClose} />
       <div
-        className={`relative z-10 my-8 w-full ${widths[size]} overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-2xl dark:border-white/10 dark:bg-[#171313]`}
+        className={`relative z-10 my-0 min-h-screen w-full overflow-hidden border border-stone-200 bg-white shadow-2xl sm:my-8 sm:min-h-0 sm:rounded-2xl dark:border-white/10 dark:bg-[#171313] ${widths[size]}`}
       >
         <div className="flex items-start justify-between gap-4 border-b border-stone-200/80 px-5 py-4 dark:border-white/10">
           <div>
@@ -254,9 +254,9 @@ export const Modal: React.FC<{
             <X className="h-5 w-5" />
           </button>
         </div>
-        <div className="max-h-[70vh] overflow-y-auto px-5 py-5">{children}</div>
+        <div className="max-h-[calc(100vh-9rem)] overflow-y-auto px-4 py-5 sm:max-h-[70vh] sm:px-5">{children}</div>
         {footer && (
-          <div className="flex justify-end gap-2 border-t border-stone-200/80 bg-stone-50/60 px-5 py-3.5 dark:border-white/10 dark:bg-white/[0.03]">
+          <div className="sticky bottom-0 flex flex-wrap justify-end gap-2 border-t border-stone-200/80 bg-stone-50/95 px-4 py-3.5 backdrop-blur sm:px-5 dark:border-white/10 dark:bg-[#171313]/95">
             {footer}
           </div>
         )}
@@ -304,11 +304,41 @@ export const ConfirmDialog: React.FC<{
 /* ------------------------------------------------------------------ */
 /* Table shell                                                         */
 /* ------------------------------------------------------------------ */
-export const TableWrap: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="overflow-x-auto">
-    <table className="w-full min-w-[720px] border-collapse text-sm">{children}</table>
-  </div>
-);
+/**
+ * On a phone a 720px-wide table is unusable, so below `md` the table collapses
+ * into one card per row with the column name shown beside each value.
+ *
+ * The labels are copied from <thead> at runtime, which means every existing
+ * table gets the mobile layout without touching the pages that render them.
+ */
+export const TableWrap: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const ref = useRef<HTMLTableElement>(null);
+
+  useEffect(() => {
+    const table = ref.current;
+    if (!table) return;
+
+    const heads = Array.from(table.querySelectorAll('thead th')).map((th) => th.textContent?.trim() || '');
+
+    table.querySelectorAll('tbody tr').forEach((tr) => {
+      Array.from(tr.children).forEach((cell, i) => {
+        const el = cell as HTMLElement;
+        const label = heads[i];
+        // the trailing actions column has no useful label on mobile
+        if (label && i < heads.length - 1) el.dataset.label = label;
+        else delete el.dataset.label;
+      });
+    });
+  });
+
+  return (
+    <div className="md:overflow-x-auto">
+      <table ref={ref} className="responsive-table w-full border-collapse text-sm md:min-w-[720px]">
+        {children}
+      </table>
+    </div>
+  );
+};
 
 export const Th: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
   <th
@@ -374,7 +404,7 @@ export const Pagination: React.FC<{
         {t('common.total')}: <span className="font-bold tabular-nums">{n(total)}</span> · {t('common.page')} {n(page)}{' '}
         {t('common.of')} {n(pages)}
       </p>
-      <div className="flex items-center gap-1.5">
+      <div className="flex w-full items-center justify-between gap-1.5 sm:w-auto sm:justify-end">
         <Button size="sm" variant="secondary" disabled={page <= 1} onClick={() => onPage(page - 1)} icon={ChevronLeft}>
           {t('common.prev')}
         </Button>

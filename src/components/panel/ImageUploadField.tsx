@@ -63,7 +63,7 @@ export const ImageUploadField: React.FC<{
 
   return (
     <>
-      <div className="space-y-2">
+      <div className="w-full min-w-0 space-y-2">
         <div
           onDragOver={(e) => {
             e.preventDefault();
@@ -121,7 +121,7 @@ export const ImageUploadField: React.FC<{
           )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex w-full min-w-0 flex-wrap items-center gap-2">
           <Button
             size="sm"
             variant="secondary"
@@ -135,7 +135,7 @@ export const ImageUploadField: React.FC<{
           <Button size="sm" variant="secondary" icon={Library} disabled={disabled} onClick={() => setLibOpen(true)}>
             {lang === 'hi' ? 'गैलरी' : 'Library'}
           </Button>
-          <span className="relative min-w-[180px] flex-1">
+          <span className="relative w-full min-w-0 sm:w-auto sm:min-w-[180px] sm:flex-1">
             <Link2 className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-stone-400" />
             <Input
               value={value}

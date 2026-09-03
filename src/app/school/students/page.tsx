@@ -128,18 +128,18 @@ export default function SchoolStudents() {
 
       <Card>
         <div className="flex flex-wrap items-center gap-3 border-b border-stone-200/80 p-4 dark:border-white/10">
-          <div className="relative min-w-[200px] flex-1">
+          <div className="relative w-full min-w-0 sm:min-w-[200px] sm:flex-1">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
             <Input value={r.q} onChange={(e) => r.search(e.target.value)} placeholder={t('common.searchPlaceholder')} className="pl-9" />
           </div>
           <Select
-            className="w-auto min-w-[140px]"
+            className="w-full sm:w-auto sm:min-w-[140px]"
             value={r.filters.classLevel || ''}
             onChange={(e) => r.setFilter('classLevel', e.target.value)}
             options={[{ value: '', label: t('student.class') }, ...CLASSES.map((c) => ({ value: c, label: c }))]}
           />
           <Select
-            className="w-auto min-w-[150px]"
+            className="w-full sm:w-auto sm:min-w-[150px]"
             value={r.filters.subject || ''}
             onChange={(e) => r.setFilter('subject', e.target.value)}
             options={[{ value: '', label: t('student.subject') }, ...subjectOptions]}
@@ -197,7 +197,7 @@ export default function SchoolStudents() {
                   </Td>
                   <Td className="whitespace-nowrap text-xs text-stone-500">{d(row.createdAt)}</Td>
                   <Td>
-                    <div className="flex items-center justify-end gap-1">
+                    <div className="flex flex-wrap items-center justify-end gap-1">
                       <button
                         onClick={() => openEdit(row)}
                         className="rounded-lg p-2 text-stone-400 hover:bg-stone-100 hover:text-[#7B1E1E] dark:hover:bg-white/10"

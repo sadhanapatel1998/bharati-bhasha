@@ -64,7 +64,7 @@ export const FileUploadField: React.FC<{
 
   return (
     <>
-      <div className="space-y-2">
+      <div className="w-full min-w-0 space-y-2">
         <div
           onDragOver={(e) => {
             e.preventDefault();
@@ -83,12 +83,12 @@ export const FileUploadField: React.FC<{
           }`}
         >
           {hasFile ? (
-            <div className="flex items-center gap-3">
+            <div className="flex min-w-0 items-center gap-3">
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-rose-50 text-rose-600 dark:bg-rose-500/15">
                 <FileText className="h-5 w-5" />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-semibold text-stone-800 dark:text-stone-100">
+                <span className="block break-all text-sm font-semibold text-stone-800 dark:text-stone-100">
                   {value.split('/').pop()}
                 </span>
                 <a
@@ -133,14 +133,14 @@ export const FileUploadField: React.FC<{
           )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex w-full min-w-0 flex-wrap items-center gap-2">
           <Button size="sm" variant="secondary" icon={Upload} loading={busy} disabled={disabled} onClick={() => inputRef.current?.click()}>
             {lang === 'hi' ? 'अपलोड' : 'Upload'}
           </Button>
           <Button size="sm" variant="secondary" icon={Library} disabled={disabled} onClick={() => setLibOpen(true)}>
             {lang === 'hi' ? 'फ़ाइलें' : 'Files'}
           </Button>
-          <span className="relative min-w-[180px] flex-1">
+          <span className="relative w-full min-w-0 sm:w-auto sm:min-w-[180px] sm:flex-1">
             <Link2 className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-stone-400" />
             <Input
               value={value}
@@ -214,7 +214,7 @@ const FileLibrary: React.FC<{
           {lang === 'hi' ? 'अभी कोई फ़ाइल अपलोड नहीं हुई।' : 'No files uploaded yet.'}
         </p>
       ) : (
-        <div className="space-y-2">
+        <div className="w-full min-w-0 space-y-2">
           {items.map((f) => (
             <div key={f.url} className="flex items-center gap-3 rounded-xl border border-stone-200 px-3 py-2.5 dark:border-white/10">
               <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-stone-100 text-stone-500 dark:bg-white/10">

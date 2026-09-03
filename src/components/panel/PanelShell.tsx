@@ -165,10 +165,10 @@ export const PanelShell: React.FC<{
   );
 
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-900 dark:bg-[#0F0C0C] dark:text-stone-100">
+    <div className="min-h-screen overflow-x-hidden bg-stone-50 text-stone-900 dark:bg-[#0F0C0C] dark:text-stone-100">
       {/* top bar */}
       <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/85 backdrop-blur-md dark:border-white/10 dark:bg-[#141010]/85">
-        <div className="flex h-16 items-center justify-between gap-3 px-4 sm:px-6">
+        <div className="flex h-16 items-center justify-between gap-2 px-3 sm:gap-3 sm:px-6">
           <div className="flex min-w-0 items-center gap-3">
             <button
               onClick={() => setOpen(true)}
@@ -177,8 +177,8 @@ export const PanelShell: React.FC<{
               <Menu className="h-5 w-5" />
             </button>
             <Link href="/" className="flex items-center gap-2.5">
-              <Image src="/logo/logo.png" alt="BBO" width={38} height={38} priority className="rounded-lg object-contain" />
-              <span className="hidden min-w-0 sm:block">
+              <Image src="/logo/logo.png" alt="BBO" width={38} height={38} priority className="h-8 w-8 rounded-lg object-contain sm:h-[38px] sm:w-[38px]" />
+              <span className="hidden min-w-0 md:block">
                 <span className="block truncate font-serif text-[15px] font-bold leading-tight text-[#7B1E1E] dark:text-stone-50">
                   {t('app.name')}
                 </span>
@@ -189,8 +189,13 @@ export const PanelShell: React.FC<{
             </Link>
           </div>
 
-          <div className="flex items-center gap-2">
-            <LanguageToggle />
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="hidden sm:block">
+              <LanguageToggle />
+            </span>
+            <span className="sm:hidden">
+              <LanguageToggle compact />
+            </span>
             <button
               onClick={toggleTheme}
               className="rounded-xl border border-stone-200 p-2 text-stone-600 transition hover:bg-stone-100 dark:border-white/10 dark:text-stone-300 dark:hover:bg-white/10"
@@ -198,11 +203,11 @@ export const PanelShell: React.FC<{
             >
               {theme === 'light' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </button>
-            <div className="flex items-center gap-2.5 border-l border-stone-200 pl-3 dark:border-white/10">
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#7B1E1E] to-[#C79A2D] text-xs font-bold text-white">
+            <div className="flex items-center gap-2.5 border-stone-200 sm:border-l sm:pl-3 dark:border-white/10">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#7B1E1E] to-[#C79A2D] text-[11px] font-bold text-white sm:h-9 sm:w-9 sm:text-xs">
                 {user.name?.slice(0, 2).toUpperCase()}
               </span>
-              <span className="hidden text-left md:block">
+              <span className="hidden text-left lg:block">
                 <span className="block text-[13px] font-bold leading-tight">{user.name}</span>
                 <span className="block text-[11px] text-stone-500 dark:text-stone-400">
                   {t(('admin.role.' + user.role) as TKey)}
@@ -213,7 +218,7 @@ export const PanelShell: React.FC<{
         </div>
       </header>
 
-      <div className="mx-auto flex w-full max-w-[1600px] gap-6 px-4 py-6 sm:px-6">
+      <div className="mx-auto flex w-full max-w-[1600px] gap-6 px-3 py-4 sm:px-6 sm:py-6">
         <aside className="sticky top-[88px] hidden h-[calc(100vh-112px)] w-[264px] shrink-0 rounded-2xl border border-stone-200 bg-white lg:block dark:border-white/10 dark:bg-[#171313]">
           {Sidebar}
         </aside>
@@ -221,7 +226,7 @@ export const PanelShell: React.FC<{
         {open && (
           <div className="fixed inset-0 z-50 lg:hidden">
             <div className="absolute inset-0 bg-stone-900/50 backdrop-blur-sm" onClick={() => setOpen(false)} />
-            <aside className="absolute inset-y-0 left-0 w-[280px] bg-white shadow-2xl dark:bg-[#171313]">
+            <aside className="absolute inset-y-0 left-0 w-[min(84vw,300px)] bg-white shadow-2xl dark:bg-[#171313]">
               <div className="flex items-center justify-between border-b border-stone-200 px-4 py-3.5 dark:border-white/10">
                 <span className="font-serif text-sm font-bold text-[#7B1E1E] dark:text-stone-100">{t(brandKey)}</span>
                 <button onClick={() => setOpen(false)} className="rounded-lg p-1.5 text-stone-500 hover:bg-stone-100 dark:hover:bg-white/10">
@@ -233,7 +238,7 @@ export const PanelShell: React.FC<{
           </div>
         )}
 
-        <main className="min-w-0 flex-1 pb-10">{children}</main>
+        <main className="w-full min-w-0 max-w-full flex-1 overflow-x-hidden pb-10">{children}</main>
       </div>
     </div>
   );

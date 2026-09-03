@@ -143,7 +143,7 @@ export default function SuperAdminSchools() {
 
       <Card>
         <div className="flex flex-wrap items-center gap-3 border-b border-stone-200/80 p-4 dark:border-white/10">
-          <div className="relative min-w-[220px] flex-1">
+          <div className="relative w-full min-w-0 sm:min-w-[220px] sm:flex-1">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
             <Input
               value={r.q}
@@ -153,7 +153,7 @@ export default function SuperAdminSchools() {
             />
           </div>
           <Select
-            className="w-auto min-w-[170px]"
+            className="w-full sm:w-auto sm:min-w-[170px]"
             value={r.filters.status || ''}
             onChange={(e) => r.setFilter('status', e.target.value)}
             options={statusOptions}
@@ -197,7 +197,7 @@ export default function SuperAdminSchools() {
                   </Td>
                   <Td className="whitespace-nowrap text-xs text-stone-500">{d(row.createdAt)}</Td>
                   <Td>
-                    <div className="flex items-center justify-end gap-1">
+                    <div className="flex flex-wrap items-center justify-end gap-1">
                       {row.status === 'pending' && (
                         <>
                           <Button size="sm" variant="success" icon={Check} onClick={() => setStatus(row, 'active')}>

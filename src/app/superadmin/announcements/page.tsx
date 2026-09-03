@@ -125,7 +125,7 @@ export default function SuperAdminAnnouncements() {
                     </Badge>
                   </Td>
                   <Td>
-                    <div className="flex items-center justify-end gap-1">
+                    <div className="flex flex-wrap items-center justify-end gap-1">
                       <button
                         onClick={() => r.update(row._id, { isPublished: !row.isPublished }, t('common.updated'))}
                         className="rounded-lg p-2 text-stone-400 hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-500/10"

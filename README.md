@@ -335,3 +335,33 @@ Verified in the production build: the compiled stylesheet contains zero
 - Deleting a school cascades to its users, students and results.
 - The marketing site pulls Google Fonts at build time; make sure the build
   machine has internet access to `fonts.googleapis.com`.
+
+---
+
+## Admin panel on mobile
+
+The console is built for phones as well as desktops.
+
+- **Tables become cards.** Below `md`, `TableWrap` collapses each row into a
+  card and prints the column name beside every value. The labels are read from
+  `<thead>` at runtime, so every table in both panels gets the treatment
+  without any per-page markup. Above `md` the normal table returns.
+- **Top bar** shrinks: compact language toggle, smaller avatar, brand text and
+  role label hidden on the narrowest screens; the sidebar drawer is capped at
+  `min(84vw, 300px)` so it can never exceed the viewport.
+- **Filters and search** go full width and stack instead of overflowing.
+- **Modals** open as a full sheet on a phone with a sticky footer, and return
+  to a centred dialog from `sm` upwards.
+- **Page headers** stack the title above the action buttons, which then split
+  the row evenly.
+- **Website content** replaces the 24-item sidebar with a grouped dropdown on
+  phones, so the editor stays on screen.
+- **Row editors** in the content forms tighten their toolbar and hide the
+  duplicate button on the smallest screens.
+- **No sideways scrolling.** The website-content editor used to run past the
+  right edge on a phone: the URL box inside the image and file uploaders
+  carried a fixed `min-w-[180px]`, and the nested form containers had no
+  `min-w-0`, so a flex child could refuse to shrink and stretch the whole
+  card. The uploaders' URL box now goes full width below `sm`, every nested
+  container in `SchemaForm` is `min-w-0`, long values wrap instead of
+  overflowing, and the panel shell clips any residual horizontal overflow.

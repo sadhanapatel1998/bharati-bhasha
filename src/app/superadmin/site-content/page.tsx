@@ -182,9 +182,35 @@ export default function SiteContentPage() {
         )}
       </PageHeader>
 
-      <div className="grid gap-5 lg:grid-cols-[290px_1fr]">
+      {/* on phones the 24-item list would push the editor off the screen,
+          so it collapses into a single picker */}
+      <div className="mb-4 lg:hidden">
+        <Field label={lang === 'hi' ? 'सामग्री ब्लॉक' : 'Content block'}>
+          <select
+            value={activeKey}
+            onChange={(e) => setActiveKey(e.target.value)}
+            className="w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm font-semibold text-stone-900 outline-none focus:border-[#7B1E1E] focus:ring-2 focus:ring-[#7B1E1E]/15 dark:border-white/10 dark:bg-white/5 dark:text-stone-100"
+          >
+            {Object.entries(grouped).map(([group, items]) => (
+              <optgroup
+                key={group}
+                label={lang === 'hi' ? GROUP_LABEL[group]?.hi || group : GROUP_LABEL[group]?.en || group}
+              >
+                {items.map((b) => (
+                  <option key={b.key} value={b.key}>
+                    {lang === 'hi' ? b.labelHi : b.label}
+                    {b.count !== null ? ` (${b.count})` : ''}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+        </Field>
+      </div>
+
+      <div className="grid min-w-0 gap-5 lg:grid-cols-[290px_1fr]">
         {/* block list */}
-        <Card className="h-fit p-3 lg:sticky lg:top-[88px]">
+        <Card className="hidden h-fit p-3 lg:sticky lg:top-[88px] lg:block">
           {loading ? (
             <div className="space-y-2 p-2">
               {Array.from({ length: 8 }).map((_, i) => (
@@ -228,31 +254,31 @@ export default function SiteContentPage() {
         </Card>
 
         {/* editor */}
-        <Card className="min-h-[400px]">
+        <Card className="min-w-0 overflow-hidden min-h-[400px]">
           {!detail ? (
             <div className="grid h-64 place-items-center text-stone-400">
               <Loader2 className="h-6 w-6 animate-spin" />
             </div>
           ) : (
             <>
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200/80 px-5 py-4 dark:border-white/10">
-                <div className="flex items-center gap-3">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#7B1E1E]/10 text-[#7B1E1E] dark:bg-[#7B1E1E]/25 dark:text-[#d9b45f]">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200/80 px-4 py-4 sm:px-5 dark:border-white/10">
+                <div className="flex min-w-0 items-center gap-3">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#7B1E1E]/10 text-[#7B1E1E] dark:bg-[#7B1E1E]/25 dark:text-[#d9b45f]">
                     <ShapeIcon className="h-5 w-5" />
                   </span>
-                  <div>
-                    <h3 className="font-serif text-lg font-bold">{lang === 'hi' ? detail.labelHi : detail.label}</h3>
-                    <p className="font-mono text-[11px] text-stone-400">
+                  <div className="min-w-0">
+                    <h3 className="truncate font-serif text-lg font-bold">{lang === 'hi' ? detail.labelHi : detail.label}</h3>
+                    <p className="break-all font-mono text-[11px] text-stone-400">
                       {detail.key}
                       {itemCount !== null ? ` · ${itemCount} ${lang === 'hi' ? 'प्रविष्टियाँ' : 'items'}` : ''}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
                   {dirty && <Badge tone="warning">{lang === 'hi' ? 'असहेजे बदलाव' : 'Unsaved'}</Badge>}
                   {detail.updatedBy && (
-                    <Badge tone="neutral">
+                    <Badge tone="neutral" className="hidden sm:inline-flex">
                       {detail.updatedBy} · {d(detail.updatedAt)}
                     </Badge>
                   )}
@@ -272,7 +298,7 @@ export default function SiteContentPage() {
                       }
                       setJsonMode((p) => !p);
                     }}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-stone-200 px-3 py-2 text-xs font-bold text-stone-600 transition hover:bg-stone-50 dark:border-white/10 dark:text-stone-300 dark:hover:bg-white/10"
+                    className="ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-stone-200 px-3 py-2 text-xs font-bold text-stone-600 transition hover:bg-stone-50 sm:ml-0 dark:border-white/10 dark:text-stone-300 dark:hover:bg-white/10"
                     title={lang === 'hi' ? 'उन्नत मोड' : 'Advanced mode'}
                   >
                     {jsonMode ? <Table2 className="h-4 w-4" /> : <Code2 className="h-4 w-4" />}
@@ -281,14 +307,14 @@ export default function SiteContentPage() {
                 </div>
               </div>
 
-              <div className="p-5">
+              <div className="p-4 sm:p-5">
                 {!canEdit && (
                   <p className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs font-semibold text-amber-800 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
                     {lang === 'hi' ? 'आपके पास केवल देखने की अनुमति है।' : 'You have view-only access to this section.'}
                   </p>
                 )}
 
-                <fieldset disabled={!canEdit}>
+                <fieldset disabled={!canEdit} className="min-w-0">
                   {jsonMode ? (
                     <Field
                       label="JSON"
@@ -318,7 +344,7 @@ export default function SiteContentPage() {
               </div>
 
               {canEdit && (
-                <div className="flex justify-end gap-2 border-t border-stone-200/80 bg-stone-50/60 px-5 py-3.5 dark:border-white/10 dark:bg-white/[0.03]">
+                <div className="flex flex-wrap justify-end gap-2 border-t border-stone-200/80 bg-stone-50/60 px-4 py-3.5 sm:px-5 dark:border-white/10 dark:bg-white/[0.03]">
                   <Button variant="secondary" icon={RotateCcw} onClick={() => setRestore(true)}>
                     {lang === 'hi' ? 'मूल पर लौटाएँ' : 'Restore original'}
                   </Button>

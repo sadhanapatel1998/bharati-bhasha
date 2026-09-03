@@ -225,3 +225,94 @@ h1, h2, h3, .font-serif-heading {
 html.dark {
   color-scheme: dark;
 }
+
+/* ------------------------------------------------------------------
+   Admin panel — mobile tables
+
+   Below `md` every panel table turns into a stack of cards: one card per
+   row, with the column name (copied from <thead> by TableWrap) printed
+   beside each value. Above `md` the normal table layout returns.
+   ------------------------------------------------------------------ */
+@media (max-width: 767px) {
+  table.responsive-table,
+  table.responsive-table tbody,
+  table.responsive-table tr,
+  table.responsive-table td {
+    display: block;
+    width: 100%;
+  }
+
+  table.responsive-table thead {
+    display: none;
+  }
+
+  table.responsive-table tr {
+    margin: 0 0.75rem 0.75rem;
+    width: auto;
+    border: 1px solid rgb(231 229 228);
+    border-radius: 0.85rem;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  html.dark table.responsive-table tr {
+    border-color: rgb(255 255 255 / 0.12);
+    background: rgb(255 255 255 / 0.03);
+  }
+
+  table.responsive-table tbody tr:first-child {
+    margin-top: 0.75rem;
+  }
+
+  table.responsive-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.55rem 0.85rem;
+    border: 0;
+    border-bottom: 1px solid rgb(245 245 244);
+    text-align: right;
+    max-width: none !important;
+  }
+
+  html.dark table.responsive-table td {
+    border-bottom-color: rgb(255 255 255 / 0.06);
+  }
+
+  table.responsive-table td:last-child {
+    border-bottom: 0;
+    justify-content: flex-end;
+    background: rgb(250 250 249);
+  }
+
+  html.dark table.responsive-table td:last-child {
+    background: rgb(255 255 255 / 0.04);
+  }
+
+  /* the column name, taken from the header row */
+  table.responsive-table td[data-label]::before {
+    content: attr(data-label);
+    flex: 0 0 auto;
+    margin-right: auto;
+    padding-right: 0.75rem;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgb(120 113 108);
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  html.dark table.responsive-table td[data-label]::before {
+    color: rgb(168 162 158);
+  }
+
+  /* stop long values (school names, emails) from blowing out the card */
+  table.responsive-table td > span,
+  table.responsive-table td > div {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}

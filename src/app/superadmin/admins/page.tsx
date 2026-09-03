@@ -165,7 +165,7 @@ export default function SuperAdminAdmins() {
                     </Badge>
                   </Td>
                   <Td>
-                    <div className="flex items-center justify-end gap-1">
+                    <div className="flex flex-wrap items-center justify-end gap-1">
                       <button
                         onClick={() => openEdit(row)}
                         className="rounded-lg p-2 text-stone-400 hover:bg-stone-100 hover:text-[#7B1E1E] dark:hover:bg-white/10"
