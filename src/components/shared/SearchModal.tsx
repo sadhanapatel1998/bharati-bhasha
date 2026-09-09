@@ -21,12 +21,12 @@ export const SearchModal: React.FC = () => {
   const SEARCH_DATABASE: SearchResult[] = [{
     title: 'राष्ट्रीय हिंदी ओलंपियाड',
     category: 'परीक्षा',
-    route: '/hindi-olympiad',
+    route: '/hindi-o',
     description: 'कक्षा 1 से 12 तक के लिए हिंदी परीक्षा पैटर्न, पात्रता एवं पुरस्कार'
   }, {
     title: 'राष्ट्रीय संस्कृत ओलंपियाड',
     category: 'परीक्षा',
-    route: '/sanskrit-olympiad',
+    route: '/sanskrit-syllabus',
     description: 'संस्कृत व्याकरण, श्लोक एवं साहित्य परीक्षा का संपूर्ण विवरण'
   }, {
     title: 'कक्षा 1 से 12 पाठ्यक्रम (Syllabus)',

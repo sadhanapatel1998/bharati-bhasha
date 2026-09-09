@@ -36,7 +36,7 @@ export const OlympiadShowcaseSection: React.FC = () => {
           </div>
 
           <div className="pt-8">
-            <button onClick={() => navigateTo('/hindi-olympiad')} className="bg-[#C79A2D] hover:bg-[#E2B855] text-[#7B1E1E] px-6 py-3 rounded-xl font-bold text-xs transition-colors flex items-center gap-2">
+            <button onClick={() => navigateTo('/hindi-syllabus')} className="bg-[#C79A2D] hover:bg-[#E2B855] text-[#7B1E1E] px-6 py-3 rounded-xl font-bold text-xs transition-colors flex items-center gap-2">
               <span>{'हिंदी ओलंपियाड विवरण पढ़ें'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
@@ -68,7 +68,7 @@ export const OlympiadShowcaseSection: React.FC = () => {
           </div>
 
           <div className="pt-8">
-            <button onClick={() => navigateTo('/sanskrit-olympiad')} className="bg-[#7B1E1E] hover:bg-[#A32A2A] text-white px-6 py-3 rounded-xl font-bold text-xs transition-colors flex items-center gap-2">
+            <button onClick={() => navigateTo('/sanskrit-syllabus')} className="bg-[#7B1E1E] hover:bg-[#A32A2A] text-white px-6 py-3 rounded-xl font-bold text-xs transition-colors flex items-center gap-2">
               <span>{'संस्कृत ओलंपियाड विवरण पढ़ें'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
