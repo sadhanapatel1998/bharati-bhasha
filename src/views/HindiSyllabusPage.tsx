@@ -4,7 +4,7 @@ import React from 'react';
 import { useApp } from '../context/AppContext';
 import { Breadcrumb } from '../components/shared/Breadcrumb';
 import { BookOpen, Calendar, Clock, Trophy, FileText, CheckCircle2 } from 'lucide-react';
-export const HindiOlympiadPage: React.FC = () => {
+export const HindiSyllabusPage: React.FC = () => {
   const {
     language,
     navigateTo

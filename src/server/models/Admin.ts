@@ -24,4 +24,5 @@ const AdminSchema = new Schema<AdminDoc>(
   { timestamps: true }
 );
 
-export const Admin = models.Admin || model<AdminDoc>("Admin", AdminSchema);
+export const Admin =
+  models.Admin || model<AdminDoc>("Admin", AdminSchema, "admins");

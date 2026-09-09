@@ -63,61 +63,29 @@ export const navigation: NavItem[] = [
     ],
   },
   // Exams
-  {
-    key: 'olympiads',
-    label: 'परीक्षाएँ',
-    width: 'w-72',
-    dropdown: [
-      {
-        key: '/syllabus',
-        icon: FileText,
-        color: 'text-gray-500',
-        hi: 'पाठ्यक्रम',
-      },
-      {
-        key: '/exam-dates',
-        icon: Calendar,
-        color: 'text-gray-500',
-        hi: 'परीक्षा कार्यक्रम',
-      },
-      {
-        key: '/benchmark',
-        icon: Trophy,
-        color: 'text-[#C79A2D]',
-        hi: 'परीक्षा प्रारूप',
-      },
-    ],
-  },
+{
+  key: 'olympiads',
+  label: 'पाठ्यक्रम',
+  width: 'w-64',
+  dropdown: [
+    {
+      key: '/hindi-syllabus',
+      icon: FileText,
+      color: 'text-[#7B1E1E]',
+      hi: 'हिंदी पाठ्यक्रम',
+    },
+    {
+      key: '/sanskrit-syllabus',  
+      icon: FileText,
+      color: 'text-[#C79A2D]',
+      hi: 'संस्कृत पाठ्यक्रम',
+    },
+  ],
+},
   // Awards
   {
     key: '/awards',
     label: 'पुरस्कार एवं सम्मान',
-  },
-  // Student Zone
-  {
-    key: 'resources',
-    label: 'विद्यार्थी मंच',
-    width: 'w-64',
-    dropdown: [
-      {
-        key: '/sample-papers',
-        icon: FileText,
-        color: 'text-gray-500',
-        hi: 'मॉडल पेपर',
-      },
-      {
-        key: '/performance-report',
-        icon: Trophy,
-        color: 'text-[#C79A2D]',
-        hi: 'परिणाम',
-      },
-      {
-        key: '/faqs',
-        icon: HelpCircle,
-        color: 'text-gray-500',
-        hi: 'प्रश्नोत्तर',
-      },
-    ],
   },
   // Contact
   {

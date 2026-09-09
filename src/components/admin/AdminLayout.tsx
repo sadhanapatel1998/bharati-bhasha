@@ -333,7 +333,7 @@ export const AdminLayout: React.FC = () => {
         className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]"
         style={{
           backgroundImage: `
-            radial-gradient(circle at 20% 30%, #790e03 1px, transparent 1px),
+            radial-gradient(circle at 2   0% 30%, #790e03 1px, transparent 1px),
             radial-gradient(circle at 80% 70%, #C79A2D 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px, 80px 80px',
