@@ -63,25 +63,44 @@ export const navigation: NavItem[] = [
     ],
   },
   // Exams
-{
-  key: 'olympiads',
-  label: 'पाठ्यक्रम',
-  width: 'w-64',
-  dropdown: [
-    {
-      key: '/hindi-syllabus',
-      icon: FileText,
-      color: 'text-[#7B1E1E]',
-      hi: 'हिंदी पाठ्यक्रम',
-    },
-    {
-      key: '/sanskrit-syllabus',  
-      icon: FileText,
-      color: 'text-[#C79A2D]',
-      hi: 'संस्कृत पाठ्यक्रम',
-    },
-  ],
-},
+  {
+    key: 'olympiads',
+    label: 'पाठ्यक्रम',
+    width: 'w-64',
+    dropdown: [
+      {
+        key: '/hindi-syllabus',
+        icon: FileText,
+        color: 'text-[#7B1E1E]',
+        hi: 'हिंदी पाठ्यक्रम',
+      },
+      {
+        key: '/sanskrit-syllabus',
+        icon: FileText,
+        color: 'text-[#C79A2D]',
+        hi: 'संस्कृत पाठ्यक्रम',
+      },
+    ],
+  },
+  {
+    key: 'subject',
+    label: 'विषय',
+    width: 'w-64',
+    dropdown: [
+      {
+        key: '/hindi',
+        icon: FileText,
+        color: 'text-[#7B1E1E]',
+        hi: 'हिंदी',
+      },
+      {
+        key: '/sanskrit',
+        icon: FileText,
+        color: 'text-[#C79A2D]',
+        hi: 'संस्कृत',
+      },
+    ],
+  },
   // Awards
   {
     key: '/awards',

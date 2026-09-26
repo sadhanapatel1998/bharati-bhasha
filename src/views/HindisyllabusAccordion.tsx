@@ -1,25 +1,15 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useApp } from '../context/AppContext';
-import { Breadcrumb } from '../components/shared/Breadcrumb';
 import {
-  Calendar,
-  Clock,
-  Trophy,
-  Download,
   BookOpenCheck,
-  ScrollText,
-  Sparkles,
-  GraduationCap,
-  Layers,
   Target,
   ChevronDown,
   Star,
   Zap,
-  Crown,
   Heart,
-  Award,
+  Download,
+  Sparkles,
 } from 'lucide-react';
 
 // Syllabus transcribed from the official हिंदी भाषा पाठ्यक्रम (कक्षा 1-10) sheet.
@@ -120,13 +110,8 @@ const CLASS_SYLLABUS = [
   },
 ];
 
-const SYLLABUS_PDF_HREF = '/downloads/hindi-olympiad-syllabus.pdf';
-
-const QUICK_FACTS = [
-  { icon: GraduationCap, label: 'कक्षा 1 से 10', sub: 'स्तरानुसार पाठ्यक्रम' },
-  { icon: Layers, label: '2 अनुभाग', sub: 'व्याकरण ज्ञान · सामान्य ज्ञान' },
-  { icon: Target, label: '60 मिनट', sub: '100 वस्तुनिष्ठ अंक' },
-];
+// One PDF per grade — adjust paths to match where the files are actually hosted.
+const syllabusPdfHref = (grade: string) => `/downloads/hindi-syllabus-class-${grade}.pdf`;
 
 // 10 unique color themes — one per grade
 const GRADE_THEMES = [
@@ -142,307 +127,202 @@ const GRADE_THEMES = [
   { numBg: "from-red-500 to-rose-600", numBorder: "border-red-300/60", headOpen: "from-red-50 to-rose-50", headHover: "hover:from-red-100 hover:to-rose-100", bodyAccent: "border-red-400/40", iconColor: "text-red-600", chipBg: "bg-red-100 text-red-800 border-red-300", titleColor: "text-red-900", focusBg: "bg-red-50 border-red-300", focusText: "text-red-800", spark: "text-red-500" },
 ];
 
-export const HindiSyllabusPage: React.FC = () => {
-  const { language, navigateTo } = useApp();
+/**
+ * Just the class-by-class syllabus accordion — same visual design as
+ * HindiSyllabusPage, but with no breadcrumb, hero copy, or page background.
+ * Drop this in wherever the curriculum needs to live (e.g. inside HindiSubject).
+ */
+export const HindiSyllabusAccordion: React.FC = () => {
   const [openGrade, setOpenGrade] = useState<string>(CLASS_SYLLABUS[0].grade);
 
   return (
-    <>
-      <div className="relative overflow-hidden min-h-screen pb-16
-        bg-gradient-to-br from-amber-50/70 via-white to-blue-50/50">
+    <div className="space-y-5">
+      {CLASS_SYLLABUS.map((active, idx) => {
+        const isOpen = active.grade === openGrade;
+        const theme = GRADE_THEMES[idx % GRADE_THEMES.length];
 
-        {/* Rainbow animated top border */}
-        <div className="absolute top-0 left-0 right-0 h-1
-          bg-gradient-to-r from-rose-500 via-amber-400 via-emerald-400 via-blue-500 via-purple-500 to-rose-500 hsyl-border-flow" />
+        return (
+          <div
+            key={active.grade}
+            id={`curriculum-${active.grade}`}
+            className={`relative rounded-3xl overflow-hidden scroll-mt-24
+              bg-white border-2 transition-all duration-500
+              ${isOpen
+                ? `border-transparent shadow-2xl`
+                : `border-slate-200/70 hover:border-slate-300 shadow-md hover:shadow-xl`
+              }`}
+          >
+            {/* Gradient rainbow border (only when open) */}
+            {isOpen && (
+              <div aria-hidden
+                className={`absolute inset-0 rounded-3xl p-[2px] -z-10
+                  bg-gradient-to-r ${theme.numBg} hsyl-border-flow`}
+              />
+            )}
 
-        {/* ============ BACKGROUND LAYERS ============ */}
-
-        {/* Animated dot grid */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.05]
-            bg-[radial-gradient(circle_at_20%_30%,#790e03_1px,transparent_1px),radial-gradient(circle_at_80%_70%,#C79A2D_1px,transparent_1px)]
-            bg-[length:60px_60px,80px_80px] hsyl-grid-pan"
-        />
-
-        {/* Diagonal stripes */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.03]
-            bg-[repeating-linear-gradient(45deg,#7c3aed_0px,#7c3aed_1px,transparent_1px,transparent:22px)]"
-        />
-
-        {/* Drifting orbs */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[8%] left-[5%] w-80 h-80 rounded-full bg-blue-300/25 blur-3xl hsyl-orb-a" />
-          <div className="absolute top-[25%] right-[4%] w-72 h-72 rounded-full bg-purple-300/25 blur-3xl hsyl-orb-b" />
-          <div className="absolute bottom-[15%] left-[30%] w-80 h-80 rounded-full bg-amber-300/25 blur-3xl hsyl-orb-a [animation-delay:-5s]" />
-          <div className="absolute bottom-[5%] right-[20%] w-64 h-64 rounded-full bg-emerald-300/20 blur-3xl hsyl-orb-b [animation-delay:-8s]" />
-        </div>
-
-        {/* Rotating dashed rings */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[10%] right-[8%] w-44 h-44 rounded-full border-2 border-dashed border-blue-300/40 hsyl-spin-slow" />
-          <div className="absolute bottom-[12%] left-[6%] w-56 h-56 rounded-full border border-dashed border-amber-300/40 hsyl-spin-rev" />
-        </div>
-
-        {/* Light sweep */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3
-            bg-gradient-to-r from-transparent via-white/50 to-transparent
-            skew-x-[-25deg] hsyl-sweep"
-        />
-
-        {/* Twinkling stars */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[15%] left-[14%] w-2 h-2 rounded-full bg-amber-400 hsyl-twinkle" />
-          <div className="absolute top-[45%] right-[22%] w-1.5 h-1.5 rounded-full bg-blue-400 hsyl-twinkle [animation-delay:0.8s]" />
-          <div className="absolute bottom-[25%] left-[45%] w-2 h-2 rounded-full bg-emerald-400 hsyl-twinkle [animation-delay:1.6s]" />
-          <div className="absolute top-[70%] right-[10%] w-1.5 h-1.5 rounded-full bg-purple-400 hsyl-twinkle [animation-delay:2.4s]" />
-        </div>
-
-        {/* Floating decorative icons */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[12%] left-[8%] text-amber-400/20 hsyl-float">
-            <Trophy className="w-16 h-16" />
-          </div>
-          <div className="absolute top-[20%] right-[12%] text-blue-400/20 hsyl-float-slow">
-            <Award className="w-16 h-16" />
-          </div>
-          <div className="absolute bottom-[18%] left-[12%] text-emerald-400/20 hsyl-drift">
-            <GraduationCap className="w-14 h-14" />
-          </div>
-          <div className="absolute bottom-[12%] right-[10%] text-purple-400/20 hsyl-float [animation-delay:-3s]">
-            <Crown className="w-14 h-14" />
-          </div>
-        </div>
-
-        {/* ============ CONTENT ============ */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14 z-10">
-
-          <Breadcrumb
-            title="हिंदी पाठ्यक्रम"
-            items={[
-              { label: "हिंदी पाठ्यक्रम" },
-            ]}
-          />
-
-          {/* ============ Intro / Info Block ============ */}
-          <div className="relative overflow-hidden text-[#F5F0E6]">
-            <div className="absolute inset-x-0 top-0 h-2" />
-
-            <div className="relative max-w-6xl space-y-5">
-              <div className="inline-flex items-center gap-2 text-amber-800 font-bold text-sm tracking-wider uppercase bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
-                <Sparkles className="w-4 h-4 text-amber-600 hsyl-twinkle" />
-                <span>{'भारती भाषा ओलंपियाड · हिंदी पाठ्यक्रम'}</span>
+            {/* Accordion header */}
+            <button
+              type="button"
+              onClick={() => setOpenGrade(isOpen ? '' : active.grade)}
+              aria-expanded={isOpen}
+              className={`w-full flex items-center justify-between gap-4 p-3 sm:p-5 text-left
+                transition-all duration-500 group relative overflow-hidden
+                ${isOpen
+                  ? `bg-gradient-to-r ${theme.headOpen}`
+                  : `bg-white ${theme.headHover}`
+                }`}
+            >
+              {/* Shine sweep on hover */}
+              <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute top-0 -left-full h-full w-1/2
+                  bg-gradient-to-r from-transparent via-white/60 to-transparent
+                  skew-x-[-25deg] group-hover:animate-[hsyl-sweep_1.2s_ease-out]" />
               </div>
 
-              <h1 className="font-playfair text-3xl sm:text-4xl font-bold leading-tight text-[#02206b]">
-                {'हिंदी विभाग का '}<span className="text-[#C79A2D]">{'सम्पूर्ण पाठ्यक्रम'}</span>
-              </h1>
-
-              <p className="text-lg text-slate-800 dark:text-gray-300 leading-relaxed font-devanagari">
-                {'वर्ण-ज्ञान, मात्रा, शब्द-भेद, वाक्य-रचना, मुहावरे-लोकोक्तियाँ एवं सामान्य ज्ञान पर आधारित — नीचे अपनी कक्षा चुनें और अनुभागवार पाठ्यक्रम देखें।'}
-              </p>
-            </div>
-          </div>
-
-          {/* ============ Curriculum Header ============ */}
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-4 h-4 text-[#C79A2D] hsyl-twinkle" />
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#7B1E1E] dark:text-[#C79A2D]">
-                {'पाठ्यक्रम एवं परीक्षा प्रारूप'}
-              </p>
-            </div>
-            <h2 className="font-playfair text-3xl font-bold text-gray-900 dark:text-white">
-              {'कक्षा-अनुसार पाठ्यक्रम चुनें'}
-            </h2>
-            <p className="mt-2 text-lg text-slate-800 dark:text-gray-300 leading-relaxed font-devanagari">
-              {'नीचे दी गई सूची में से अपनी कक्षा चुनें, संबंधित व्याकरण एवं सामान्यज्ञान विषय-वस्तु तुरंत दिखाई देगी।'}
-            </p>
-          </div>
-
-          {/* ============ Accordion ============ */}
-          <div className="mt-8 space-y-5">
-            {CLASS_SYLLABUS.map((active, idx) => {
-              const isOpen = active.grade === openGrade;
-              const theme = GRADE_THEMES[idx % GRADE_THEMES.length];
-
-              return (
-                <div
-                  key={active.grade}
-                  className={`relative rounded-3xl overflow-hidden
-                    bg-white border-2 transition-all duration-500
+              <div className="flex items-center gap-4 relative z-[2]">
+                {/* Grade number badge */}
+                <span
+                  className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl
+                    text-xl font-extrabold border-2 transition-all duration-500
                     ${isOpen
-                      ? `border-transparent shadow-2xl`
-                      : `border-slate-200/70 hover:border-slate-300 shadow-md hover:shadow-xl`
+                      ? `bg-gradient-to-br ${theme.numBg} text-white border-white/60 shadow-lg scale-110`
+                      : `bg-gradient-to-br ${theme.numBg} text-white border-white/50 shadow-md group-hover:scale-110 group-hover:rotate-6`
                     }`}
                 >
-                  {/* Gradient rainbow border (only when open) */}
-                  {isOpen && (
-                    <div aria-hidden
-                      className={`absolute inset-0 rounded-3xl p-[2px] -z-10
-                        bg-gradient-to-r ${theme.numBg} hsyl-border-flow`}
-                    />
-                  )}
+                  {active.grade}
+                </span>
 
-                  {/* Accordion header */}
-                  <button
-                    type="button"
-                    onClick={() => setOpenGrade(isOpen ? '' : active.grade)}
-                    aria-expanded={isOpen}
-                    className={`w-full flex items-center justify-between gap-4 p-3 sm:p-5 text-left
-                      transition-all duration-500 group relative overflow-hidden
-                      ${isOpen
-                        ? `bg-gradient-to-r ${theme.headOpen}`
-                        : `bg-white ${theme.headHover}`
-                      }`}
-                  >
-                    {/* Shine sweep on hover */}
-                    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                      <div className="absolute top-0 -left-full h-full w-1/2
-                        bg-gradient-to-r from-transparent via-white/60 to-transparent
-                        skew-x-[-25deg] group-hover:animate-[hsyl-sweep_1.2s_ease-out]" />
-                    </div>
-
-                    <div className="flex items-center gap-4 relative z-[2]">
-                      {/* Grade number badge */}
-                      <span
-                        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl
-                          text-xl font-extrabold border-2 transition-all duration-500
-                          ${isOpen
-                            ? `bg-gradient-to-br ${theme.numBg} text-white border-white/60 shadow-lg scale-110`
-                            : `bg-gradient-to-br ${theme.numBg} text-white border-white/50 shadow-md group-hover:scale-110 group-hover:rotate-6`
-                          }`}
-                      >
-                        {active.grade}
-                      </span>
-
-                      <div>
-                        <h3 className={`font-playfair text-2xl font-bold transition-colors duration-500
-                          ${isOpen ? theme.titleColor : 'text-slate-900 dark:text-white'}`}>
-                          {'कक्षा ' + active.grade + ' — हिंदी पाठ्यक्रम'}
-                        </h3>
-                        <p className="text-sm text-gray-800 mt-0.5 font-medium">
-                          {'भारती भाषा ओलंपियाड · अपनी भाषा, अपनी पहचान'}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Chevron */}
-                    <ChevronDown
-                      className={`relative z-[2] h-6 w-6 shrink-0 transition-all duration-500
-                        ${isOpen
-                          ? `rotate-180 scale-110 ${theme.iconColor}`
-                          : 'text-slate-500 group-hover:text-slate-700'
-                        }`}
-                    />
-
-                    {/* Sparkle in header */}
-                    <Sparkles
-                      className={`absolute top-3 right-16 w-4 h-4 ${theme.spark} opacity-60 hsyl-twinkle`}
-                    />
-                  </button>
-
-                  {/* Accordion content */}
-                  {isOpen && (
-                    <div className="px-6 sm:px-10 pb-6 sm:pb-10 space-y-8 relative">
-                      {/* Small dot pattern inside */}
-                      <div
-                        aria-hidden
-                        className="pointer-events-none absolute inset-0 opacity-[0.04]
-                          bg-[radial-gradient(#0B0B1A_1px,transparent_1px)]
-                          [background-size:20px_20px]"
-                      />
-
-                      <div className="relative z-[2] space-y-8 pt-6">
-                        {/* मुख्य फोकस */}
-                        <div className={`rounded-xl border-2 px-5 py-4 ${theme.focusBg}`}>
-                          <p className={`text-base font-bold ${theme.focusText} flex items-center gap-2`}>
-                            <Target className="w-4 h-4 hsyl-badge-bounce" />
-                            {'मुख्य फोकस'}
-                          </p>
-                          <p className="mt-1.5 text-medium text-black leading-relaxed">{active.reading}</p>
-                        </div>
-
-                        {/* व्याकरण एवं शब्द-ज्ञान */}
-                        <div>
-                          <p className={`rounded-lg border-2 ${theme.chipBg} px-5 py-2.5 text-base font-bold inline-flex items-center gap-2 shadow-sm`}>
-                            <BookOpenCheck className="h-4 w-4" />
-                            {'व्याकरण एवं शब्द-ज्ञान'}
-                          </p>
-                          <div className="mt-5 grid gap-7 sm:grid-cols-2">
-                            {active.grammar.map((g) => (
-                              <div key={g.title}
-                                className="rounded-xl border-2 border-slate-100 p-4
-                                  hover:border-current transition-colors duration-500
-                                  hover:shadow-md"
-                                style={{ ['--tw-border-opacity' as any]: 1 }}>
-                                <p className={`text-lg font-bold ${theme.titleColor} flex items-center gap-2`}>
-                                  <Star className={`w-4 h-4 ${theme.spark} fill-current`} />
-                                  {g.title}
-                                </p>
-                                <ul className="mt-2 space-y-1.5">
-                                  {g.items.map((it) => (
-                                    <li key={it}
-                                      className="text-medium text-black leading-relaxed pl-4 relative
-                                        before:content-['—'] before:absolute before:left-0 before:font-bold before:text-black">
-                                      {it}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* सामान्य ज्ञान */}
-                        <div>
-                          <p className={`rounded-lg border-2 ${theme.chipBg} px-5 py-2.5 text-base font-bold inline-flex items-center gap-2 shadow-sm`}>
-                            <Zap className="w-4 h-4" />
-                            {'सामान्य ज्ञान'}
-                          </p>
-                          <div className="mt-4 flex flex-wrap gap-2.5">
-                            {active.general.map((it) => (
-                              <span
-                                key={it}
-                                className={`text-medium font-bold bg-white border-2 rounded-full px-4 py-2
-                                  text-black
-                                  ${theme.numBorder}
-                                  hover:scale-105 hover:shadow-md transition-all duration-300`}
-                              >
-                                {it}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Quote (only present for class 5) */}
-                        {active.quote && (
-                          <div className={`relative overflow-hidden rounded-xl border-l-4 px-5 py-4 hsyl-quote-fade ${theme.focusBg}`}>
-                            <div aria-hidden className={`absolute -top-6 -right-6 w-24 h-24 rounded-full ${theme.spark} opacity-10 blur-2xl`} />
-                            <Heart className={`w-5 h-5 ${theme.iconColor} hsyl-twinkle`} />
-                            <p className="mt-2 text-medium italic text-black leading-relaxed">
-                              {'“' + active.quote.text + '”'}
-                            </p>
-                            <p className={`mt-2 text-sm font-bold ${theme.titleColor}`}>
-                              {'— ' + active.quote.author}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
+                <div>
+                  <h3 className={`font-playfair text-2xl font-bold transition-colors duration-500
+                    ${isOpen ? theme.titleColor : 'text-slate-900 dark:text-white'}`}>
+                    {'कक्षा ' + active.grade + ' — हिंदी पाठ्यक्रम'}
+                  </h3>
+                  <p className="text-sm text-gray-800 mt-0.5 font-medium">
+                    {'भारती भाषा ओलंपियाड · अपनी भाषा, अपनी पहचान'}
+                  </p>
                 </div>
-              );
-            })}
+              </div>
+
+              {/* Chevron */}
+              <ChevronDown
+                className={`relative z-[2] h-6 w-6 shrink-0 transition-all duration-500
+                  ${isOpen
+                    ? `rotate-180 scale-110 ${theme.iconColor}`
+                    : 'text-slate-500 group-hover:text-slate-700'
+                  }`}
+              />
+
+              {/* Sparkle in header */}
+              <Sparkles
+                className={`absolute top-3 right-16 w-4 h-4 ${theme.spark} opacity-60 hsyl-twinkle`}
+              />
+            </button>
+
+            {/* Accordion content */}
+            {isOpen && (
+              <div className="px-6 sm:px-10 pb-6 sm:pb-10 space-y-8 relative">
+                {/* Small dot pattern inside */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 opacity-[0.04]
+                    bg-[radial-gradient(#0B0B1A_1px,transparent_1px)]
+                    [background-size:20px_20px]"
+                />
+
+                <div className="relative z-[2] space-y-8 pt-6">
+                  {/* मुख्य फोकस */}
+                  <div className={`rounded-xl border-2 px-5 py-4 ${theme.focusBg}`}>
+                    <p className={`text-base font-bold ${theme.focusText} flex items-center gap-2`}>
+                      <Target className="w-4 h-4 hsyl-badge-bounce" />
+                      {'मुख्य फोकस'}
+                    </p>
+                    <p className="mt-1.5 text-medium text-black leading-relaxed">{active.reading}</p>
+                  </div>
+
+                  {/* व्याकरण एवं शब्द-ज्ञान */}
+                  <div>
+                    <p className={`rounded-lg border-2 ${theme.chipBg} px-5 py-2.5 text-base font-bold inline-flex items-center gap-2 shadow-sm`}>
+                      <BookOpenCheck className="h-4 w-4" />
+                      {'व्याकरण एवं शब्द-ज्ञान'}
+                    </p>
+                    <div className="mt-5 grid gap-7 sm:grid-cols-2">
+                      {active.grammar.map((g) => (
+                        <div key={g.title}
+                          className="rounded-xl border-2 border-slate-100 p-4
+                            hover:border-current transition-colors duration-500
+                            hover:shadow-md">
+                          <p className={`text-lg font-bold ${theme.titleColor} flex items-center gap-2`}>
+                            <Star className={`w-4 h-4 ${theme.spark} fill-current`} />
+                            {g.title}
+                          </p>
+                          <ul className="mt-2 space-y-1.5">
+                            {g.items.map((it) => (
+                              <li key={it}
+                                className="text-medium text-black leading-relaxed pl-4 relative
+                                  before:content-['—'] before:absolute before:left-0 before:font-bold before:text-black">
+                                {it}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* सामान्य ज्ञान */}
+                  <div>
+                    <p className={`rounded-lg border-2 ${theme.chipBg} px-5 py-2.5 text-base font-bold inline-flex items-center gap-2 shadow-sm`}>
+                      <Zap className="w-4 h-4" />
+                      {'सामान्य ज्ञान'}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2.5">
+                      {active.general.map((it) => (
+                        <span
+                          key={it}
+                          className={`text-medium font-bold bg-white border-2 rounded-full px-4 py-2
+                            text-black
+                            ${theme.numBorder}
+                            hover:scale-105 hover:shadow-md transition-all duration-300`}
+                        >
+                          {it}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Quote (only present for class 5) */}
+                  {active.quote && (
+                    <div className={`relative overflow-hidden rounded-xl border-l-4 px-5 py-4 hsyl-quote-fade ${theme.focusBg}`}>
+                      <div aria-hidden className={`absolute -top-6 -right-6 w-24 h-24 rounded-full ${theme.spark} opacity-10 blur-2xl`} />
+                      <Heart className={`w-5 h-5 ${theme.iconColor} hsyl-twinkle`} />
+                      <p className="mt-2 text-medium italic text-black leading-relaxed">
+                        {'“' + active.quote.text + '”'}
+                      </p>
+                      <p className={`mt-2 text-sm font-bold ${theme.titleColor}`}>
+                        {'— ' + active.quote.author}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Download this grade's syllabus PDF */}
+                  <a
+                    href={syllabusPdfHref(active.grade)}
+                    download
+                    className={`inline-flex items-center gap-2 rounded-full text-white
+                      px-4 py-2 text-sm font-bold shadow bg-gradient-to-r ${theme.numBg}
+                      hover:scale-105 transition-transform duration-300`}
+                  >
+                    <Download className="w-4 h-4" />
+                    {`कक्षा ${active.grade} पाठ्यक्रम पीडीएफ डाउनलोड करें`}
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      </div>
-    </>
+        );
+      })}
+    </div>
   );
 };
 
-export default HindiSyllabusPage;
+export default HindiSyllabusAccordion;
