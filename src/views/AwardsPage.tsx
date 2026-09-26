@@ -74,19 +74,37 @@ const OrnamentalDivider: React.FC = () => (
   </div>
 );
 
+/** Top-right hanging medal with ribbon tails */
 const MedalSeal: React.FC<{ gradient: string; Icon: React.ElementType }> = ({
   gradient,
   Icon,
 }) => (
-  <div className="absolute -top-7 right-6 flex flex-col items-center pointer-events-none">
+  <div className="absolute -top-2 right-6 flex flex-col items-center pointer-events-none z-20">
     <div
-      className={`w-14 h-14 rounded-full ring-[3px] ring-white dark:ring-[#1A1414] bg-gradient-to-br ${gradient} flex items-center justify-center shadow-lg group-hover:rotate-6 group-hover:scale-110 transition-transform duration-500`}
+      className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-full
+        bg-gradient-to-br ${gradient}
+        flex items-center justify-center
+        shadow-[0_8px_22px_-6px_rgba(0,0,0,0.35)]
+        ring-[3px] ring-white
+        group-hover:scale-110 group-hover:rotate-6
+        transition-all duration-500`}
     >
-      <Icon className="w-6 h-6 text-white" />
+      <span aria-hidden className="absolute inset-1 rounded-full border border-white/40" />
+      <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-white drop-shadow-md" />
+      <span
+        aria-hidden
+        className="absolute top-1.5 left-2 w-2 h-2 rounded-full bg-white/70 blur-[2px]"
+      />
     </div>
-    <div className="flex -mt-1 gap-[3px] z-4">
-      <div className={`w-3 h-5 bg-gradient-to-b ${gradient} opacity-90`} style={{ clipPath: RIBBON_CLIP }} />
-      <div className={`w-3 h-5 bg-gradient-to-b ${gradient}`} style={{ clipPath: RIBBON_CLIP }} />
+    <div className="flex -mt-1 gap-[3px]">
+      <div
+        className={`w-3 h-5 bg-gradient-to-b ${gradient} opacity-95`}
+        style={{ clipPath: RIBBON_CLIP }}
+      />
+      <div
+        className={`w-3 h-5 bg-gradient-to-b ${gradient}`}
+        style={{ clipPath: RIBBON_CLIP }}
+      />
     </div>
   </div>
 );
@@ -155,13 +173,11 @@ export const AwardsPage: React.FC = () => {
           70%      { box-shadow: 0 0 0 14px rgba(199,154,45,0); }
           100%     { box-shadow: 0 0 0 0 rgba(199,154,45,0); }
         }
-        /* Elegant Art Deco fan pattern — slow drift */
         @keyframes aw3-fan-drift {
           0%   { background-position: 0 0; }
           100% { background-position: 0 60px; }
         }
 
-        /* ===== Utility classes ===== */
         .aw3-orb-a        { animation: aw3-orb-a 18s ease-in-out infinite; }
         .aw3-orb-b        { animation: aw3-orb-b 22s ease-in-out infinite; }
         .aw3-orb-c        { animation: aw3-orb-c 20s ease-in-out infinite; }
@@ -174,7 +190,6 @@ export const AwardsPage: React.FC = () => {
         .aw3-chakra-spin  { animation: aw3-chakra-spin 25s linear infinite; }
         .aw3-ring-pulse   { animation: aw3-ring-pulse 2.5s ease-out infinite; }
 
-        /* ===== ONE clean, elegant pattern: Art Deco fans ===== */
         .aw3-pattern {
           background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='60' viewBox='0 0 80 60'><g fill='none' stroke='%23C79A2D' stroke-width='0.7' stroke-linecap='round'><path d='M0 60 A40 40 0 0 1 80 60'/><path d='M10 60 A30 30 0 0 1 70 60'/><path d='M20 60 A20 20 0 0 1 60 60'/><path d='M30 60 A10 10 0 0 1 50 60'/></g></svg>");
           background-size: 80px 60px;
@@ -189,20 +204,20 @@ export const AwardsPage: React.FC = () => {
         <div className="absolute top-0 left-0 right-0 h-1
           bg-gradient-to-r from-rose-500 via-amber-400 via-emerald-400 via-blue-500 via-purple-500 to-rose-500 aw3-border-flow" />
 
-        {/* ============ ONE elegant background pattern ============ */}
+        {/* Background pattern */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-[0.06] aw3-pattern"
         />
 
-        {/* ============ DRIFTING COLOR ORBS (softer) ============ */}
+        {/* Drifting color orbs */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute top-[8%] left-[6%] w-72 h-72 rounded-full bg-amber-300/25 blur-3xl aw3-orb-a" />
           <div className="absolute top-[28%] right-[6%] w-64 h-64 rounded-full bg-rose-300/20 blur-3xl aw3-orb-b" />
           <div className="absolute bottom-[12%] left-[35%] w-72 h-72 rounded-full bg-purple-300/20 blur-3xl aw3-orb-c" />
         </div>
 
-        {/* ============ LIGHT SWEEP ============ */}
+        {/* Light sweep */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3
@@ -210,14 +225,14 @@ export const AwardsPage: React.FC = () => {
             skew-x-[-25deg] aw3-sweep"
         />
 
-        {/* ============ A FEW subtle twinkling stars ============ */}
+        {/* Twinkling stars */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute top-[18%] left-[18%] w-1.5 h-1.5 rounded-full bg-amber-400 aw3-twinkle" />
           <div className="absolute top-[48%] right-[20%] w-1.5 h-1.5 rounded-full bg-rose-400 aw3-twinkle [animation-delay:1s]" />
           <div className="absolute bottom-[30%] left-[45%] w-1.5 h-1.5 rounded-full bg-emerald-400 aw3-twinkle [animation-delay:2s]" />
         </div>
 
-        {/* ============ 4 floating olympiad icons (softer) ============ */}
+        {/* Floating olympiad icons */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute top-[12%] left-[8%] text-amber-500/15 aw3-float">
             <Trophy className="w-14 h-14" />
@@ -259,39 +274,71 @@ export const AwardsPage: React.FC = () => {
               </h2>
               <OrnamentalDivider />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
-              {awards.map((aw) => {
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-16">
+              {awards.map((aw, idx) => {
                 const Icon = iconMap[aw.icon] || Award;
                 const gradient = aw.color || 'from-gray-600 to-gray-700';
+
+                const CARD_THEMES = [
+                  { border: "border-amber-200/80", hoverBorder: "hover:border-amber-400", glow: "hover:shadow-amber-500/30", accent: "bg-amber-400", corner: "bg-amber-200/50" },
+                  { border: "border-slate-200/90", hoverBorder: "hover:border-slate-400", glow: "hover:shadow-slate-400/30", accent: "bg-slate-400", corner: "bg-slate-200/60" },
+                  { border: "border-orange-200/80", hoverBorder: "hover:border-orange-400", glow: "hover:shadow-orange-500/30", accent: "bg-orange-400", corner: "bg-orange-200/50" },
+                  { border: "border-blue-200/80", hoverBorder: "hover:border-blue-400", glow: "hover:shadow-blue-500/30", accent: "bg-blue-400", corner: "bg-blue-200/50" },
+                  { border: "border-emerald-200/80", hoverBorder: "hover:border-emerald-400", glow: "hover:shadow-emerald-500/30", accent: "bg-emerald-400", corner: "bg-emerald-200/50" },
+                  { border: "border-purple-200/80", hoverBorder: "hover:border-purple-400", glow: "hover:shadow-purple-500/30", accent: "bg-purple-400", corner: "bg-purple-200/50" },
+                  { border: "border-teal-200/80", hoverBorder: "hover:border-teal-400", glow: "hover:shadow-teal-500/30", accent: "bg-teal-400", corner: "bg-teal-200/50" },
+                  { border: "border-rose-200/80", hoverBorder: "hover:border-rose-400", glow: "hover:shadow-rose-500/30", accent: "bg-rose-400", corner: "bg-rose-200/50" },
+                ];
+                const theme = CARD_THEMES[idx % CARD_THEMES.length];
+
                 return (
                   <div
                     key={aw.id}
-                    className="group relative bg-gradient-to-b from-white to-amber-50/60 dark:from-[#1A1414] dark:to-[#140F0F] pt-9 pb-6 px-6 rounded-2xl border border-amber-200/70 dark:border-gray-800 shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+                    className={`group relative bg-gradient-to-b from-white to-amber-50/40
+                      pt-14 pb-6 px-6 rounded-2xl border
+                      ${theme.border} ${theme.hoverBorder}
+                      shadow-md ${theme.glow}
+                      hover:shadow-2xl hover:-translate-y-2
+                      transition-all duration-500 overflow-visible`}
                   >
+                    <MedalSeal gradient={gradient} Icon={Icon} />
+
                     <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
                       <div className="absolute top-0 -left-full h-full w-1/2
                         bg-gradient-to-r from-transparent via-white/60 to-transparent
                         skew-x-[-25deg] group-hover:animate-[aw3-sweep_1.2s_ease-out]" />
                     </div>
 
-                    <div aria-hidden className="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full bg-amber-200/40 blur-3xl opacity-40 group-hover:opacity-80 transition-opacity duration-500" />
+                    <div
+                      aria-hidden
+                      className={`pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full ${theme.corner} blur-3xl opacity-40 group-hover:opacity-80 transition-opacity duration-500`}
+                    />
 
-                    <MedalSeal gradient={gradient} Icon={Icon} />
                     <div className="relative space-y-3 z-10">
                       <span
-                        className="inline-block text-[12px] pt-2 font-bold uppercase tracking-wider text-white px-3 py-1 bg-gradient-to-r from-blue-950 to-blue-900"
+                        className="inline-block text-[12px] font-bold uppercase tracking-wider text-white
+                          px-3 py-1 bg-gradient-to-r from-blue-950 to-blue-900
+                          shadow-sm group-hover:shadow-md group-hover:scale-105
+                          transition-all duration-300"
                         style={{ clipPath: PENNANT_CLIP }}
                       >
                         {levelLabel[aw.level] || aw.level}
                       </span>
-                      <h3 className="font-bold text-2xl text-gray-900 dark:text-white">
+
+                      <h3 className="font-bold text-2xl text-gray-900 dark:text-white leading-snug
+                        group-hover:text-blue-950 transition-colors duration-300">
                         {aw.title}
                       </h3>
+
                       {aw.description && (
                         <p className="text-base text-gray-800 dark:text-gray-400 leading-relaxed">
                           {aw.description}
                         </p>
                       )}
+
+                      <div className={`h-[3px] w-8 rounded-full ${theme.accent}
+                        group-hover:w-20 transition-all duration-500`} />
                     </div>
                   </div>
                 );
@@ -308,7 +355,7 @@ export const AwardsPage: React.FC = () => {
             className='mt-15'
           />
 
-          {/* Scholarships Section */}
+          {/* ============ Scholarships Section — NOW COLORFUL ============ */}
           <div className="space-y-8">
             <div className="text-center space-y-3">
               <h2 className="text-3xl sm:text-4xl font-bold font-heading-hi text-red-950 dark:text-white">
@@ -316,31 +363,158 @@ export const AwardsPage: React.FC = () => {
               </h2>
               <OrnamentalDivider />
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {scholarships.map((s) => {
+              {scholarships.map((s, idx) => {
                 const Icon = iconMap[s.icon] || Sparkles;
+
+                // 6 colorful scholarship themes (rotating)
+                const SCHOLARSHIP_THEMES = [
+                  {
+                    bg: "from-amber-50 via-yellow-50 to-orange-50",
+                    border: "border-amber-300",
+                    hoverBorder: "hover:border-amber-500",
+                    ring: "border-amber-400",
+                    glow: "hover:shadow-amber-500/40",
+                    title: "text-amber-900",
+                    iconShadow: "shadow-amber-500/50",
+                    spark: "text-amber-500",
+                    accent: "bg-amber-500",
+                  },
+                  {
+                    bg: "from-blue-50 via-cyan-50 to-sky-50",
+                    border: "border-blue-300",
+                    hoverBorder: "hover:border-blue-500",
+                    ring: "border-blue-400",
+                    glow: "hover:shadow-blue-500/40",
+                    title: "text-blue-900",
+                    iconShadow: "shadow-blue-500/50",
+                    spark: "text-blue-500",
+                    accent: "bg-blue-500",
+                  },
+                  {
+                    bg: "from-emerald-50 via-teal-50 to-green-50",
+                    border: "border-emerald-300",
+                    hoverBorder: "hover:border-emerald-500",
+                    ring: "border-emerald-400",
+                    glow: "hover:shadow-emerald-500/40",
+                    title: "text-emerald-900",
+                    iconShadow: "shadow-emerald-500/50",
+                    spark: "text-emerald-500",
+                    accent: "bg-emerald-500",
+                  },
+                  {
+                    bg: "from-purple-50 via-fuchsia-50 to-violet-50",
+                    border: "border-purple-300",
+                    hoverBorder: "hover:border-purple-500",
+                    ring: "border-purple-400",
+                    glow: "hover:shadow-purple-500/40",
+                    title: "text-purple-900",
+                    iconShadow: "shadow-purple-500/50",
+                    spark: "text-purple-500",
+                    accent: "bg-purple-500",
+                  },
+                  {
+                    bg: "from-rose-50 via-pink-50 to-red-50",
+                    border: "border-rose-300",
+                    hoverBorder: "hover:border-rose-500",
+                    ring: "border-rose-400",
+                    glow: "hover:shadow-rose-500/40",
+                    title: "text-rose-900",
+                    iconShadow: "shadow-rose-500/50",
+                    spark: "text-rose-500",
+                    accent: "bg-rose-500",
+                  },
+                  {
+                    bg: "from-indigo-50 via-blue-50 to-violet-50",
+                    border: "border-indigo-300",
+                    hoverBorder: "hover:border-indigo-500",
+                    ring: "border-indigo-400",
+                    glow: "hover:shadow-indigo-500/40",
+                    title: "text-indigo-900",
+                    iconShadow: "shadow-indigo-500/50",
+                    spark: "text-indigo-500",
+                    accent: "bg-indigo-500",
+                  },
+                ];
+                const theme = SCHOLARSHIP_THEMES[idx % SCHOLARSHIP_THEMES.length];
+
                 return (
                   <div
                     key={s.id}
-                    className="group relative bg-white/90 dark:bg-[#1A1414] p-6 rounded-2xl border border-amber-200/60 dark:border-gray-800 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 text-center space-y-3 overflow-hidden"
+                    className={`group relative p-6 rounded-2xl border-2
+                      bg-gradient-to-br ${theme.bg}
+                      ${theme.border} ${theme.hoverBorder}
+                      shadow-lg ${theme.glow}
+                      hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02]
+                      transition-all duration-500 ease-out
+                      text-center space-y-3 overflow-hidden`}
                   >
+                    {/* Shine sweep */}
                     <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
                       <div className="absolute top-0 -left-full h-full w-1/2
-                        bg-gradient-to-r from-transparent via-amber-100/60 to-transparent
+                        bg-gradient-to-r from-transparent via-white/70 to-transparent
                         skew-x-[-25deg] group-hover:animate-[aw3-sweep_1.2s_ease-out]" />
                     </div>
 
-                    <div className="relative w-20 h-20 mx-auto">
-                      <div className="absolute inset-0 rounded-full border-2 border-dashed border-amber-500/70 group-hover:rotate-45 transition-transform duration-700 aw3-ring-pulse" />
+                    {/* Corner glow */}
+                    <div
+                      aria-hidden
+                      className={`pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full ${theme.accent} opacity-20 blur-3xl
+                        group-hover:opacity-40 transition-opacity duration-500`}
+                    />
+
+                    {/* Bottom accent bar */}
+                    <div
+                      aria-hidden
+                      className={`pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-1 ${theme.accent}
+                        w-8 group-hover:w-32 rounded-full transition-all duration-500`}
+                    />
+
+                    {/* Icon medallion with animated dashed ring */}
+                    <div className="relative w-24 h-24 mx-auto">
                       <div
-                        className={`absolute inset-1.5 rounded-full bg-gradient-to-br ${s.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500`}
+                        className={`absolute inset-0 rounded-full border-2 border-dashed ${theme.ring} opacity-80
+                          group-hover:rotate-[135deg] transition-transform duration-700 aw3-ring-pulse`}
+                      />
+                      <div
+                        aria-hidden
+                        className={`absolute inset-2 rounded-full ${theme.accent} opacity-15 blur-md
+                          group-hover:opacity-40 transition-opacity duration-500`}
+                      />
+                      <div
+                        className={`absolute inset-3 rounded-full bg-gradient-to-br ${s.color}
+                          flex items-center justify-center
+                          shadow-xl ${theme.iconShadow} ring-4 ring-white/70
+                          group-hover:scale-110 group-hover:rotate-12
+                          transition-transform duration-500`}
                       >
-                        <Icon className="w-8 h-8 text-white" />
+                        <Icon className="w-8 h-8 text-white drop-shadow-md" />
                       </div>
+
+                      {/* Sparkle badge */}
+                      <span
+                        aria-hidden
+                        className={`absolute -top-1 -right-1 w-6 h-6 rounded-full bg-white shadow-md
+                          flex items-center justify-center text-xs font-black ${theme.spark}
+                          group-hover:scale-110 group-hover:rotate-180 transition-all duration-500`}
+                      >
+                        ✦
+                      </span>
                     </div>
-                    <h3 className="font-bold text-2xl text-gray-900 dark:text-white relative z-10">
+
+                    {/* Title */}
+                    <h3 className={`font-bold text-2xl ${theme.title} relative z-10 leading-snug`}>
                       {s.title}
                     </h3>
+
+                    {/* Colored underline under title */}
+                    <div
+                      className={`h-1 w-12 mx-auto rounded-full bg-gradient-to-r ${s.color}
+                        group-hover:w-20 transition-all duration-500`}
+                    />
+
+                    {/* Description */}
                     <p className="text-medium text-gray-800 dark:text-gray-400 leading-relaxed relative z-10">
                       {s.description}
                     </p>
@@ -358,14 +532,14 @@ export const AwardsPage: React.FC = () => {
               </h2>
               <OrnamentalDivider />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-16">
               {schoolTeacherAwards.map((aw) => {
                 const Icon = iconMap[aw.icon] || Award;
                 const gradient = aw.color || 'from-gray-600 to-gray-700';
                 return (
                   <div
                     key={aw.id}
-                    className="group relative bg-gradient-to-b from-white to-amber-50/60 dark:from-[#1A1414] dark:to-[#140F0F] pt-9 pb-6 px-6 rounded-2xl border border-amber-200/70 dark:border-gray-800 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 overflow-hidden"
+                    className="group relative bg-gradient-to-b from-white to-amber-50/60 dark:from-[#1A1414] dark:to-[#140F0F] pt-14 pb-6 px-6 rounded-2xl border border-amber-200/70 dark:border-gray-800 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 overflow-visible"
                   >
                     <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
                       <div className="absolute top-0 -left-full h-full w-1/2
@@ -396,7 +570,6 @@ export const AwardsPage: React.FC = () => {
             <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#C79A2D]/15 rounded-full blur-3xl pointer-events-none aw3-orb-a" />
             <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-[#C79A2D]/15 rounded-full blur-3xl pointer-events-none aw3-orb-b" />
 
-            {/* Same elegant fan pattern inside */}
             <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.07] aw3-pattern rounded-3xl" />
 
             <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
@@ -463,7 +636,6 @@ export const AwardsPage: React.FC = () => {
               <div className="absolute -top-16 -left-16 w-48 h-48 bg-[#C79A2D]/20 rounded-full blur-3xl pointer-events-none aw3-orb-a" />
               <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-[#C79A2D]/20 rounded-full blur-3xl pointer-events-none aw3-orb-b" />
 
-              {/* Elegant fan pattern inside quote */}
               <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.08] aw3-pattern rounded-2xl" />
 
               <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">

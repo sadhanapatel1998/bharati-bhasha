@@ -333,6 +333,7 @@ export const HindiSubject: React.FC = () => {
         </div>
 
         {/* ============ Sample Paper ============ */}
+        {/* ============ Sample Paper ============ */}
         <div id="sample-paper" className="scroll-mt-24 space-y-5">
           <SectionHeading
             icon={ScrollText}
@@ -342,9 +343,10 @@ export const HindiSubject: React.FC = () => {
           />
 
           <div className="space-y-4">
-            {/* Only show grades that actually have a sample paper available */}
-            {GRADES.filter((g) => g.samplePaperAvailable).map((g, idx) => {
+            {/* Show ALL grades — but only 1 & 2 have real downloads */}
+            {GRADES.map((g) => {
               const isOpen = g.id === openSampleGrade;
+              const isAvailable = g.samplePaperAvailable;
 
               return (
                 <div
@@ -365,22 +367,36 @@ export const HindiSubject: React.FC = () => {
               p-5 sm:p-6 text-left group"
                   >
                     <div className="flex items-center gap-4">
-                      {/* Icon badge — soft colored circle */}
-                      <span className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl
-                bg-gradient-to-br ${g.color} text-white
-                shadow-lg shadow-rose-500/20
-                transition-transform duration-500
-                ${isOpen ? 'rotate-6 scale-110' : 'group-hover:rotate-6 group-hover:scale-110'}`}>
+                      {/* Icon badge */}
+                      <span
+                        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl
+                  text-white shadow-lg transition-transform duration-500
+                  ${isAvailable
+                            ? `bg-gradient-to-br ${g.color} shadow-rose-500/20`
+                            : `bg-slate-300 shadow-slate-200`
+                          }
+                  ${isOpen ? 'rotate-6 scale-110' : 'group-hover:rotate-6 group-hover:scale-110'}`}
+                      >
                         <GraduationCap className="w-7 h-7" />
                       </span>
 
                       <div>
-                        <h3 className={`font-playfair text-2xl font-black tracking-tight
-                  bg-gradient-to-r ${g.color} bg-clip-text text-transparent`}>
+                        <h3
+                          className={`font-playfair text-2xl font-black tracking-tight
+                    ${isAvailable
+                              ? `bg-gradient-to-r ${g.color} bg-clip-text text-transparent`
+                              : 'text-slate-400'
+                            }`}
+                        >
                           {`कक्षा ${g.id}`}
                         </h3>
-                        <p className="text-sm text-slate-500 font-medium mt-0.5">
-                          {'भारती भाषा ओलंपियाड · हिंदी'}
+                        <p className="text-sm text-slate-500 font-medium mt-0.5 flex items-center gap-2">
+                          <span>{'भारती भाषा ओलंपियाड · हिंदी'}</span>
+                          {!isAvailable && (
+                            <span className="text-[11px] font-bold bg-slate-100 text-slate-500 rounded-full px-2 py-0.5">
+                              जल्द उपलब्ध
+                            </span>
+                          )}
                         </p>
                       </div>
                     </div>
@@ -395,61 +411,78 @@ export const HindiSubject: React.FC = () => {
                   {isOpen && (
                     <div className="px-5 sm:px-6 pb-6 pt-0">
                       <div className="border-t border-slate-100 pt-5">
-                        <a
-                          href={g.samplePaperHref}
-                          download
-                          className={`group/btn relative flex sm:inline-flex items-center justify-between gap-2 sm:gap-3
-    w-full sm:w-auto
-    rounded-full
-    bg-gradient-to-r ${g.color}
-    pl-5 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2
-    text-white font-bold text-sm sm:text-base
-    shadow-lg shadow-rose-500/30
-    hover:shadow-xl hover:shadow-rose-500/40
-    sm:hover:scale-[1.03]
-    active:scale-95
-    transition-all duration-500 ease-out
-    overflow-hidden`}
-                        >
-                          {/* Shine sweep */}
-                          <span className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
-                            <span className="absolute top-0 -left-full h-full w-1/2
-      bg-gradient-to-r from-transparent via-white/40 to-transparent
-      skew-x-[-25deg]
-      group-hover/btn:animate-[hsyl-sweep_1s_ease-out]" />
-                          </span>
-
-                          {/* Label — shorter on mobile */}
-                          <span className="relative z-10 text-left leading-tight">
-                            <span className="hidden sm:inline">
-                              {`कक्षा ${g.id} का प्रतिदर्श प्रश्नपत्र डाउनलोड करें`}
+                        {isAvailable ? (
+                          /* ===== Real download for classes 1 & 2 ===== */
+                          <a
+                            href={g.samplePaperHref}
+                            download
+                            className={`group/btn relative flex sm:inline-flex items-center justify-between gap-2 sm:gap-3
+                      w-full sm:w-auto rounded-full
+                      bg-gradient-to-r ${g.color}
+                      pl-5 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2
+                      text-white font-bold text-sm sm:text-base
+                      shadow-lg shadow-rose-500/30
+                      hover:shadow-xl hover:shadow-rose-500/40
+                      sm:hover:scale-[1.03] active:scale-95
+                      transition-all duration-500 ease-out overflow-hidden`}
+                          >
+                            {/* Shine sweep */}
+                            <span className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
+                              <span className="absolute top-0 -left-full h-full w-1/2
+                        bg-gradient-to-r from-transparent via-white/40 to-transparent
+                        skew-x-[-25deg]
+                        group-hover/btn:animate-[hsyl-sweep_1s_ease-out]" />
                             </span>
-                            <span className="inline sm:hidden">
-                              {`कक्षा ${g.id} प्रश्नपत्र डाउनलोड करें`}
-                            </span>
-                          </span>
 
-                          {/* Circular icon badge — smaller on mobile */}
-                          <span className="relative z-10 flex h-9 w-9 sm:h-10 sm:w-10 shrink-0
-    items-center justify-center
-    rounded-full bg-white/20 backdrop-blur-sm
-    ring-1 ring-white/40
-    group-hover/btn:bg-white/30 group-hover/btn:rotate-12
-    transition-all duration-500">
-                            <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-                          </span>
-                        </a>
+                            {/* Label */}
+                            <span className="relative z-10 text-left leading-tight">
+                              <span className="hidden sm:inline">
+                                {`कक्षा ${g.id} का प्रतिदर्श प्रश्नपत्र डाउनलोड करें`}
+                              </span>
+                              <span className="inline sm:hidden">
+                                {`कक्षा ${g.id} प्रश्नपत्र डाउनलोड करें`}
+                              </span>
+                            </span>
+
+                            {/* Circular icon badge */}
+                            <span className="relative z-10 flex h-9 w-9 sm:h-10 sm:w-10 shrink-0
+                      items-center justify-center rounded-full bg-white/20 backdrop-blur-sm
+                      ring-1 ring-white/40
+                      group-hover/btn:bg-white/30 group-hover/btn:rotate-12
+                      transition-all duration-500">
+                              <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+                            </span>
+                          </a>
+                        ) : (
+                          /* ===== Coming soon — disabled # link ===== */
+                          <a
+                            href="#"
+                            onClick={(e) => e.preventDefault()}
+                            className="group/btn relative flex sm:inline-flex items-center justify-between gap-2 sm:gap-3
+                      w-full sm:w-auto rounded-full
+                      bg-slate-200 text-slate-500 cursor-not-allowed
+                      pl-5 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2
+                      font-bold text-sm sm:text-base
+                      border border-slate-300
+                      transition-all duration-300"
+                          >
+                            <span className="relative z-10 text-left leading-tight">
+                              {`कक्षा ${g.id} का प्रतिदर्श प्रश्नपत्र जल्द उपलब्ध होगा`}
+                            </span>
+
+                            <span className="relative z-10 flex h-9 w-9 sm:h-10 sm:w-10 shrink-0
+                      items-center justify-center rounded-full bg-white/60
+                      ring-1 ring-slate-300">
+                              <Download className="w-4 h-4 sm:w-5 sm:h-5 opacity-50" />
+                            </span>
+                          </a>
+                        )}
                       </div>
                     </div>
                   )}
                 </div>
               );
             })}
-
-            {/* Helper text */}
-            <p className="text-center text-sm font-medium text-slate-500 pt-2">
-              कक्षा 3 से 10 तक के प्रतिदर्श प्रश्नपत्र जल्द ही उपलब्ध कराए जाएँगे।
-            </p>
           </div>
         </div>
       </div>
