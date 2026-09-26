@@ -462,14 +462,45 @@ export const Footer: React.FC = () => {
               </h4>
               <ul className="space-y-2 text-base text-gray-200">
                 <li>
-                  <Link href="/syllabus"
+                  <Link href="/hindi-syllabus"
                     className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5
                       hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold">
                     <ChevronRight className="w-4 h-4 text-emerald-400" />
-                    {"पाठ्यक्रम (कक्षा 1 से 10)"}
+                    {"हिंदी पाठ्यक्रम"}
                   </Link>
                 </li>
+
                 <li>
+                  <Link
+                    href="/sanskrit-syllabus"
+                    className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5 hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold"
+                  >
+                    <ChevronRight className="w-4 h-4 text-emerald-400" />
+                    {"संस्कृत पाठ्यक्रम"}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/hindi"
+                    className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5 hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold"
+                  >
+                    <ChevronRight className="w-4 h-4 text-emerald-400" />
+                    {"हिंदी मॉडल"}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/sanskrit"
+                    className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5 hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold"
+                  >
+                    <ChevronRight className="w-4 h-4 text-emerald-400" />
+                    {"संस्कृत मॉडल"}
+                  </Link>
+                </li>
+
+                {/* <li>
                   <Link href="/exam-dates"
                     className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5
                       hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-bold">
@@ -484,23 +515,16 @@ export const Footer: React.FC = () => {
                     <ChevronRight className="w-4 h-4 text-emerald-400" />
                     {"परीक्षा प्रारूप"}
                   </Link>
-                </li>
-                <li>
-                  <Link href="/sample-papers"
-                    className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5
-                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold">
-                    <ChevronRight className="w-4 h-4 text-emerald-400" />
-                    {"मॉडल प्रश्न पत्र (PDF)"}
-                  </Link>
-                </li>
-                <li>
+                </li> */}
+
+                {/* <li>
                   <Link href="/performance-report"
                     className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5
                       hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold">
                     <ChevronRight className="w-4 h-4 text-emerald-400" />
                     {"परिणाम व स्कोर कार्ड"}
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link href="/faqs"
                     className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5
