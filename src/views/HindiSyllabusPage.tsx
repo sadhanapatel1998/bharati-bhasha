@@ -152,8 +152,8 @@ export const HindiSyllabusPage: React.FC = () => {
         bg-gradient-to-br from-amber-50/70 via-white to-blue-50/50">
 
         {/* Rainbow animated top border */}
-        <div className="absolute top-0 left-0 right-0 h-1
-          bg-gradient-to-r from-rose-500 via-amber-400 via-emerald-400 via-blue-500 via-purple-500 to-rose-500 hsyl-border-flow" />
+        {/* <div className="absolute top-0 left-0 right-0 h-1
+          bg-gradient-to-r from-rose-500 via-amber-400 via-emerald-400 via-blue-500 via-purple-500 to-rose-500 hsyl-border-flow" /> */}
 
         {/* ============ BACKGROUND LAYERS ============ */}
 

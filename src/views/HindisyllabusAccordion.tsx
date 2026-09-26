@@ -133,7 +133,7 @@ const GRADE_THEMES = [
  * Drop this in wherever the curriculum needs to live (e.g. inside HindiSubject).
  */
 export const HindiSyllabusAccordion: React.FC = () => {
-  const [openGrade, setOpenGrade] = useState<string>(CLASS_SYLLABUS[0].grade);
+ const [openGrade, setOpenGrade] = useState<string>('');
 
   return (
     <div className="space-y-5">
@@ -193,7 +193,7 @@ export const HindiSyllabusAccordion: React.FC = () => {
                 </span>
 
                 <div>
-                  <h3 className={`font-playfair text-2xl font-bold transition-colors duration-500
+                  <h3 className={`font-playfair text-xl md:text-2xl font-bold transition-colors duration-500
                     ${isOpen ? theme.titleColor : 'text-slate-900 dark:text-white'}`}>
                     {'कक्षा ' + active.grade + ' — हिंदी पाठ्यक्रम'}
                   </h3>
@@ -304,17 +304,6 @@ export const HindiSyllabusAccordion: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Download this grade's syllabus PDF */}
-                  <a
-                    href={syllabusPdfHref(active.grade)}
-                    download
-                    className={`inline-flex items-center gap-2 rounded-full text-white
-                      px-4 py-2 text-sm font-bold shadow bg-gradient-to-r ${theme.numBg}
-                      hover:scale-105 transition-transform duration-300`}
-                  >
-                    <Download className="w-4 h-4" />
-                    {`कक्षा ${active.grade} पाठ्यक्रम पीडीएफ डाउनलोड करें`}
-                  </a>
                 </div>
               </div>
             )}

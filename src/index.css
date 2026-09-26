@@ -2389,3 +2389,126 @@ html.dark {
         .ssk-badge-bounce   { animation: ssk-badge-bounce 2.5s ease-in-out infinite; }
         .ssk-mandala-spin   { animation: ssk-mandala-spin 60s linear infinite; }
         .ssk-om-pulse       { animation: ssk-om-pulse 8s ease-in-out infinite; }
+
+
+                /* Nav */
+        @keyframes snav-shimmer {
+          0%, 100% { transform: translateX(-100%); opacity: 0; }
+          50%      { transform: translateX(100%);  opacity: 1; }
+        }
+        @keyframes snav-glow {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(30,58,138,0.5); }
+          70%      { box-shadow: 0 0 0 10px rgba(30,58,138,0); }
+          100%     { box-shadow: 0 0 0 0 rgba(30,58,138,0); }
+        }
+        @keyframes snav-sparkle {
+          0%, 100% { opacity: 0.4; transform: scale(0.85) rotate(0deg); }
+          50%      { opacity: 1;   transform: scale(1.2)  rotate(180deg); }
+        }
+        @keyframes snav-shine {
+          0%   { transform: translateX(-150%) skewX(-25deg); opacity: 0; }
+          20%  { opacity: 1; }
+          80%  { opacity: 1; }
+          100% { transform: translateX(400%) skewX(-25deg); opacity: 0; }
+        }
+        @keyframes snav-slide-in {
+          0%   { opacity: 0; transform: translateY(8px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        .snav-glow     { animation: snav-glow 2.8s ease-out infinite; }
+        .snav-sparkle  { animation: snav-sparkle 3s ease-in-out infinite; }
+        .snav-slide-in { animation: snav-slide-in 0.4s ease-out both; }
+
+        /* Skills */
+        @keyframes sk-orb-a {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50%      { transform: translate(50px, -35px) scale(1.15); }
+        }
+        @keyframes sk-orb-b {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50%      { transform: translate(-45px, 35px) scale(1.12); }
+        }
+        @keyframes sk-spin-slow { to { transform: rotate(360deg); } }
+        @keyframes sk-spin-rev  { to { transform: rotate(-360deg); } }
+        @keyframes sk-twinkle {
+          0%, 100% { opacity: 0.35; transform: scale(0.85); }
+          50%      { opacity: 1;   transform: scale(1.25); }
+        }
+        @keyframes sk-shine {
+          0%   { transform: translateX(-150%) skewX(-25deg); opacity: 0; }
+          20%  { opacity: 1; }
+          80%  { opacity: 1; }
+          100% { transform: translateX(400%) skewX(-25deg); opacity: 0; }
+        }
+        @keyframes sk-icon-bounce {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50%      { transform: translateY(-6px) rotate(6deg); }
+        }
+        @keyframes sk-ring-pulse {
+          0%, 100% { box-shadow: 0 0 0 0 currentColor; opacity: 0.45; }
+          70%      { box-shadow: 0 0 0 14px currentColor; opacity: 0; }
+          100%     { box-shadow: 0 0 0 0 currentColor; opacity: 0; }
+        }
+        @keyframes sk-gradient-flow {
+          0%   { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
+        }
+        @keyframes sk-pop-in {
+          0%   { opacity: 0; transform: translateY(20px) scale(0.9); }
+          60%  { opacity: 1; transform: translateY(-4px) scale(1.03); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .sk-orb-a      { animation: sk-orb-a 16s ease-in-out infinite; }
+        .sk-orb-b      { animation: sk-orb-b 20s ease-in-out infinite; }
+        .sk-spin-slow  { animation: sk-spin-slow 24s linear infinite; }
+        .sk-spin-rev   { animation: sk-spin-rev 32s linear infinite; }
+        .sk-twinkle    { animation: sk-twinkle 2.5s ease-in-out infinite; }
+        .sk-icon-bounce{ animation: sk-icon-bounce 3s ease-in-out infinite; }
+        .sk-ring-pulse { animation: sk-ring-pulse 2.5s ease-out infinite; }
+        .sk-gradient-flow {
+          background-size: 200% 200%;
+          animation: sk-gradient-flow 6s ease infinite;
+        }
+        .sk-pop-in {
+          animation: sk-pop-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        /* Heading enhancements */
+        @keyframes skh-ring-pulse {
+          0%, 100% { box-shadow: 0 0 0 0 currentColor; opacity: 0.5; }
+          70%      { box-shadow: 0 0 0 12px currentColor; opacity: 0; }
+          100%     { box-shadow: 0 0 0 0 currentColor; opacity: 0; }
+        }
+        @keyframes skh-sparkle {
+          0%, 100% { opacity: 0.6; transform: scale(0.9) rotate(0deg); }
+          50%      { opacity: 1;   transform: scale(1.15) rotate(180deg); }
+        }
+        @keyframes skh-underline {
+          0%, 100% { width: 4rem; opacity: 0.7; }
+          50%      { width: 6rem; opacity: 1; }
+        }
+        .skh-ring-pulse { animation: skh-ring-pulse 2.8s ease-out infinite; }
+        .skh-sparkle    { animation: skh-sparkle 3s ease-in-out infinite; }
+        .skh-underline  { animation: skh-underline 3s ease-in-out infinite; }
+
+        /* Background fan pattern */
+        @keyframes hsbg-fan-drift {
+          0%   { background-position: 0 0; }
+          100% { background-position: 0 60px; }
+        }
+        .hsbg-fan {
+          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='60' viewBox='0 0 80 60'><g fill='none' stroke='%23C79A2D' stroke-width='0.7' stroke-linecap='round'><path d='M0 60 A40 40 0 0 1 80 60'/><path d='M10 60 A30 30 0 0 1 70 60'/><path d='M20 60 A20 20 0 0 1 60 60'/><path d='M30 60 A10 10 0 0 1 50 60'/></g></svg>");
+          background-size: 80px 60px;
+          animation: hsbg-fan-drift 30s linear infinite;
+        }
+
+        /* Hide scrollbar for Chrome, Safari, Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge, Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
