@@ -155,7 +155,7 @@ export const SanskritsyllabusAccordion: React.FC = () => {
                 </span>
 
                 <div>
-                  <h3 className={`font-playfair text-2xl font-bold transition-colors duration-500
+                  <h3 className={`font-playfair text-xl md:text-3xl font-bold transition-colors duration-500
                     ${isOpen ? theme.titleColor : 'text-slate-900 dark:text-white'}`}>
                     {'कक्षा ' + active.grade + ' — संस्कृत पाठ्यक्रम'}
                   </h3>

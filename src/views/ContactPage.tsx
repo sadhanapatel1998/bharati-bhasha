@@ -125,11 +125,9 @@ export const ContactPage: React.FC = () => {
                       <MapPin className="w-6 h-6" />
                     </div>
                     <div className="text-base">
-                      <h4 className="font-bold text-lg text-gray-900 dark:text-white">राष्ट्रीय कार्यालय पता</h4>
-                      <p className="text-medium text-gray-900 dark:text-gray-400 mt-1 leading-relaxed">
-                        भारती भाषा ओलंपियाड ट्रस्ट, 4th Floor, विद्या भवन,
-                        संस्थागत क्षेत्र, दीनदयाल उपाध्याय मार्ग,
-                        नई दिल्ली - 110002
+                      <h4 className="font-bold text-xl text-gray-900 dark:text-white">पता</h4>
+                      <p className="text-lg text-gray-900 dark:text-gray-400 mt-1 leading-relaxed">
+                        भारती भाषा ओलंपियाड : 05, अमिलाषा अपार्टमेंट, पॉकेट 3, रोहिणी, दिल्ली - 110085
                       </p>
                     </div>
                   </div>
@@ -141,10 +139,12 @@ export const ContactPage: React.FC = () => {
                     </div>
                     <div className="text-base">
                       <h4 className="font-bold text-lg text-gray-900 dark:text-white">हेल्पलाइन नंबर</h4>
-                      <p className="text-medium text-gray-800 dark:text-gray-400 mt-1">
-                        टोल-फ्री: <span className="font-bold text-red-800 dark:text-[#C79A2D]">1800-123-9876</span>
+                      <p className="text-lg text-gray-800 dark:text-gray-400 mt-1">
+                        <span className="font-bold  dark:text-[#C79A2D]">
+                          <a href="tel:919899783784" className="hover:underline">+91 98997 83784</a>
+                        </span>
                       </p>
-                      <p className="text-medium text-gray-900 font-semibold dark:text-gray-400">+91 11 2345 6789 / +91 98765 43210</p>
+                      {/* <p className="text-medium text-gray-900 font-semibold dark:text-gray-400">+91 11 2345 6789 / +91 98765 43210</p> */}
                     </div>
                   </div>
 
@@ -155,10 +155,11 @@ export const ContactPage: React.FC = () => {
                     </div>
                     <div className="text-base">
                       <h4 className="font-bold text-lg text-gray-900 dark:text-white">ईमेल पते</h4>
-                      <p className="text-base text-gray-800 dark:text-gray-400 mt-1 font-semibold">
-                        <span className="font-semibold">support@bharatibhasha.org</span>
+                      <p className="text-lg text-gray-800 dark:text-gray-400 mt-1 font-semibold">
+                        <span className="font-semibold">
+                          <a href="mailto:info@bhartiyabhasha.com" className="hover:underline">info@bhartiyabhasha.com</a>
+                        </span>
                       </p>
-                      <p className="text-base text-gray-800 dark:text-gray-400 font-semibold">info@bharatibhasha.org</p>
                     </div>
                   </div>
 
@@ -169,10 +170,10 @@ export const ContactPage: React.FC = () => {
                     </div>
                     <div className="text-base">
                       <h4 className="font-bold text-lg text-gray-900 dark:text-white">कार्यालय समय</h4>
-                      <p className="text-base text-gray-800 dark:text-gray-400 mt-1">
+                      <p className="text-lg text-gray-800 dark:text-gray-400 mt-1">
                         <span className="font-medium">सोम – शुक्र:</span> सुबह 9:00 – शाम 6:00 बजे
                       </p>
-                      <p className="text-base text-gray-800 dark:text-gray-400">
+                      <p className="text-lg text-gray-800 dark:text-gray-400">
                         <span className="font-medium">शनि:</span> सुबह 10:00 – दोपहर 2:00 बजे
                       </p>
                     </div>
@@ -230,7 +231,7 @@ export const ContactPage: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Name */}
                 <div className="space-y-1.5">
-                  <label className="flex items-center gap-1.5 text-base font-bold text-gray-700 dark:text-gray-300">
+                  <label className="flex items-center gap-1.5 text-lg font-bold text-gray-700 dark:text-gray-300">
                     <User className="w-4 h-4 text-[#C79A2D]" />
                     पूरा नाम <span className="text-red-600">*</span>
                   </label>
@@ -247,7 +248,7 @@ export const ContactPage: React.FC = () => {
 
                 {/* Email */}
                 <div className="space-y-1.5">
-                  <label className="flex items-center gap-1.5 text-base font-bold text-gray-700 dark:text-gray-300">
+                  <label className="flex items-center gap-1.5 text-lg font-bold text-gray-700 dark:text-gray-300">
                     <AtSign className="w-4 h-4 text-[#C79A2D]" />
                     ईमेल <span className="text-red-600">*</span>
                   </label>
@@ -265,7 +266,7 @@ export const ContactPage: React.FC = () => {
 
               {/* Phone */}
               <div className="space-y-1.5">
-                <label className="flex items-center gap-1.5 text-base font-bold text-gray-700 dark:text-gray-300">
+                <label className="flex items-center gap-1.5 text-lg font-bold text-gray-700 dark:text-gray-300">
                   <Smartphone className="w-4 h-4 text-[#C79A2D]" />
                   मोबाइल नंबर <span className="text-red-600">*</span>
                 </label>
@@ -282,7 +283,7 @@ export const ContactPage: React.FC = () => {
 
               {/* Subject – now a text input */}
               <div className="space-y-1.5">
-                <label className="flex items-center gap-1.5 text-base font-bold text-gray-700 dark:text-gray-300">
+                <label className="flex items-center gap-1.5 text-lg font-bold text-gray-700 dark:text-gray-300">
                   <FileText className="w-4 h-4 text-[#C79A2D]" />
                   विषय <span className="text-red-600">*</span>
                 </label>
@@ -299,7 +300,7 @@ export const ContactPage: React.FC = () => {
 
               {/* Message */}
               <div className="space-y-1.5">
-                <label className="flex items-center gap-1.5 text-base font-bold text-gray-700 dark:text-gray-300">
+                <label className="flex items-center gap-1.5 text-lg font-bold text-gray-700 dark:text-gray-300">
                   <MessageSquare className="w-4 h-4 text-[#C79A2D]" />
                   संदेश <span className="text-red-600">*</span>
                 </label>

@@ -233,7 +233,7 @@ export const PurposeSection: React.FC = () => {
 
                   {/* ============ Title ============ */}
                   <h3
-                    className="relative z-10 text-2xl font-bold font-heading-hi text-red-950 mt-4
+                    className="relative z-10 text-3xl font-bold font-heading-hi text-red-950 mt-4
                       transition-colors duration-500
                       group-hover:text-white group-hover:drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]"
                   >
@@ -242,7 +242,7 @@ export const PurposeSection: React.FC = () => {
 
                   {/* ============ Description ============ */}
                   <p
-                    className="relative z-10 text-lg text-slate-900 font-devanagari leading-relaxed mt-2
+                    className="relative z-10 text-xl text-slate-900 font-devanagari leading-relaxed mt-2
                       transition-colors duration-500
                       group-hover:text-white/95"
                   >

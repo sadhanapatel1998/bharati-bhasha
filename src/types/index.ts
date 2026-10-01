@@ -117,7 +117,8 @@ export interface SubjectSchedule {
   option2Date: string;
   option2Day: string;
   iconName: string;
-  image: string; // Image path or URL
+  image: string; 
+  classRange: string;
 }
 export interface ExamDetail {
   id: string;

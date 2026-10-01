@@ -326,13 +326,13 @@ export const AwardsPage: React.FC = () => {
                         {levelLabel[aw.level] || aw.level}
                       </span>
 
-                      <h3 className="font-bold text-2xl text-gray-900 dark:text-white leading-snug
+                      <h3 className="font-bold text-3xl text-gray-900 dark:text-white leading-snug
                         group-hover:text-blue-950 transition-colors duration-300">
                         {aw.title}
                       </h3>
 
                       {aw.description && (
-                        <p className="text-base text-gray-800 dark:text-gray-400 leading-relaxed">
+                        <p className="text-lg text-gray-800 dark:text-gray-400 leading-relaxed">
                           {aw.description}
                         </p>
                       )}
@@ -504,7 +504,7 @@ export const AwardsPage: React.FC = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className={`font-bold text-2xl ${theme.title} relative z-10 leading-snug`}>
+                    <h3 className={`font-bold text-3xl ${theme.title} relative z-10 leading-snug`}>
                       {s.title}
                     </h3>
 
@@ -515,7 +515,7 @@ export const AwardsPage: React.FC = () => {
                     />
 
                     {/* Description */}
-                    <p className="text-medium text-gray-800 dark:text-gray-400 leading-relaxed relative z-10">
+                    <p className="text-lg text-gray-800 dark:text-gray-400 leading-relaxed relative z-10">
                       {s.description}
                     </p>
                   </div>
@@ -551,10 +551,10 @@ export const AwardsPage: React.FC = () => {
 
                     <MedalSeal gradient={gradient} Icon={Icon} />
                     <div className="relative space-y-3 z-10">
-                      <h3 className="font-bold text-2xl text-gray-900 dark:text-white">
+                      <h3 className="font-bold text-3xl text-gray-900 dark:text-white">
                         {aw.title}
                       </h3>
-                      <p className="text-medium text-gray-800 dark:text-gray-400 leading-relaxed">
+                      <p className="text-lg text-gray-800 dark:text-gray-400 leading-relaxed">
                         {aw.description}
                       </p>
                     </div>
@@ -610,16 +610,14 @@ export const AwardsPage: React.FC = () => {
                           bg-gradient-to-r from-transparent via-white/20 to-transparent
                           skew-x-[-25deg] group-hover:animate-[aw3-sweep_1.2s_ease-out]" />
                       </div>
-
                       <Star className={`absolute top-3 right-3 w-3.5 h-3.5 text-[#C79A2D]/60 aw3-twinkle`} />
-
                       <div
                         className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${pf.color} mx-auto flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 aw3-seal-pop`}
                       >
                         <Icon className="w-7 h-7 text-white" />
                       </div>
-                      <h4 className="font-bold text-lg text-white relative z-10">{pf.title}</h4>
-                      <p className="text-sm text-gray-300 leading-relaxed relative z-10">
+                      <h4 className="font-bold text-2lg text-white relative z-10">{pf.title}</h4>
+                      <p className="text-base text-gray-300 leading-relaxed relative z-10">
                         {pf.description}
                       </p>
                     </div>

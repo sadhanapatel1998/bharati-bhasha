@@ -503,6 +503,7 @@ export const EXAM_SCHEDULES: SubjectSchedule[] = [
     option2Day: "गुरुवार",
     iconName: "BookOpen",
     image: "/books/hindi.png",
+    classRange: "कक्षा 1 से 10 के विद्यार्थियों हेतु",
   },
   {
     subject: "Sanskrit",
@@ -513,6 +514,7 @@ export const EXAM_SCHEDULES: SubjectSchedule[] = [
     option2Day: "बुधवार",
     iconName: "Feather",
     image: "/books/sanskrit.png",
+    classRange: "कक्षा 6 से 10 के विद्यार्थियों हेतु",
   },
 ];
 
@@ -541,7 +543,7 @@ export const EXAM_DETAILS: ExamDetail[] = [
   {
     id: "duration",
     label: "अवधि (Duration)",
-    value: "60 मिनट",
+    value: "",
     subtext: "समय प्रबंधन व विश्लेषणात्मक दक्षता",
     icon: "Clock",
   },

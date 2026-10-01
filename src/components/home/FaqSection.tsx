@@ -223,7 +223,7 @@ export const FaqSection: React.FC = () => {
                     className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 group relative z-10"
                   >
                     <span
-                      className={`text-lg font-bold font-heading-hi transition-colors duration-300 flex items-center gap-3
+                      className={`text-xl font-bold font-heading-hi transition-colors duration-300 flex items-center gap-3
                         ${isOpen ? theme.questionOpen : `text-slate-800 ${theme.questionHover}`}`}
                     >
                       {/* Colored number badge */}
@@ -253,7 +253,7 @@ export const FaqSection: React.FC = () => {
                       ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
                   >
                     <div className={`px-6 pb-5 pt-3 border-t-2 ${theme.divider} ml-[60px]`}>
-                      <p className="text-lg text-slate-800 font-devanagari leading-relaxed">
+                      <p className="text-xl text-slate-800 font-devanagari leading-relaxed">
                         {faq.answer}
                       </p>
                     </div>
@@ -274,7 +274,7 @@ export const FaqSection: React.FC = () => {
                   : "Still have a question?"}
               </p>
               <button
-                className="text-red-800 cursor-pointer font-bold hover:text-amber-700 transition-all duration-300 underline-offset-2 hover:underline hover:scale-105"
+                className="text-lg text-red-800 cursor-pointer font-bold hover:text-amber-700 transition-all duration-300 underline-offset-2 hover:underline hover:scale-105"
                 onClick={() => window.location.href = "/contact"}
               >
                 {language === "hi" ? "हमसे संपर्क करें" : "Contact us"}

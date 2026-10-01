@@ -14,7 +14,6 @@ export const ExamScheduleSection: React.FC = () => {
             id="schedule"
             className="relative overflow-hidden py-16 pb-0 my-0 bg-white"
         >
-
             {/* ===== Animated Background Layers ===== */}
 
             {/* 1) Moving color dot grid */}
@@ -126,7 +125,7 @@ export const ExamScheduleSection: React.FC = () => {
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionHeader
                     icon={Calendar}
-                    badge="सत्र 2026–27 तिथियाँ व रूपरेखा"
+                    badge="15 अक्टूबर  2026 की महत्वपूर्ण तिथि"
                     title="परीक्षा कार्यक्रम एवं तिथियाँ"
                     description="विद्यालय अपनी सुविधा अनुसार हिंदी एवं संस्कृत ओलंपियाड के लिए दिए गए दो विकल्पों में से किसी एक तिथि का चयन कर सकते हैं।"
                 />

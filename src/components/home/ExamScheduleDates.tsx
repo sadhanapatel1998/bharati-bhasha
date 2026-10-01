@@ -51,7 +51,7 @@ export const ExamScheduleDates: React.FC = () => {
 
       <div className="relative flex items-center justify-between border-b-2 border-indigo-100 pb-4">
         <div>
-          <h3 className="text-3xl font-bold font-heading-hi bg-gradient-to-r from-red-900 via-red-900 to-red-950 bg-clip-text text-transparent bg-[length:200%_auto] esd-text-shine">
+          <h3 className="md:text-4xl text-3xl font-bold font-heading-hi bg-gradient-to-r from-red-900 via-red-900 to-red-950 bg-clip-text text-transparent bg-[length:200%_auto] esd-text-shine">
             विषयवार परीक्षा तिथियाँ (Exam Schedule 2026)
           </h3>
           <p className="text-lg text-indigo-700 font-bold font-devanagari">
@@ -86,8 +86,8 @@ export const ExamScheduleDates: React.FC = () => {
                       <h4 className="text-xl sm:text-2xl font-bold font-heading-hi text-white leading-tight drop-shadow-sm">
                         {sched.subjectHindi}
                       </h4>
-                      <p className="text-lg text-white/90 font-devanagari">
-                        कक्षा 1 से 10 के विद्यार्थियों हेतु
+                      <p className="text-xl text-white/90 font-devanagari mt-2">
+                        {sched.classRange}
                       </p>
                     </div>
                   </div>
@@ -112,7 +112,7 @@ export const ExamScheduleDates: React.FC = () => {
               {/* Dates Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-white p-4 rounded-xl border-2 border-white/70 space-y-1 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
-                  <span className={`text-base font-black uppercase tracking-wider block border-b pb-1 px-1 -mx-1 rounded-t ${theme.chip}`}>
+                  <span className={`text-lg font-black uppercase tracking-wider block border-b pt-1 px-1 -mx-1 rounded-t ${theme.chip}`}>
                     विकल्प – I
                   </span>
                   <p className="text-xl font-bold text-slate-900 font-devanagari pt-1">
@@ -123,7 +123,7 @@ export const ExamScheduleDates: React.FC = () => {
                   </p>
                 </div>
                 <div className="bg-white p-4 rounded-xl border-2 border-white/70 space-y-1 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
-                  <span className={`text-base font-black uppercase tracking-wider block border-b pb-1 px-1 -mx-1 rounded-t ${theme.chip}`}>
+                  <span className={`text-lg font-black uppercase tracking-wider block border-b pt-1 px-1 -mx-1 rounded-t ${theme.chip}`}>
                     विकल्प – II
                   </span>
                   <p className="text-xl font-bold text-slate-900 font-devanagari pt-1">

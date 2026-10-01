@@ -153,10 +153,10 @@ export const WhyChooseSection: React.FC = () => {
                                         </div>
 
                                         <div className="mt-5 flex flex-col min-h-auto lg:min-h-[180px]">
-                                            <h3 className="text-2xl md:text-2xl font-bold font-heading-hi text-red-950 leading-snug transition-colors duration-500 group-hover:text-white">
+                                            <h3 className="text-2xl md:text-3xl font-bold font-devanagari text-red-950 leading-snug transition-colors duration-500 group-hover:text-white">
                                                 {pillar.title}
                                             </h3>
-                                            <p className="mt-4 flex-1 text-lg text-slate-800 font-devanagari leading-relaxed transition-colors duration-500 group-hover:text-white/90">
+                                            <p className="mt-4 flex-1 text-xl text-slate-800 font-devanagari leading-relaxed transition-colors duration-500 group-hover:text-white/90">
                                                 {pillar.desc}
                                             </p>
                                         </div>
@@ -171,7 +171,7 @@ export const WhyChooseSection: React.FC = () => {
                                     </div>
 
                                     <div className="mt-4 pt-3 border-t border-amber-100 flex items-center justify-between text-base font-bold transition-colors duration-500 group-hover:border-white/20 group-hover:text-white">
-                                        <span className={`${theme.text} transition-colors duration-500 group-hover:text-white`}>
+                                        <span className={`${theme.text} transition-colors duration-500 group-hover:text-white text-lg`}>
                                             विशेषता 0{idx + 1}
                                         </span>
                                         <span className="relative flex h-2.5 w-2.5">
@@ -438,7 +438,7 @@ export const WhyChooseSection: React.FC = () => {
                                         {/* Content */}
                                         <div className="relative z-10 space-y-3">
                                             <h4
-                                                className={`text-2xl font-bold font-devanagari transition-colors duration-300 mt-4 ${idx === 0
+                                                className={`text-2xl font-bold font-devanagari transition-colors duration-300 mt-10 ${idx === 0
                                                     ? "text-blue-900 group-hover:text-blue-700"
                                                     : idx === 1
                                                         ? "text-red-900 group-hover:text-orange-700"
@@ -452,9 +452,9 @@ export const WhyChooseSection: React.FC = () => {
                                                 {pillar.title}
                                             </h4>
 
-                                            <p className="text-[18px] leading-6 text-slate-700 group-hover:text-slate-900 transition-colors duration-300">
+                                            {/* <p className="text-[18px] leading-6 text-slate-700 group-hover:text-slate-900 transition-colors duration-300">
                                                 {pillar.desc}
-                                            </p>
+                                            </p> */}
 
                                             {/* Animated Underline */}
                                             <div

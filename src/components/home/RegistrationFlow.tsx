@@ -289,9 +289,9 @@ export default function RegistrationFlow() {
                             <BadgeCheck className="w-6 h-6" />
                             <span>अभी विद्यालय का पंजीकरण करें</span>
                         </button>
-                        <p className="mt-4 text-lg text-amber-700">
+                        {/* <p className="mt-4 text-lg text-amber-700">
                             पंजीकरण अंतिम तिथि: <span className="font-bold">30 नवंबर 2026</span>
-                        </p>
+                        </p> */}
                     </div>
                 </div>
             </div>

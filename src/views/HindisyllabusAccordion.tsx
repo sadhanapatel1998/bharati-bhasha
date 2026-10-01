@@ -193,11 +193,11 @@ export const HindiSyllabusAccordion: React.FC = () => {
                 </span>
 
                 <div>
-                  <h3 className={`font-playfair text-xl md:text-2xl font-bold transition-colors duration-500
+                  <h3 className={`font-playfair text-xl md:text-3xl font-bold transition-colors duration-500
                     ${isOpen ? theme.titleColor : 'text-slate-900 dark:text-white'}`}>
                     {'कक्षा ' + active.grade + ' — हिंदी पाठ्यक्रम'}
                   </h3>
-                  <p className="text-sm text-gray-800 mt-0.5 font-medium">
+                  <p className="text-base text-gray-800 mt-0.5 font-medium">
                     {'भारती भाषा ओलंपियाड · अपनी भाषा, अपनी पहचान'}
                   </p>
                 </div>

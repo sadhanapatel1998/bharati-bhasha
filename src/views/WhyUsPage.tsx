@@ -300,21 +300,23 @@ export const WhyUsPage: React.FC = () => {
                     />
 
                     {/* Content */}
-                    <div className="relative z-[2] text-center">
-                      {/* Title */}
-                      <h3
-                        className={`text-xl sm:text-2xl font-black ${theme.titleColor} font-devanagari leading-snug mt-2`}
-                      >
-                        {adv.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p className={`text-[18px] ${theme.descColor} leading-relaxed font-devanagari mt-2`}>
-                        {adv.description}
-                      </p>
-                      {/* Divider */}
-                      <div className="flex items-center justify-center my-4">
-                        <span className={`h-[1px] w-16 bg-gradient-to-r from-transparent ${theme.divider} to-transparent`} />
+                    <div className="relative z-[2] text-center flex flex-col md:min-h-[210px] justify-between">
+                      <div className="flex-1 flex flex-col items-center justify-start">
+                        <h3
+                          className={`text-2xl sm:text-3xl font-black ${theme.titleColor} font-devanagari leading-snug mt-2 md:min-h-[72px] flex items-center justify-center`}
+                        >
+                          {adv.title}
+                        </h3>
+                        <p
+                          className={`text-lg ${theme.descColor} leading-relaxed font-devanagari mt-2 min-h-[70px] flex items-center justify-center`}
+                        >
+                          {adv.description}
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-center mt-4">
+                        <span
+                          className={`h-[1px] w-16 bg-gradient-to-r from-transparent ${theme.divider} to-transparent`}
+                        />
                       </div>
                     </div>
                   </div>

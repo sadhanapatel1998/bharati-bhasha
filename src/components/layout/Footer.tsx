@@ -280,7 +280,7 @@ export const Footer: React.FC = () => {
                 राष्ट्रीय भाषा ओलंपियाड समाचार पत्र
               </h3>
 
-              <p className="text-blue-100/90">
+              <p className="text-blue-100/90 text-md sm:text-lg font-medium max-w-md  ">
                 परीक्षा तिथियाँ, निःशुल्क अभ्यास प्रश्नोत्तरी, मॉडल पेपर एवं छात्रवृत्ति
                 अपडेट ईमेल पर प्राप्त करें।
               </p>
@@ -351,7 +351,7 @@ export const Footer: React.FC = () => {
                 </div>
               </Link>
 
-              <p className="text-base text-gray-200 leading-relaxed max-w-md">
+              <p className="text-md sm:text-lg font-medium text-gray-200 leading-relaxed max-w-md">
                 भारती भाषा ओलंपियाड भारत का प्रथम राष्ट्रीय स्तर का हिंदी व
                 संस्कृत ओलंपियाड है। यह राष्ट्रीय शिक्षा नीति (NEP 2020) के
                 सिद्धांतों पर आधारित एक वैज्ञानिक मूल्यांकन मंच है, जो छात्रों में
@@ -406,7 +406,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link href="/"
                     className="hover:text-blue-300 transition-all duration-300 flex items-center gap-1.5
-                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)] font-semibold">
+                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)] text-md sm:text-lg font-medium">
                     <ChevronRight className="w-4 h-4 text-blue-400" />
                     {"होम"}
                   </Link>
@@ -414,7 +414,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link href="/about"
                     className="hover:text-blue-300 transition-all duration-300 flex items-center gap-1.5
-                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)] font-semibold">
+                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)]  text-md sm:text-lg font-medium">
                     <ChevronRight className="w-4 h-4 text-blue-400" />
                     {"ओलंपियाड का परिचय"}
                   </Link>
@@ -422,7 +422,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link href="/vision-mission"
                     className="hover:text-blue-300 transition-all duration-300 flex items-center gap-1.5
-                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)] font-semibold">
+                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)]  text-md sm:text-lg font-medium">
                     <ChevronRight className="w-4 h-4 text-blue-400" />
                     {"दृष्टि एवं उद्देश्य"}
                   </Link>
@@ -430,7 +430,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link href="/why-us"
                     className="hover:text-blue-300 transition-all duration-300 flex items-center gap-1.5
-                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)] font-semibold">
+                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)] text-md sm:text-lg font-medium">
                     <ChevronRight className="w-4 h-4 text-blue-400" />
                     {"हमारी विशेषताएँ"}
                   </Link>
@@ -438,7 +438,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link href="/awards"
                     className="hover:text-blue-300 transition-all duration-300 flex items-center gap-1.5
-                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)] font-semibold">
+                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)] text-md sm:text-lg font-medium">
                     <ChevronRight className="w-4 h-4 text-blue-400" />
                     {"पुरस्कार एवं सम्मान"}
                   </Link>
@@ -446,7 +446,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link href="/contact"
                     className="hover:text-blue-300 transition-all duration-300 flex items-center gap-1.5
-                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)] font-semibold">
+                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(96,165,250,1)] text-md sm:text-lg font-medium">
                     <ChevronRight className="w-4 h-4 text-blue-400" />
                     {"संपर्क करें"}
                   </Link>
@@ -464,7 +464,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link href="/hindi-syllabus"
                     className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5
-                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold">
+                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] text-md sm:text-lg font-medium">
                     <ChevronRight className="w-4 h-4 text-emerald-400" />
                     {"हिंदी पाठ्यक्रम"}
                   </Link>
@@ -473,7 +473,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link
                     href="/sanskrit-syllabus"
-                    className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5 hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold"
+                    className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5 hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] text-md sm:text-lg font-medium"
                   >
                     <ChevronRight className="w-4 h-4 text-emerald-400" />
                     {"संस्कृत पाठ्यक्रम"}
@@ -483,7 +483,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link
                     href="/hindi"
-                    className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5 hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold"
+                    className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5 hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] text-md sm:text-lg font-medium"
                   >
                     <ChevronRight className="w-4 h-4 text-emerald-400" />
                     {"हिंदी मॉडल"}
@@ -493,7 +493,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link
                     href="/sanskrit"
-                    className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5 hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold"
+                    className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5 hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] text-md sm:text-lg font-medium"
                   >
                     <ChevronRight className="w-4 h-4 text-emerald-400" />
                     {"संस्कृत मॉडल"}
@@ -520,7 +520,7 @@ export const Footer: React.FC = () => {
                 {/* <li>
                   <Link href="/performance-report"
                     className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5
-                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold">
+                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] text-md sm:text-lg font-medium">
                     <ChevronRight className="w-4 h-4 text-emerald-400" />
                     {"परिणाम व स्कोर कार्ड"}
                   </Link>
@@ -528,7 +528,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <Link href="/faqs"
                     className="hover:text-emerald-300 transition-all duration-300 flex items-center gap-1.5
-                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] font-semibold">
+                      hover:translate-x-2 hover:drop-shadow-[0_0_12px_rgba(52,211,153,1)] text-md sm:text-lg font-medium">
                     <ChevronRight className="w-4 h-4 text-emerald-400" />
                     {"प्रश्नोत्तर"}
                   </Link>
@@ -540,19 +540,18 @@ export const Footer: React.FC = () => {
             <div className="space-y-3">
               <h4 className="font-playfair text-xl font-bold pb-1 border-b-2 border-amber-400/50
                 bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">
-                राष्ट्रीय मुख्यालय व संपर्क
+                हमसे जुड़ें एवं संपर्क करें
               </h4>
               <div className="space-y-3 text-base text-gray-200">
-                <div className="group flex items-start gap-2.5 hover:text-amber-200 transition-colors duration-300">
+                <div className="group flex items-start gap-2.5 hover:text-amber-200 transition-colors duration-300 text-md sm:text-lg font-medium">
                   <MapPin className="w-5 h-5 text-amber-400 shrink-0 mt-0.5
                     group-hover:scale-125 group-hover:rotate-6 group-hover:drop-shadow-[0_0_12px_rgba(251,191,36,1)]
                     transition-all duration-300" />
-                  <span>
-                    <strong className="text-amber-300">राष्ट्रीय कार्यालय:</strong> बी-42, संस्थागत क्षेत्र,
-                    कुतुब इंस्टीट्यूशनल एरिया, नई दिल्ली - 110016
+                  <span >
+                    <strong className="text-amber-300">पता:</strong> भारती भाषा ओलंपियाड : 05, अमिलाषा अपार्टमेंट, पॉकेट 3, रोहिणी, दिल्ली - 110085
                   </span>
                 </div>
-                <div className="group flex items-start gap-2.5 hover:text-amber-200 transition-colors duration-300">
+                {/* <div className="group flex items-start gap-2.5 hover:text-amber-200 transition-colors duration-300 text-md sm:text-lg font-medium">
                   <MapPin className="w-5 h-5 text-amber-400 shrink-0 mt-0.5
                     group-hover:scale-125 group-hover:rotate-6 group-hover:drop-shadow-[0_0_12px_rgba(251,191,36,1)]
                     transition-all duration-300" />
@@ -560,31 +559,39 @@ export const Footer: React.FC = () => {
                     <strong className="text-amber-300">सांस्कृतिक पीठ:</strong> अस्सी घाट परिसर, काशी
                     (वाराणसी), उत्तर प्रदेश - 221005
                   </span>
+                </div> */}
+                <div className="group flex items-start gap-2.5 hover:text-amber-200 transition-colors duration-300 text-md sm:text-lg font-medium">
+                  <Phone className="w-5 h-5 text-amber-400 shrink-0 mt-0.5
+                    group-hover:scale-125 group-hover:rotate-6 group-hover:drop-shadow-[0_0_12px_rgba(251,191,36,1)]
+                    transition-all duration-300" />
+                  <span>
+                    <strong className="text-amber-300">टोल-फ्री:<br/></strong> <a href="tel:919899783784">91 98997 83784</a> 
+                  </span>
                 </div>
-                <div className="group flex items-center gap-2.5 hover:text-amber-200 transition-colors duration-300">
+                {/* <div className="group flex items-center gap-2.5 hover:text-amber-200 transition-colors duration-300 text-md sm:text-lg font-medium">
                   <Phone className="w-5 h-5 text-amber-400 shrink-0
                     group-hover:scale-125 group-hover:rotate-12 group-hover:drop-shadow-[0_0_12px_rgba(251,191,36,1)]
                     transition-all duration-300" />
                   <span>टोल-फ्री: 1800-123-9876 / +91 11 2685 4321</span>
-                </div>
-                <div className="group flex items-center gap-2.5 hover:text-amber-200 transition-colors duration-300">
+                </div> */}
+                <div className="group flex items-center gap-2.5 hover:text-amber-200 transition-colors duration-300 text-md sm:text-lg font-medium">
                   <Mail className="w-5 h-5 text-amber-400 shrink-0
                     group-hover:scale-125 group-hover:drop-shadow-[0_0_12px_rgba(251,191,36,1)]
                     transition-all duration-300" />
-                  <span>info@bharatibhasha.org</span>
+                  <span><a href="mailto:info@bhartiyabhasha.com">info@bhartiyabhasha.com</a></span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* ============ Bottom Bar ============ */}
-          <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-base text-gray-300">
-            <p className="text-center md:text-left">
+          <div className="pt-8 text-gray-300 text-center">
+            <p className="text-center text-medium">
               © 2026 <strong className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent">भारती भाषा ओलंपियाड न्यास</strong>. सर्वाधिकार
               सुरक्षित।
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 text-base">
+            {/* <div className="flex flex-wrap items-center justify-center gap-4 text-base">
               <Link href="/privacy-terms"
                 className="hover:text-amber-300 transition-all duration-300 font-semibold
                   hover:drop-shadow-[0_0_12px_rgba(251,191,36,1)] hover:scale-110">
@@ -609,7 +616,7 @@ export const Footer: React.FC = () => {
                 करियर
               </Link>
               <span className="text-amber-400">•</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>

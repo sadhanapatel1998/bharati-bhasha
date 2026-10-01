@@ -64,15 +64,15 @@ export const AnnouncementBar: React.FC = () => {
       {/* Left: Icon + Announcement Text with smooth slider */}
       <div className="flex items-center gap-2.5 w-full sm:w-auto overflow-hidden px-4 sm:px-6 lg:px-8">
         <span className="bg-[#f8c245] text-[#7B1E1E] px-2.5 py-1 rounded-full font-bold text-[10px] tracking-wider uppercase flex items-center gap-1.5 shrink-0">
-          <Bell className="w-3.5 h-3.5" />
+          <Bell className="w-4 h-4" />
           <span className="hidden xs:inline">Alert</span>
         </span>
 
         {/* Announcement Carousel – only the text slides smoothly */}
         <div className="relative flex-1 min-w-0 overflow-hidden">
           <div key={currentIndex} className="flex items-center gap-2 animate-fadeSlide font-devanagari">
-            <Sparkles className="w-3.5 h-3.5 text-white shrink-0 animate-pulse" />
-            <p className="truncate font-medium hover:text-[#C79A2D] text-white cursor-pointer transition-colors duration-200 text-sm sm:text-base pt-1" onClick={() => navigateTo(announcement.link)}>
+            <Sparkles className="w-5 h-5 text-white shrink-0 animate-pulse" />
+            <p className="truncate font-medium hover:text-[#C79A2D] text-white cursor-pointer transition-colors duration-200 text-lg pt-1" onClick={() => navigateTo(announcement.link)}>
               {text}
             </p>
           </div>
@@ -80,22 +80,22 @@ export const AnnouncementBar: React.FC = () => {
       </div>
 
       {/* Right: Contact & CTA – unchanged, still prominent */}
-      <div className="flex items-center gap-4 text-[13px] shrink-0 font-medium lowercase">
-        <a href="tel:18001239876" className="hidden md:flex items-center  gap-1.5 hover:text-[#C79A2D] transition-colors font-devanagari bg-white/5 px-2.5 py-1 rounded-full hover:bg-white/10">
+      <div className="flex items-center gap-4 text-[16px] shrink-0 font-medium lowercase">
+        <a href="tel:919899783784" className="hidden md:flex items-center  gap-1.5 hover:text-[#C79A2D] transition-colors font-devanagari bg-white/5 px-2.5 py-1 rounded-full hover:bg-white/10">
           <Phone className="w-4.5 h-4.5 text-[#C79A2D]" />
-          <span className='text-white pt-1'>1800-123-9876</span>
+          <span className='text-white pt-1'>91 98997 83784</span>
         </a>
-        <a href="mailto:info@bharatibhasha.org" className="hidden lg:flex items-center gap-1.5 hover:text-[#C79A2D] font-devanagari transition-colors bg-white/5 px-2.5 py-1 rounded-full hover:bg-white/10 lowercase">
-          <Mail className="w-3.5 h-3.5 text-[#C79A2D]" />
-          <span className='text-white lowercase pt-1'>info@bharatibhasha.org</span>
+        <a href="mailto:info@bhartiyabhasha.com" className=" hidden lg:flex items-center gap-1.5 hover:text-[#C79A2D] font-devanagari transition-colors bg-white/5 px-2.5 py-1 rounded-full hover:bg-white/10 lowercase">
+          <Mail className="w-5 h-5 text-[#C79A2D]" />
+          <span className='text-white lowercase pt-1'>info@bhartiyabhasha.com</span>
         </a>
 
         <button
           onClick={() => navigateTo('/registration')}
-          className="hidden cursor-pointer sm:flex items-center gap-1.5 bg-[#C79A2D] text-[#7B1E1E] px-3.5 py-1.5 rounded-full font-bold text-xs hover:bg-[#d4af37] hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg"
+          className="hidden cursor-pointer sm:flex items-center gap-1.5 bg-[#C79A2D] text-[#7B1E1E] px-3.5 py-1.5 rounded-full font-bold text-base hover:bg-[#d4af37] hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg"
         >
           <span>{'अभी पंजीकरण करें'}</span>
-          <ChevronRight className="w-3.5 h-3.5" />
+          <ChevronRight className="w-5 h-5" />
         </button>
       </div>
     </div>

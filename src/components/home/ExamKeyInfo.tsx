@@ -177,7 +177,6 @@ export const ExamKeyInfo: React.FC = () => {
               >
                 <Sparkles className="w-5 h-5" />
               </span>
-
               {/* Big number (top-right) — correctly positioned inside corner */}
               <span
                 className={`absolute top-4 right-4 text-5xl sm:text-4xl font-black leading-none tracking-tighter z-[5]
@@ -211,7 +210,7 @@ export const ExamKeyInfo: React.FC = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className={`text-2xl sm:text-[26px] font-extrabold text-center leading-tight font-devanagari
+                <h3 className={`text-2xl sm:text-3xl font-extrabold text-center leading-tight font-devanagari
                   text-slate-900 group-hover:text-white transition-colors duration-500`}>
                   {detail.label.split("(")[0]}
                 </h3>
@@ -224,7 +223,7 @@ export const ExamKeyInfo: React.FC = () => {
                 />
 
                 {/* Description */}
-                <p className="mt-5 text-lg leading-relaxed text-center font-devanagari
+                <p className="mt-5 text-xl leading-relaxed text-center font-devanagari
                   text-slate-800 group-hover:text-white/90 transition-colors duration-500">
                   {detail.subtext}
                 </p>

@@ -223,7 +223,7 @@ export const VisionMissionPage: React.FC = () => {
                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-amber-500/40 to-transparent" />
 
                 {/* Description */}
-                <p className="text-lg text-amber-50/85 leading-relaxed font-devanagari">
+                <p className="text-xl text-amber-50/85 leading-relaxed font-devanagari">
                   {vision.description}
                 </p>
 
@@ -305,12 +305,12 @@ export const VisionMissionPage: React.FC = () => {
                   {mission.items.map((item, idx) => (
                     <li key={idx} className="group/item flex gap-3 items-start">
                       <span className="w-7 h-7 rounded-full bg-gradient-to-br from-rose-500 to-amber-500
-              text-white text-lg font-black flex items-center justify-center shrink-0 mt-0.5
+              text-white text-2xl font-black flex items-center justify-center shrink-0 mt-0.5
               shadow-md shadow-rose-500/40
               group-hover/item:scale-110 group-hover/item:rotate-6 transition-transform duration-300">
                         {idx + 1}
                       </span>
-                      <span className="text-medium sm:text-lg text-[#0B0B1A]/80 font-devanagari leading-relaxed
+                      <span className="text-lg sm:text-xl text-[#0B0B1A]/80 font-devanagari leading-relaxed
               group-hover/item:text-[#0B0B1A] transition-colors duration-300">
                         {item}
                       </span>
@@ -480,7 +480,7 @@ export const VisionMissionPage: React.FC = () => {
                       </div>
 
                       {/* Title */}
-                      <h4 className="relative font-bold text-lg text-white drop-shadow-sm">
+                      <h4 className="relative font-bold text-xl text-white drop-shadow-sm">
                         {value.title}
                       </h4>
 
@@ -489,7 +489,7 @@ export const VisionMissionPage: React.FC = () => {
               group-hover:w-16 transition-all duration-500`} />
 
                       {/* Description */}
-                      <p className="relative text-base text-white/90 leading-relaxed drop-shadow-sm">
+                      <p className="relative text-lg text-white/90 leading-relaxed drop-shadow-sm">
                         {value.description}
                       </p>
                     </div>
@@ -500,13 +500,13 @@ export const VisionMissionPage: React.FC = () => {
               {/* Quote */}
               <div className="relative pt-6 border-t border-white/10 flex flex-col items-center gap-3">
                 <Quote className="w-10 h-10 text-[#C79A2D]/60 vm-float" />
-                <p className="text-lg text-gray-200 italic text-center max-w-2xl
+                <p className="text-xl text-gray-200 italic text-center max-w-2xl
         bg-gradient-to-r from-gray-100 via-white to-gray-100 bg-clip-text text-transparent">
                   {quote.text}
                 </p>
                 <div className="flex items-center gap-2">
                   <span className="w-10 h-0.5 bg-gradient-to-r from-transparent to-[#C79A2D] rounded-full" />
-                  <span className="text-xs text-[#C79A2D] font-bold tracking-widest uppercase">
+                  <span className="text-base text-[#C79A2D] font-bold tracking-widest uppercase">
                     {quote.author}
                   </span>
                   <span className="w-10 h-0.5 bg-gradient-to-l from-transparent to-[#C79A2D] rounded-full" />

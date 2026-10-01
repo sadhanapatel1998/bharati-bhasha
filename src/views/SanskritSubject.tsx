@@ -20,7 +20,7 @@ import SanskritsyllabusAccordion from './SanskritsyllabusAccordion';
 const TABS = [
   { id: 'skills', label: 'कौशल आकलन' },
   { id: 'curriculum', label: 'पाठ्यक्रम' },
-  { id: 'sample-paper', label: 'प्रतिदर्श प्रश्नपत्र' },
+  { id: 'sample-paper', label: 'सैंपल पेपर' },
 ];
 
 const SKILLS = [
@@ -177,7 +177,7 @@ export const SanskritSubject: React.FC = () => {
                   onClick={() => handleTabClick(tab.id)}
                   className={`group relative shrink-0
             px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl
-            text-sm sm:text-lg lg:text-xl font-black tracking-wide
+            text-sm sm:text-lg lg:text-lg font-black tracking-wide
             whitespace-nowrap
             transition-all duration-500 ease-out
             overflow-hidden active:scale-95 snav-slide-in

@@ -20,7 +20,7 @@ import HindiSyllabusAccordion from './HindisyllabusAccordion';
 const TABS = [
   { id: 'skills', label: 'कौशल आकलन' },
   { id: 'curriculum', label: 'पाठ्यक्रम' },
-  { id: 'sample-paper', label: 'प्रतिदर्श प्रश्नपत्र' },
+  { id: 'sample-paper', label: 'सैंपल पेपर' },
 ];
 
 const SKILLS = [
@@ -177,7 +177,7 @@ export const HindiSubject: React.FC = () => {
                   onClick={() => handleTabClick(tab.id)}
                   className={`group relative shrink-0
             px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl
-            text-sm sm:text-lg lg:text-xl font-black tracking-wide
+            text-sm sm:text-lg lg:text-lg font-black tracking-wide
             whitespace-nowrap
             transition-all duration-500 ease-out
             overflow-hidden active:scale-95 snav-slide-in
@@ -382,7 +382,7 @@ export const HindiSubject: React.FC = () => {
 
                       <div>
                         <h3
-                          className={`font-playfair text-2xl font-black tracking-tight
+                          className={`font-playfair text-xl md:text-3xl font-black tracking-tight
                     ${isAvailable
                               ? `bg-gradient-to-r ${g.color} bg-clip-text text-transparent`
                               : 'text-slate-400'
@@ -390,10 +390,10 @@ export const HindiSubject: React.FC = () => {
                         >
                           {`कक्षा ${g.id}`}
                         </h3>
-                        <p className="text-sm text-slate-500 font-medium mt-0.5 flex items-center gap-2">
+                        <p className="text-base text-slate-500 font-medium mt-0.5 flex items-center gap-2">
                           <span>{'भारती भाषा ओलंपियाड · हिंदी'}</span>
                           {!isAvailable && (
-                            <span className="text-[11px] font-bold bg-slate-100 text-slate-500 rounded-full px-2 py-0.5">
+                            <span className="text-[12px] font-bold bg-slate-100 text-slate-500 rounded-full px-2 py-0.5">
                               जल्द उपलब्ध
                             </span>
                           )}

@@ -24,12 +24,12 @@ export const HomePage: React.FC = () => {
       <HeroSection />
       <AboutSection />
       <WhyChooseSection />
-      <StatsSection />
+      {/* <StatsSection /> */}
       <ExamScheduleSection />
       {/* <OlympiadShowcaseSection />
       <ComparisonSection />
       <MapSection />  */}
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <FaqSection />
       <VideoModal
         isOpen={isVideoModalOpen}

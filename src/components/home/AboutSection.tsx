@@ -138,7 +138,7 @@ const AboutSection: React.FC = () => {
                                 विस्तृत प्रदर्शन रिपोर्ट
                             </h4>
 
-                            <p className="leading-8 text-blue-50 text-medium font-medium">
+                            <p className="leading-8 text-blue-50 text-lg font-lg">
                                 प्रत्येक विद्यार्थी की प्रगति का विस्तृत विश्लेषण उपलब्ध कराया जाता है, जिससे
                                 शिक्षक, अभिभावक और विद्यार्थी स्वयं अपनी ताकत, सुधार के क्षेत्रों और आगामी
                                 लक्ष्य को स्पष्ट रूप से समझ सकते हैं।
@@ -162,7 +162,7 @@ const AboutSection: React.FC = () => {
                             <h4 className="font-bold text-2xl leading-snug mb-3">
                                 NEP 2020 संरेखण
                             </h4>
-                            <p className="leading-8 text-green-50 text-medium font-medium">
+                            <p className="leading-8 text-green-50 text-lg font-medium">
                                 यह ओलंपियाड राष्ट्रीय शिक्षा नीति (NEP 2020) के बहुभाषिक शिक्षा, भारतीय ज्ञान
                                 परंपरा, समग्र विकास और योग्यता आधारित शिक्षण के सिद्धांतों के अनुरूप तैयार किया
                                 गया है, जिससे विद्यार्थियों में भाषा के साथ-साथ सांस्कृतिक मूल्यों का भी विकास

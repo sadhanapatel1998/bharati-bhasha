@@ -64,10 +64,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
           </div>
 
           <div className='hidden sm:block'>
-            <h1 className="mt-2 font-playfair font-bold text-xl leading-none tracking-tight text-[#790e03] dark:text-[#F5F0E6]">
+            <h1 className="mt-2 font-playfair font-bold text-2xl leading-none tracking-tight text-[#790e03] dark:text-[#F5F0E6]">
               भारती भाषा <span className="text-[#C79A2D]">ओलंपियाड</span>
             </h1>
-            <p className="text-[14px] font-bold tracking-wide text-[#12244c] dark:text-gray-400 mt-1">
+            <p className="text-[15px] font-bold tracking-wide text-[#12244c] dark:text-gray-400 mt-1">
               {'अपनी भाषा, अपनी पहचान'}
             </p>
           </div>
@@ -81,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
                 <button
                   key={item.key}
                   onClick={() => handleNavClick(item.key)}
-                  className={`px-3 py-2 cursor-pointer rounded-lg text-base font-semibold transition-colors font-poppins ${currentRoute === item.key
+                  className={`px-3 py-2 cursor-pointer rounded-lg text-medium font-semibold transition-colors font-poppins ${currentRoute === item.key
                     ? 'text-[#790e03] dark:text-[#C79A2D] bg-[#790e03]/5 dark:bg-[#C79A2D]/10'
                     : 'text-gray-700 dark:text-gray-300 hover:text-[#790e03] dark:hover:text-[#C79A2D]'
                     }`}
@@ -98,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
                 onMouseEnter={() => setActiveDropdown(item.key)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button className="cursor-pointer flex items-center gap-1 px-3 py-2 font-poppins rounded-lg text-base font-semibold text-gray-700 dark:text-gray-300 hover:text-[#790e03] dark:hover:text-[#C79A2D] transition-colors">
+                <button className="cursor-pointer flex items-center gap-1 px-3 py-2 font-poppins rounded-lg text-medium font-semibold text-gray-700 dark:text-gray-300 hover:text-[#790e03] dark:hover:text-[#C79A2D] transition-colors">
                   {item.label}
                   <ChevronDown className="w-3.5 h-3.5" />
                 </button>
@@ -112,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
                           <button
                             key={sub.key}
                             onClick={() => handleNavClick(sub.key)}
-                            className={`cursor-pointer w-full text-left px-3 py-2 rounded-lg hover:bg-[#790e03]/5 dark:hover:bg-white/5 flex items-center gap-2 ${sub.highlight ? 'font-bold text-[#790e03] dark:text-[#C79A2D]' : 'font-medium'
+                            className={`cursor-pointer w-full text-lg text-left px-3 py-2 rounded-lg hover:bg-[#790e03]/5 dark:hover:bg-white/5 flex items-center gap-2 ${sub.highlight ? 'font-bold text-[#790e03] dark:text-[#C79A2D]' : 'font-medium'
                               }`}
                           >
                             <Icon
@@ -135,7 +135,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
           <div className="relative">
             <button
               onClick={() => handleNavClick("/login")}
-              className="bg-gradient-to-r from-[#790e03] to-[#A32A2A] hover:from-[#541313] hover:to-[#790e03] text-[#F5F0E6] px-5 pt-3 pb-2 md:pt-4 md:pb-3 rounded-xl text-medium font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 glow-gold"
+              className="bg-gradient-to-r from-[#790e03] to-[#A32A2A] hover:from-[#541313] hover:to-[#790e03] text-[#F5F0E6] px-5 pt-3 pb-2 md:pt-4 md:pb-3 rounded-xl text-lg font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 glow-gold"
             >
               <LogIn className="w-4 h-4 text-[#ffd36b]" />
               <span>विद्यालय लॉगिन</span>
