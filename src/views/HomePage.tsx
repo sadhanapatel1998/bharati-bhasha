@@ -20,7 +20,7 @@ export const HomePage: React.FC = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-0">
       <HeroSection />
       <AboutSection />
       <WhyChooseSection />

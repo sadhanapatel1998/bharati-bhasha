@@ -4,3 +4,4 @@ export default function AdminSectionPage() {
   // /admin/* route, so this page intentionally renders nothing.
   return null;
 }
+p

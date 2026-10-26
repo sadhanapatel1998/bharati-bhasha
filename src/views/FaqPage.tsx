@@ -152,106 +152,11 @@ export const FaqPage: React.FC = () => {
 
   return (
     <>
-      {/* ============ Custom Keyframes ============ */}
-      <style>{`
-        @keyframes faqp-orb-a {
-          0%, 100% { transform: translate(0,0) scale(1); }
-          50%      { transform: translate(70px, -50px) scale(1.18); }
-        }
-        @keyframes faqp-orb-b {
-          0%, 100% { transform: translate(0,0) scale(1); }
-          50%      { transform: translate(-60px, 45px) scale(1.12); }
-        }
-        @keyframes faqp-spin-slow { to { transform: rotate(360deg); } }
-        @keyframes faqp-spin-rev  { to { transform: rotate(-360deg); } }
-        @keyframes faqp-float {
-          0%, 100% { transform: translateY(0) rotate(-6deg); }
-          50%      { transform: translateY(-14px) rotate(2deg); }
-        }
-        @keyframes faqp-float-slow {
-          0%, 100% { transform: translateY(0) rotate(8deg); }
-          50%      { transform: translateY(-20px) rotate(-2deg); }
-        }
-        @keyframes faqp-drift {
-          0%, 100% { transform: translateX(0) translateY(0); }
-          33%      { transform: translateX(25px) translateY(-15px); }
-          66%      { transform: translateX(-18px) translateY(12px); }
-        }
-        @keyframes faqp-sparkle {
-          0%, 100% { opacity: 0.3; transform: scale(0.85) rotate(0deg); }
-          50%      { opacity: 1;   transform: scale(1.2)  rotate(180deg); }
-        }
-        @keyframes faqp-twinkle {
-          0%, 100% { opacity: 0.35; transform: scale(0.85); }
-          50%      { opacity: 1;   transform: scale(1.25); }
-        }
-        @keyframes faqp-badge-bounce {
-          0%, 100% { transform: translateY(0); }
-          50%      { transform: translateY(-3px); }
-        }
-        @keyframes faqp-sweep {
-          0%   { transform: translateX(-150%) skewX(-25deg); opacity: 0; }
-          20%  { opacity: 1; }
-          80%  { opacity: 1; }
-          100% { transform: translateX(400%) skewX(-25deg); opacity: 0; }
-        }
-        @keyframes faqp-border-flow {
-          0%   { background-position: 0% 50%; }
-          100% { background-position: 200% 50%; }
-        }
-        @keyframes faqp-stars-pan {
-          0%   { background-position: 0 0; }
-          100% { background-position: 160px 160px; }
-        }
-        @keyframes faqp-chevron-move {
-          0%   { background-position: 0 0; }
-          100% { background-position: 0 40px; }
-        }
-        @keyframes faqp-diamond-shift {
-          0%   { background-position: 0 0; }
-          100% { background-position: 60px 60px; }
-        }
-
-        .faqp-orb-a        { animation: faqp-orb-a 16s ease-in-out infinite; }
-        .faqp-orb-b        { animation: faqp-orb-b 20s ease-in-out infinite; }
-        .faqp-spin-slow    { animation: faqp-spin-slow 24s linear infinite; }
-        .faqp-spin-rev     { animation: faqp-spin-rev 32s linear infinite; }
-        .faqp-float        { animation: faqp-float 6s ease-in-out infinite; }
-        .faqp-float-slow   { animation: faqp-float-slow 8s ease-in-out infinite; }
-        .faqp-drift        { animation: faqp-drift 9s ease-in-out infinite; }
-        .faqp-sparkle      { animation: faqp-sparkle 3s ease-in-out infinite; }
-        .faqp-twinkle      { animation: faqp-twinkle 2.5s ease-in-out infinite; }
-        .faqp-badge-bounce { animation: faqp-badge-bounce 2.5s ease-in-out infinite; }
-        .faqp-sweep        { animation: faqp-sweep 6s linear infinite; }
-        .faqp-border-flow  { background-size: 200% 100%; animation: faqp-border-flow 8s linear infinite; }
-
-        /* Background patterns */
-        .faqp-pattern-stars {
-          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><path d='M40 20 Q42 38 60 40 Q42 42 40 60 Q38 42 20 40 Q38 38 40 20 Z' fill='%23C79A2D'/><path d='M120 80 Q122 92 134 94 Q122 96 120 108 Q118 96 106 94 Q118 92 120 80 Z' fill='%23C79A2D'/><path d='M80 120 Q82 132 94 134 Q82 136 80 148 Q78 136 66 134 Q78 132 80 120 Z' fill='%23C79A2D'/></svg>");
-          background-size: 160px 160px;
-          animation: faqp-stars-pan 40s linear infinite;
-        }
-        .faqp-pattern-chevron {
-          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'><path d='M0 20 L20 4 L40 20' fill='none' stroke='%23C79A2D' stroke-width='1'/></svg>");
-          background-size: 40px 20px;
-          animation: faqp-chevron-move 12s linear infinite;
-        }
-        .faqp-pattern-diamond {
-          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><path d='M30 0 L60 30 L30 60 L0 30 Z' fill='none' stroke='%23C79A2D' stroke-width='0.8'/></svg>");
-          background-size: 60px 60px;
-          animation: faqp-diamond-shift 30s linear infinite;
-        }
-      `}</style>
 
       <section className="mb-0 relative pb-16 overflow-hidden
         bg-gradient-to-br from-indigo-50 via-purple-50 to-amber-50">
 
-        {/* ============ RAINBOW TOP BORDER ============ */}
-        <div className="absolute top-0 left-0 right-0 h-1
-          bg-gradient-to-r from-rose-500 via-amber-400 via-emerald-400 via-blue-500 via-purple-500 to-rose-500 faqp-border-flow" />
-
-        {/* ============ ANIMATED BACKGROUND PATTERNS ============ */}
-
+     
         {/* 1) Original brand dot grid (kept) */}
         <div
           aria-hidden

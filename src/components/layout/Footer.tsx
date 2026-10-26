@@ -565,7 +565,7 @@ export const Footer: React.FC = () => {
                     group-hover:scale-125 group-hover:rotate-6 group-hover:drop-shadow-[0_0_12px_rgba(251,191,36,1)]
                     transition-all duration-300" />
                   <span>
-                    <strong className="text-amber-300">टोल-फ्री:<br/></strong> <a href="tel:919899783784">91 98997 83784</a> 
+                    <strong className="text-amber-300">टोल-फ्री:<br/></strong> <a href="tel:919899783784">+91 98997 83784</a> 
                   </span>
                 </div>
                 {/* <div className="group flex items-center gap-2.5 hover:text-amber-200 transition-colors duration-300 text-md sm:text-lg font-medium">

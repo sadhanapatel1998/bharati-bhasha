@@ -116,8 +116,8 @@ export const FaqSection: React.FC = () => {
   return (
     <>
 
-      <section className="mb-0 relative py-16 overflow-hidden pb-0
-        bg-gradient-to-br from-indigo-50 via-purple-50 to-amber-50">
+      <section className="mb-0 relative py-16 overflow-hidden mb-0
+        bg-gradient-to-br from-indigo-50 via-purple-50 to-amber-50 border-t border-amber-300/60">
 
         {/* ============ OLYMPIAD-THEMED BACKGROUND ============ */}
 

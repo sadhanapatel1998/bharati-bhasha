@@ -124,7 +124,7 @@ export const ExamKeyInfo: React.FC = () => {
 
   return (
     <div className="space-y-6 mb-16">
-      <div className="text-center mt-25">
+      <div className="text-center">
         <SectionHeader
           icon={Info}
           badge="परीक्षा की मुख्य विशेषताएँ"

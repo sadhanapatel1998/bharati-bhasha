@@ -46,7 +46,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
         : 'bg-[#FAFAF8] dark:bg-[#121010] py-2 border-b border-[#790e03]/10 dark:border-white/10'
         }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-0 lg:px-0 flex items-center justify-between">
         {/* Brand Logo & Emblem */}
         <div
           className="flex items-center gap-3 cursor-pointer group justify-center"

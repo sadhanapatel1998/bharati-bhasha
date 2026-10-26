@@ -123,17 +123,17 @@ export const ExamScheduleSection: React.FC = () => {
 
             {/* ===== Content ===== */}
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <SectionHeader
+                {/* <SectionHeader
                     icon={Calendar}
                     badge="15 अक्टूबर  2026 की महत्वपूर्ण तिथि"
                     title="परीक्षा कार्यक्रम एवं तिथियाँ"
                     description="विद्यालय अपनी सुविधा अनुसार हिंदी एवं संस्कृत ओलंपियाड के लिए दिए गए दो विकल्पों में से किसी एक तिथि का चयन कर सकते हैं।"
-                />
+                /> */}
 
                 <div className="relative">
-                    <ExamScheduleDates />
+                    {/* <ExamScheduleDates /> */}
 
-                    <div className="mt-8">
+                    <div>
                         <ExamKeyInfo />
                     </div>
                 </div>

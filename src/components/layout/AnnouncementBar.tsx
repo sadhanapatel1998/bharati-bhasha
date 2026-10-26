@@ -83,7 +83,7 @@ export const AnnouncementBar: React.FC = () => {
       <div className="flex items-center gap-4 text-[16px] shrink-0 font-medium lowercase">
         <a href="tel:919899783784" className="hidden md:flex items-center  gap-1.5 hover:text-[#C79A2D] transition-colors font-devanagari bg-white/5 px-2.5 py-1 rounded-full hover:bg-white/10">
           <Phone className="w-4.5 h-4.5 text-[#C79A2D]" />
-          <span className='text-white pt-1'>91 98997 83784</span>
+          <span className='text-white pt-1'>+91 98997 83784</span>
         </a>
         <a href="mailto:info@bhartiyabhasha.com" className=" hidden lg:flex items-center gap-1.5 hover:text-[#C79A2D] font-devanagari transition-colors bg-white/5 px-2.5 py-1 rounded-full hover:bg-white/10 lowercase">
           <Mail className="w-5 h-5 text-[#C79A2D]" />
