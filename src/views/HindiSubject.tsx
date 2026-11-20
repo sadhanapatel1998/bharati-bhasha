@@ -43,7 +43,7 @@ const GRADE_COLORS = [
   'from-red-500 to-rose-600',
 ];
 
-const AVAILABLE_SAMPLE_GRADES = ['1', '2'];
+const AVAILABLE_SAMPLE_GRADES = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
 const GRADES = Array.from({ length: 10 }, (_, i) => {
   const id = String(i + 1);
@@ -332,7 +332,6 @@ export const HindiSubject: React.FC = () => {
           </div>
         </div>
 
-        {/* ============ Sample Paper ============ */}
         {/* ============ Sample Paper ============ */}
         <div id="sample-paper" className="scroll-mt-24 space-y-5">
           <SectionHeading
