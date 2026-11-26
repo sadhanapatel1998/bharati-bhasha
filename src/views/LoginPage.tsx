@@ -102,6 +102,12 @@ function LoginInner() {
               </span>
             </label>
 
+            <div className="text-right">
+              <Link href="/forgot-password" className="text-xs font-semibold text-[#7B1E1E] hover:underline dark:text-[#d9b45f]">
+                {t('auth.forgot')}
+              </Link>
+            </div>
+
             {error && (
               <p className="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-xs font-semibold text-rose-700 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300">
                 {error}

@@ -19,6 +19,8 @@ const UserSchema = new Schema(
     schoolId: { type: Types.ObjectId, ref: 'School', default: null, index: true },
     isActive: { type: Boolean, default: true },
     lastLogin: { type: Date, default: null },
+    resetTokenHash: { type: String, default: null },
+    resetTokenExpiry: { type: Date, default: null },
   },
   { timestamps: true }
 );
