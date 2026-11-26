@@ -18,7 +18,7 @@ import SanskritsyllabusAccordion from './SanskritsyllabusAccordion';
 /* ---------------- Shared data ---------------- */
 
 const TABS = [
-  { id: 'skills', label: 'कौशल आकलन' },
+  // { id: 'skills', label: 'कौशल आकलन' },
   { id: 'curriculum', label: 'पाठ्यक्रम' },
   { id: 'sample-paper', label: 'सैंपल पेपर' },
 ];
